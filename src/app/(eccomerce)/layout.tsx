@@ -1,12 +1,14 @@
+import Navbar from '@/components/navbar'
+
 export default function EcommerceLayout ({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
-    <>
-      <header className="text-2xl"><nav><ul><li>Link e-commerce</li></ul></nav></header>
-      <main >{children}</main>
-    </>
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <main className='mx-6 my-7 flex-1 md:mx-8 lg:mx-12' >{children}</main>
+    </div>
   )
 }
