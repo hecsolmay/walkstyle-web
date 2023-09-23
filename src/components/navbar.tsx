@@ -2,8 +2,8 @@ import { SearchIcon } from '@/components/icons'
 import { links, type NavLinks } from '@/contants/navlinks'
 import Image from 'next/image'
 import Link from 'next/link'
-import MobileNavbar from './mobile-navbar'
-import NavActions from './nav-actions'
+import MobileNavbar from '@/components/mobile-navbar'
+import NavActions from '@/components/nav-actions'
 
 export default function Navbar () {
   return (
