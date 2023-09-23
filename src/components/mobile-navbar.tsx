@@ -3,6 +3,7 @@
 import { SearchIcon, XMarkIcon } from '@/components/icons'
 import { MobileSideBar } from '@/components/mobile-sidebar'
 import NavActions from '@/components/nav-actions'
+import { cn } from '@/utils/cn'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -25,22 +26,18 @@ export default function MobileNavbar () {
 
       <MobileSideBar />
 
-      {!showSearch &&
-        <Link href='/' className='ml-12 md:m-0'>
-          <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
-        </Link>
-      }
+      <Link href='/' className={cn('ml-12 md:m-0', showSearch && 'hidden')}>
+        <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
+      </Link>
 
       <div className='flex items-center gap-3'>
 
         {/* ACTIONS  */}
-        {!showSearch &&
-        <button onClick={handleClickSearch} className="flex items-center px-0.5 text-teal-500">
+        <button onClick={handleClickSearch} className={cn('flex items-center px-0.5 text-teal-500', showSearch && 'hidden')}>
           <SearchIcon/>
-        </button>}
+        </button>
 
-        {showSearch &&
-        <div className='relative transition-all duration-200 ease-in-out '>
+        <div className={cn('relative transition-all duration-200 ease-in-out ', !showSearch && 'hidden')}>
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
             <SearchIcon/>
           </div>
@@ -49,7 +46,7 @@ export default function MobileNavbar () {
             <XMarkIcon />
           </button>
           <input type="text" className="block w-[75vw] rounded-lg border border-gray-300 bg-gray-50 p-1.5 pl-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Search...' />
-        </div>}
+        </div>
 
         <NavActions />
       </div>

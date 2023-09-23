@@ -1,5 +1,7 @@
 'use client'
 
+import { cn } from '@/utils/cn'
+
 // Define el tipo para el tipo de variante
 type ColorVariant = 0 | 1 | 2 | 3 | 4
 
@@ -28,7 +30,7 @@ export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
   return (
     <div className="flex items-center justify-center">
       <div className="flex h-56 w-44 flex-col items-center justify-center ">
-        <div className={` grid h-44 w-44  place-content-center opacity-90 ${colorClass} `}>
+        <div className={cn('grid h-44 w-44  place-content-center opacity-90', colorClass)}>
           <img
             src={brand.logoUrl}
             alt={brand.name}

@@ -1,7 +1,8 @@
 'use client'
 
+import { HamburguerIcon } from '@/components/icons'
+import { cn } from '@/utils/cn'
 import { useState } from 'react'
-import { HamburguerIcon } from './icons'
 
 export function MobileSideBar () {
   const [showSideBar, setShowSideBar] = useState(false)
@@ -27,15 +28,13 @@ export function MobileSideBar () {
         <HamburguerIcon className='md:hidden' />
       </button>
 
-      {showSideBar &&
-        <div onClick={handleClick} className='bg-black/50z absolute inset-0 z-10 h-screen w-screen '>
-          <aside className='fixed left-0 top-0 z-20 h-screen w-[75vw] bg-white'>
-            <ul>
-              <li>Nav 1</li>
-            </ul>
-          </aside>
-        </div>
-      }
+      <div onClick={handleClick} className={cn('bg-black/50 absolute inset-0 z-10 h-screen w-screen ', !showSideBar && 'hidden')}>
+        <aside className='fixed left-0 top-0 z-20 h-screen w-[75vw] bg-white'>
+          <ul>
+            <li>Nav 1</li>
+          </ul>
+        </aside>
+      </div>
     </>
   )
 }
