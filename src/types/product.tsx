@@ -1,6 +1,6 @@
-import type Brand from './brand'
+import type { Brand } from '@/types/brand'
 
-interface Product {
+export interface Product {
   productId: string
   name: string
   brand: Brand
@@ -10,9 +10,7 @@ interface Product {
   description: string
 }
 
-interface Gender {
+export interface Gender {
   genderId: string
   name: string
 }
-
-export default Product

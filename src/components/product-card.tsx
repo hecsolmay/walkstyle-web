@@ -1,5 +1,5 @@
 import Button from '@/components/button-product-card'
-import type Product from '@/types/product'
+import type { Product } from '@/types/product'
 
 interface ProductCardProps {
   product: Product
