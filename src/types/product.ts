@@ -10,6 +10,12 @@ export interface Product {
   description: string
 }
 
+export interface ItemProduct {
+  product: Product
+  quantity: number
+  size: number
+}
+
 export interface Gender {
   genderId: string
   name: string
