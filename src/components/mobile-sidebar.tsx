@@ -1,6 +1,7 @@
 'use client'
 
 import { HamburguerIcon, XMarkIcon } from '@/components/icons'
+import { Background } from '@/components/modal-background'
 import { links } from '@/contants/navlinks'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
@@ -17,20 +18,13 @@ export function MobileSideBar () {
     setShowSideBar(false)
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Si se hace clic en el fondo oscurecido, cierra el modal
-    if (e.target === e.currentTarget) {
-      handleCloseSideBar()
-    }
-  }
-
   return (
     <>
       <button onClick={handleShowSideBar}>
         <HamburguerIcon className='md:hidden' />
       </button>
 
-      <div onClick={handleClick} className={cn('bg-black/50 absolute inset-0 z-10 h-screen w-screen ', !showSideBar && 'hidden')}>
+      <Background close={handleCloseSideBar} show={showSideBar}>
         <aside className={cn('fixed left-0 top-0 z-20 h-screen w-[65vw]  rounded-tr-3xl bg-white transform transition-transform duration-500 ease-in-out ', showSideBar ? 'translate-x-0' : '-translate-x-full')}>
           <div className='over flex h-20 items-center justify-between rounded-tr-3xl bg-teal-500 p-5 text-white'>
             <h1 className='text-xl font-bold'>Walkstyle</h1>
@@ -46,7 +40,8 @@ export function MobileSideBar () {
             ))}
           </ul>
         </aside>
-      </div>
+      </Background>
+
     </>
   )
 }
