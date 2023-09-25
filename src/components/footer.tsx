@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer () {
   return (
-    <footer className="flex w-screen flex-col  gap-5 bg-black p-8">
+    <footer className="flex w-full flex-col  gap-5 bg-black p-8">
       <div className="flex items-center gap-6">
         <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
         <h1 className="text-2xl font-bold uppercase text-white" >WALKSTYLE</h1>

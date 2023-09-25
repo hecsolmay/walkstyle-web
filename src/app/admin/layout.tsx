@@ -8,60 +8,25 @@ export default function AdminLayout ({
 }: {
   children: React.ReactNode
 }) {
-  const [showSideBar, setShowSideBar] = useState(false)
+  const [showSideBar, setShowSideBar] = useState(true)
 
   const toogleShowSideBar = () => {
+    console.log('Button Pressed')
+
     setShowSideBar(!showSideBar)
   }
 
   return (
-    <div className="flex min-h-screen w-screen">
+    <div className="flex min-h-screen">
       <AdminSideBar show={showSideBar}/>
-      <AdminMobileSideBar closeSideBar={() => { setShowSideBar(false) }} show={showSideBar} />
-      <div className='min-h-screen w-full '>
+      <AdminMobileSideBar closeSideBar={() => { setShowSideBar(true) }} show={!showSideBar} />
+
+      <div className='flex-1'>
         <nav className='sticky top-0 z-10 h-16 overflow-hidden bg-white shadow-lg'>
           <button onClick={toogleShowSideBar}>Mostrar</button>
         </nav>
-        <main className='mx-6 my-7 md:mx-8 lg:mx-12'>
+        <main className='h-[calc(100vh-64px)] overflow-y-scroll scroll-smooth px-5  py-4 scrollbar-none scrollbar-thumb-slate-300 hover:scrollbar-thin'>
           {children}
-          <ul>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-            <li>AdminMobileSideBar</li>
-          </ul>
-
         </main>
       </div>
     </div>
