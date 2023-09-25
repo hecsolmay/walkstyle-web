@@ -32,7 +32,7 @@ export function MobileSideBar () {
               <XMarkIcon className='h-7 w-7'/>
             </button>
           </div>
-          <ul className='flex h-[88%] flex-col gap-6 overflow-y-scroll px-5 py-6'>
+          <ul className='flex h-[88%] flex-col gap-6 overflow-y-scroll px-5 py-6 scrollbar-thin scrollbar-thumb-teal-300'>
             {links.map(link => (
               <li key={link.href} className={cn('text-2xl text-slate-400', link.divider !== undefined && 'border-b border-slate-400 pb-3')}>
                 <Link href={link.href} >{link.label}</Link>

@@ -1,14 +1,14 @@
 import { SearchIcon } from '@/components/icons'
+import MobileNavbar from '@/components/mobile-navbar'
+import NavActions from '@/components/nav-actions'
 import { links, type NavLinks } from '@/contants/navlinks'
 import Image from 'next/image'
 import Link from 'next/link'
-import MobileNavbar from '@/components/mobile-navbar'
-import NavActions from '@/components/nav-actions'
 
 export default function Navbar () {
   return (
     <>
-      <nav className="hidden h-full w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md md:flex md:px-8">
+      <nav className="sticky top-0 hidden h-24 w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md md:flex md:px-8">
 
         <Link href='/' className='ml-12 md:m-0'>
           <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
