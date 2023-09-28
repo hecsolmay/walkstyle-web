@@ -1,8 +1,9 @@
 'use client'
 
-import { SearchIcon, XMarkIcon } from '@/components/icons'
+import { SearchIcon } from '@/components/icons'
 import { MobileSideBar } from '@/components/mobile-sidebar'
 import NavActions from '@/components/nav-actions'
+import { SearchMobileInput } from '@/components/search-navbar'
 import { cn } from '@/utils/cn'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -37,16 +38,7 @@ export default function MobileNavbar () {
           <SearchIcon/>
         </button>
 
-        <div className={cn('relative transition-all duration-200 ease-in-out ', !showSearch && 'hidden')}>
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
-            <SearchIcon/>
-          </div>
-
-          <button onClick={handleCloseSearch} className="absolute inset-y-0 right-2 flex items-center pl-1.5 text-slate-400">
-            <XMarkIcon />
-          </button>
-          <input type="text" className="block w-[75vw] rounded-lg border border-gray-300 bg-gray-50 p-1.5 pl-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Search...' />
-        </div>
+        <SearchMobileInput showSearch={showSearch} closeSearch={handleCloseSearch} />
 
         <NavActions />
       </div>
