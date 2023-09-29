@@ -15,7 +15,7 @@ export function TextButton ({
 }: TextButtomProps) {
   return (
     <button
-      className={cn('flex py-3 w-full items-center justify-center rounded-md bg-black  text-white', className)}
+      className={cn('flex font-medium py-3 w-full items-center justify-center rounded-md bg-black  text-white transition-all duration-200 ease-in-out hover:opacity-100 hover:shadow-lg ', className)}
       onClick={onClick}
     >
       {text}
