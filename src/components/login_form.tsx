@@ -47,18 +47,20 @@ export default function LoginForm () {
       <TextButton text="Sign in" className="h-11 w-full bg-cyan-500 text-white" />
 
       <div className="my-4 flex w-full items-center justify-between">
-        <hr className=" w-32 border-t-2 border-gray-950" />
+        <hr className=" w-32 border-t-2 border-gray-600" />
         <span className="mx-2 text-sm text-gray-600">Or continue with</span>
-        <hr className=" w-32 border-t-2 border-gray-950  " />
+        <hr className=" w-32 border-t-2 border-gray-600  " />
       </div>
 
       <IconButton text="Sign in with Google" className='w-full' >
         <GoogleIcon className="ml-2 h-5" />
       </IconButton>
 
-      <Link href="/signup" className='mt-4  w-full '>
-        <TextButton text="Create an account" className="mt-4 h-11 w-full bg-yellow-500 text-white" />
-      </Link>
+      <div className='my-4  flex w-full items-center justify-center'>
+        <Link href="/signup" className='mt-4 text-base font-bold text-black'>
+          Create an account
+        </Link>
+      </div>
     </div>
   )
 }

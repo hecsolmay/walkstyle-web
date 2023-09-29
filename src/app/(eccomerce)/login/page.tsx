@@ -5,7 +5,7 @@ export default function LoginPage () {
     <div className="relative flex min-h-screen flex-col">
       {/* Agrega la imagen de fondo con el componente Image */}
       <Image
-        src="/fondo_login.jpg"
+        src="/fondo-travis.jpg"
         alt="login_background"
         objectFit="cover"
         layout="fill"
