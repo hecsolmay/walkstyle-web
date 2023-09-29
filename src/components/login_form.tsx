@@ -1,45 +1,66 @@
-import Image from 'next/image'
+// LoginForm.tsx
+import Link from 'next/link'
 import Input from './input'
 import { TextButton } from './text_button'
 import { IconButton } from './icon-button'
-import RememberButton from './remember_buttom'
-import Link from 'next/link'
 import { GoogleIcon } from './icons'
+
+import Image from 'next/image'
 
 export default function LoginForm () {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mt-10' />
-      <h2 className="text-black-800 mt-4 text-2xl font-semibold">Sign in to your account</h2>
+    <div className="mx-auto flex max-w-screen-md flex-col items-center justify-center px-4 py-8">
+      <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-10' />
+      <h2 className="mb-4 text-2xl font-semibold text-black">Sign in to your account</h2>
 
-      <div className=' mt-4 items-center justify-center'>
-        <Input label='Email' name="email" placeholder="Enter your email" required className='mt-4 w-[410px]' />
+      <div className="mb-4 w-full">
+        <Input
+          label="Email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
       </div>
 
-      <div className="mt-4 items-center justify-center">
-        <Input label='Password' name="password" placeholder="Ingrese su contraseña" required className='mt-1 w-[410px]' />
+      <div className="mb-4 w-full">
+        <Input
+          label="Password"
+          name="password"
+          placeholder="Password"
+          required
+        />
       </div>
 
-      <div className="mt-4 flex w-[410px] items-center justify-between">
-        <RememberButton label='Remember me' classname='mr-4' />
-        <Link href="/restore-password" className='mb-1 text-sm text-blue-700'>Forgot Password</Link>
+      <div className="mb-4 flex w-full items-center justify-between">
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            className="mr-2"
+          />
+          <span className="text-sm text-gray-600">Remember me</span>
+        </label>
+        <Link href="/restore-password">
+          <span className="text-sm text-blue-700">Forgot password?</span>
+        </Link>
       </div>
 
-      <TextButton text="Sign in" className='mt-7  h-11 w-[410px] bg-cyan-500' />
-      <div className='mt-4 flex w-[410px] items-center justify-between'>
-        <hr className="w-1/3 border-t-2 border-gray-950 sm:w-2/6" />
-        <span className="mx-2 text-sm text-black">Or continue with</span>
-        <hr className="w-1/3 border-t-2 border-gray-950 sm:w-2/6" />
-      </div>
-      <IconButton text="Sign in with Google" className="mt-4 w-[450px] items-center">
-        <GoogleIcon className="ml-2 h-5 w-5" />
-      </IconButton>
+      <TextButton text="Sign in" className="h-11 w-full bg-cyan-500 text-white" />
 
-      <Link href={'/singup'}>
-        <TextButton text="Create an account" className='mt-4 h-11 w-[410px] bg-yellow-500
-        ' />
+      <div className="my-4 flex w-full items-center justify-between">
+        <hr className=" w-32 border-t-2 border-gray-950" />
+        <span className="mx-2 text-sm text-gray-600">Or continue with</span>
+        <hr className=" w-32 border-t-2 border-gray-950  " />
+      </div>
+
+      <div className="mt-4 flex w-full"> {/* Envuelve el botón en un div con w-full */}
+        <IconButton text="Sign in with Google" >
+          <GoogleIcon className="ml-2 h-5 w-5" />
+        </IconButton>
+      </div>
+
+      <Link href="/signup" className='mt-4  w-full '>
+        <TextButton text="Create an account" className="mt-4 h-11 w-full bg-yellow-500 text-white" />
       </Link>
     </div>
-
   )
 }
