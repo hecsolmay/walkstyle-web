@@ -39,3 +39,15 @@ export const dropdownLinks: NavLinks[] = [
     href: '/admin'
   }
 ]
+
+export const dropdownAdminLinks: NavLinks[] = [
+  {
+    label: 'Perfil',
+    href: '/admin/user/profile',
+    divider: true
+  },
+  {
+    label: 'E-commerce',
+    href: '/'
+  }
+]
