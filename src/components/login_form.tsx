@@ -9,8 +9,8 @@ import Image from 'next/image'
 
 export default function LoginForm () {
   return (
-    <div className="mx-auto flex max-w-screen-md flex-col items-center justify-center px-4 py-8">
-      <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-10' />
+    <div className="mx-auto flex max-w-screen-md flex-col items-center justify-center gap-1 px-4 py-8">
+      <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-2' />
       <h2 className="mb-4 text-2xl font-semibold text-black">Sign in to your account</h2>
 
       <div className="mb-4 w-full">
@@ -52,11 +52,9 @@ export default function LoginForm () {
         <hr className=" w-32 border-t-2 border-gray-950  " />
       </div>
 
-      <div className="mt-4 flex w-full"> {/* Envuelve el botón en un div con w-full */}
-        <IconButton text="Sign in with Google" >
-          <GoogleIcon className="ml-2 h-5 w-5" />
-        </IconButton>
-      </div>
+      <IconButton text="Sign in with Google" className='w-full' >
+        <GoogleIcon className="ml-2 h-5" />
+      </IconButton>
 
       <Link href="/signup" className='mt-4  w-full '>
         <TextButton text="Create an account" className="mt-4 h-11 w-full bg-yellow-500 text-white" />
