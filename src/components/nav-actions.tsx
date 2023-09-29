@@ -1,6 +1,7 @@
 'use client'
 
-import { ShoppingCartIcon, UserIcon } from '@/components/icons'
+import { UserIcon } from '@/components/icons'
+import ModalCartButton from '@/components/modal-cart-button'
 import { dropdownLinks } from '@/contants/navlinks'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
@@ -47,9 +48,7 @@ export default function NavActions () {
       </div>
       {/* CART */}
 
-      <div className='cursor-pointer text-slate-600'>
-        <ShoppingCartIcon />
-      </div>
+      <ModalCartButton />
 
     </div>
   )
