@@ -41,7 +41,7 @@ export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
           <UserCircleIcon className='h-8 w-8 font-light' />
         </button>
 
-        <div className={cn('absolute -left-16 top-9 w-[7.5rem] md:-left-[4.5rem] divide-y divide-gray-100 rounded-lg bg-[#293a5a] shadow ', showUser ? 'block' : 'hidden')}>
+        <div className={cn('absolute -left-16 top-9 w-[7.5rem] md:w-36 md:-left-[5.5rem] divide-y divide-gray-100 rounded-lg bg-[#293a5a] shadow ', showUser ? 'block' : 'hidden')}>
           <ul ref={menuRef} className="relative py-2 text-sm text-gray-200" >
             {dropdownAdminLinks.map((link) => (
               <li key={link.label}>
