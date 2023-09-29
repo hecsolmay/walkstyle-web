@@ -15,7 +15,7 @@ export default function SearchBarInput () {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='relative hidden md:block'>
+    <form onSubmit={handleSubmit} className='relative hidden w-full md:block'>
       <button className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
         <SearchIcon/>
       </button>
@@ -51,7 +51,7 @@ export function SearchMobileInput ({ showSearch, closeSearch }: SearchMobileProp
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn('relative transition-all duration-200 ease-in-out ', !showSearch && 'hidden')}>
+    <form onSubmit={handleSubmit} className={cn('w-full ml-4 mr-1 relative transition-all duration-200 ease-in-out ', !showSearch && 'hidden')}>
       <button className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
         <SearchIcon/>
       </button>

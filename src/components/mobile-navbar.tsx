@@ -31,7 +31,7 @@ export default function MobileNavbar () {
         <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
       </Link>
 
-      <div className='flex items-center gap-3'>
+      <div className={cn('flex items-center gap-3', showSearch && 'flex-1 ')}>
 
         {/* ACTIONS  */}
         <button onClick={handleClickSearch} className={cn('flex items-center px-0.5 text-teal-500', showSearch && 'hidden')}>

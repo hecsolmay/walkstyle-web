@@ -33,7 +33,7 @@ export default function NavActions () {
         <button ref={userRef} className='cursor-pointer text-slate-600' onClick={() => { setShowUser(!showUser) }}>
           <UserIcon />
         </button>
-        <div className={cn('absolute -left-14 top-9 w-[7.5rem] divide-y divide-gray-100 rounded-lg bg-slate-600 shadow ', showUser ? 'block' : 'hidden')}>
+        <div className={cn('absolute -left-14 top-9 w-[7.5rem] md:w-36 divide-y divide-gray-100 rounded-lg bg-slate-600 shadow ', showUser ? 'block' : 'hidden')}>
           <ul ref={menuRef} className="py-2 text-sm text-gray-200" >
             {dropdownLinks.map((link) => (
               <li key={link.label}>
