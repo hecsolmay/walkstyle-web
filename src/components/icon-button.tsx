@@ -22,7 +22,7 @@ export function IconButton ({
 }: IconButtonProps) {
   return (
     <button
-      className={cn('mb-2 mr-2 inline-flex h-12 w-full scale-90 cursor-pointer flex-row items-center justify-center gap-x-2 rounded-lg bg-red-500 px-5 py-2.5 text-center font-medium text-white transition-all duration-200 ease-in-out hover:opacity-100 hover:shadow-lg md:gap-3', className)}
+      className={cn('pb-2 pr-2 inline-flex h-12 w-full cursor-pointer flex-row items-center justify-center gap-x-2 rounded-lg bg-red-500 px-5 py-2.5 text-center font-medium text-white transition-all duration-200 ease-in-out hover:opacity-100 hover:shadow-lg md:gap-3', className)}
       onClick={onclick} >
       {direction === 'left' && children}
       {text}
