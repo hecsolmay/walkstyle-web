@@ -1,7 +1,7 @@
 // LoginForm.tsx
 import Link from 'next/link'
 import Input from './input'
-import { TextButton } from './text_button'
+import { TextButton } from './text-button'
 import { IconButton } from './icon-button'
 import { GoogleIcon } from './icons'
 
