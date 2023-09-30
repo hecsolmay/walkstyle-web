@@ -1,19 +1,19 @@
 // SignupForm.tsx
+import { IconButton } from '@/components/icon-button'
+import { GoogleIcon } from '@/components/icons'
+import Input from '@/components/input'
+import { TextButton } from '@/components/text-button'
 import Link from 'next/link'
-import Input from './input'
-import { TextButton } from './text-button'
-import { IconButton } from './icon-button'
-import { GoogleIcon } from './icons'
 
 import Image from 'next/image'
 
 export default function SignupForm () {
   return (
-    <div className="mx-auto flex max-w-screen-md flex-col items-center justify-center gap-1 p-4">
+    <form className="mx-auto flex max-w-screen-md flex-col items-center justify-center gap-1 p-4">
       <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-2' />
       <h2 className="my-3 text-2xl font-semibold text-black">Create your Free Account</h2>
 
-      <IconButton text="Sign in with Google" className='my-5 w-full' >
+      <IconButton text="Sign up with Google" className='my-5 w-full' >
         <GoogleIcon className="ml-2 h-5" />
       </IconButton>
 
@@ -81,6 +81,6 @@ export default function SignupForm () {
         </Link>
       </p>
 
-    </div>
+    </form>
   )
 }
