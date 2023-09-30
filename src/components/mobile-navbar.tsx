@@ -23,7 +23,7 @@ export default function MobileNavbar () {
   }
 
   return (
-    <nav className='sticky top-0 flex h-24 min-h-[74px] w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md md:hidden md:px-8'>
+    <nav className='sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md md:hidden md:px-8'>
 
       <MobileSideBar />
 

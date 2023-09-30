@@ -31,7 +31,7 @@ export const dropdownLinks: NavLinks[] = [
   },
   {
     label: 'Registrarse',
-    href: '/register',
+    href: '/signup',
     divider: true
   },
   {
