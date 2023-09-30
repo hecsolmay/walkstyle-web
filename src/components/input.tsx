@@ -1,4 +1,6 @@
-import { cn } from '@/utils/cn'
+'use client'
+import React, { useState } from 'react'
+import { EyeOpenIcon, EyeClosedIcon } from '@/components/icons'
 
 interface InputProps {
   label: string
@@ -7,6 +9,7 @@ interface InputProps {
   className?: string
   required?: boolean
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  type?: string
 }
 
 export default function Input ({
@@ -15,8 +18,15 @@ export default function Input ({
   placeholder,
   className,
   required,
-  onChange
+  onChange,
+  type = 'text'
 }: InputProps) {
+  const [showPassword, setShowPassword] = useState(false)
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <>
       <label
@@ -25,13 +35,25 @@ export default function Input ({
       >
         {label}
       </label>
-      <input
-        type='text'
-        name={name}
-        className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500 ', className)}
-        placeholder={placeholder}
-        required={required}
-      />
+      <div className='relative'>
+        <input
+          type={showPassword ? 'text' : type}
+          name={name}
+          className={`block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500 ${className}`}
+          placeholder={placeholder}
+          required={required}
+          onChange={onChange}
+        />
+        {type === 'password' && (
+          <button
+            type='button'
+            onClick={togglePasswordVisibility}
+            className='absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none'
+          >
+            {showPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
+          </button>
+        )}
+      </div>
     </>
   )
 }

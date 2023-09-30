@@ -17,6 +17,7 @@ export default function LoginForm () {
         <Input
           label="Email"
           name="email"
+          type='email'
           placeholder="Enter your email"
           required
         />
@@ -26,6 +27,7 @@ export default function LoginForm () {
         <Input
           label="Password"
           name="password"
+          type='password'
           placeholder="Password"
           required
         />
