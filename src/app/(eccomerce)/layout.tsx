@@ -9,8 +9,9 @@ export default function EcommerceLayout ({
   return (
     <div className="flex h-screen min-h-screen w-screen flex-col">
       <Navbar />
-      <div className='flex h-full w-full flex-col overflow-y-scroll scroll-smooth scrollbar-none scrollbar-thumb-slate-400 hover:scrollbar-thin'>
-        <main className=' flex-1' >
+      <div className='flex h-full w-full flex-col overflow-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-400'>
+        <main className='flex-1' >
+          {/* MARGIN TO ADD TO CONTAINER HEIGHT mx-6 md:mx-8 lg:mx-12 */}
           {children}
         </main>
         <Footer/>

@@ -23,3 +23,31 @@ export const links: NavLinks[] = [
     href: '/categories'
   }
 ]
+
+export const dropdownLinks: NavLinks[] = [
+  {
+    label: 'Iniciar Sesion',
+    href: '/login'
+  },
+  {
+    label: 'Registrarse',
+    href: '/register',
+    divider: true
+  },
+  {
+    label: 'ir al Admin',
+    href: '/admin'
+  }
+]
+
+export const dropdownAdminLinks: NavLinks[] = [
+  {
+    label: 'Perfil',
+    href: '/admin/user/profile',
+    divider: true
+  },
+  {
+    label: 'E-commerce',
+    href: '/'
+  }
+]

@@ -7,8 +7,7 @@ export default function LoginPage () {
       <Image
         src="/fondo-travis.jpg"
         alt="login_background"
-        objectFit="cover"
-        layout="fill"
+        fill
       />
 
       {/* Agrega el fondo blanco con un margen entre el Navbar y el Footer */}

@@ -1,6 +1,6 @@
-import { SearchIcon } from '@/components/icons'
 import MobileNavbar from '@/components/mobile-navbar'
 import NavActions from '@/components/nav-actions'
+import SearchBarInput from '@/components/search-navbar'
 import { links, type NavLinks } from '@/contants/navlinks'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -22,12 +22,7 @@ export default function Navbar () {
             ))}
           </ul>
 
-          <div className='relative hidden md:block'>
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
-              <SearchIcon/>
-            </div>
-            <input type="text" className="block w-52 rounded-lg border border-gray-300 bg-gray-50 p-1.5 pl-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Search...' />
-          </div>
+          <SearchBarInput />
 
           <NavActions />
         </div>
