@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import LoginForm from '@/components/login_form'
+import LoginForm from '@/components/login-form'
 export default function LoginPage () {
   return (
     <div className="relative flex min-h-screen flex-col">
