@@ -22,9 +22,9 @@ export default function AdminLayout ({
       <AdminSideBar show={showSideBar}/>
       <AdminMobileSideBar closeSideBar={() => { setShowSideBar(true) }} show={!showSideBar} />
 
-      <div className='flex-1'>
+      <div className='max-h-screen flex-1 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-slate-300'>
         <AdminNavbar toogleShowSideBar={toogleShowSideBar} />
-        <main className='min-h-full overflow-y-scroll scroll-smooth px-5 py-4 scrollbar-thin scrollbar-thumb-slate-300'>
+        <main className='px-5 py-4 '>
           {children}
         </main>
       </div>
