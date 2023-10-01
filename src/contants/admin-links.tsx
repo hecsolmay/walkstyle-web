@@ -14,7 +14,7 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Productos',
-    href: '#',
+    href: '/admin/products',
     icon: <ProductIcon />
   },
   {
