@@ -30,6 +30,14 @@ export function ShoppingCartIcon ({ className = '' }: IconProps) {
   )
 }
 
+export function FilterSearchIcon ({ className = '' }: IconProps) {
+  return (
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20" className={cn(defaultSize, className)}>
+
+      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
+    </svg>
+  )
+}
 export function GoogleIcon ({ className = '' }: IconProps) {
   return (
     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 18 19"
