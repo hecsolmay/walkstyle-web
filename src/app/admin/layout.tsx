@@ -24,7 +24,7 @@ export default function AdminLayout ({
 
       <div className='flex-1'>
         <AdminNavbar toogleShowSideBar={toogleShowSideBar} />
-        <main className='h-[calc(100vh-64px)] overflow-y-scroll scroll-smooth px-5  py-4 scrollbar-none scrollbar-thumb-slate-300 hover:scrollbar-thin'>
+        <main className='min-h-full overflow-y-scroll scroll-smooth px-5 py-4 scrollbar-thin scrollbar-thumb-slate-300'>
           {children}
         </main>
       </div>
