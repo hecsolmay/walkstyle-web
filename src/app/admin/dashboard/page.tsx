@@ -1,6 +1,7 @@
+import { AdminTable } from '@/components/admin/admin-table'
 import DashboardCard from '@/components/admin/dashboard-card'
 import { ShoppingBag, ShoppingCartIcon, UsersPairIcon } from '@/components/icons'
-import { TBody, TD, TH, THead, TR, Table } from '@/components/table'
+import { TD, TR } from '@/components/table'
 import dynamic from 'next/dynamic'
 
 const LineChart = dynamic(
@@ -52,68 +53,51 @@ export default function AdminPage () {
         <div className='rounded-sm bg-white px-4 py-5 shadow-lg'>
           <div className="flex flex-col gap-4">
             <h3>Ultimas ganancias</h3>
-            <Table>
-              <THead>
-                <TR>
-                  <TH>Total</TH>
-                  <TH>Products</TH>
-                  <TH>User</TH>
-                </TR>
 
-              </THead>
-              <TBody>
-                <TR>
-                  <TD>$1200</TD>
-                  <TD>20</TD>
-                  <TD>Hector Solis</TD>
-                </TR>
-                <TR>
-                  <TD>$1200</TD>
-                  <TD>20</TD>
-                  <TD>Hector Solis</TD>
-                </TR>
-                <TR>
-                  <TD>$1200</TD>
-                  <TD>20</TD>
-                  <TD>Hector Solis</TD>
-                </TR>
-              </TBody>
-            </Table>
+            <AdminTable headers={['total', 'products', 'user']}>
+              <TR>
+                <TD>$1200</TD>
+                <TD>20</TD>
+                <TD>Hector Solis</TD>
+              </TR>
+              <TR>
+                <TD>$1200</TD>
+                <TD>20</TD>
+                <TD>Hector Solis</TD>
+              </TR>
+              <TR>
+                <TD>$1200</TD>
+                <TD>20</TD>
+                <TD>Hector Solis</TD>
+              </TR>
+            </AdminTable>
           </div>
         </div>
 
         <div className='rounded-sm bg-white px-4 py-5 shadow-lg'>
           <div className="flex flex-col gap-4">
-            <h3>Ultimos Usuarios</h3>
-            <Table>
-              <THead>
-                <TR>
-                  <TH>Email</TH>
-                  <TH>Rol</TH>
-                  <TH>Hace</TH>
-                </TR>
-              </THead>
-              <TBody>
-                <TR>
-                  <TD>hecsolmay@gmail.com</TD>
-                  <TD>ADMIN</TD>
-                  <TD>hace 18 horas</TD>
-                </TR>
+            <h3>Ultimos Usuarios </h3>
 
-                <TR>
-                  <TD>hecsolmay@gmail.com</TD>
-                  <TD>ADMIN</TD>
-                  <TD>hace 18 horas</TD>
-                </TR>
+            <AdminTable headers={['Email', 'Rol', 'Hace']}>
+              <TR>
+                <TD>hecsolmay@gmail.com</TD>
+                <TD>ADMIN</TD>
+                <TD>hace 18 horas</TD>
+              </TR>
 
-                <TR>
-                  <TD>hecsolmay@gmail.com</TD>
-                  <TD>ADMIN</TD>
-                  <TD>hace 18 horas</TD>
-                </TR>
+              <TR>
+                <TD>hecsolmay@gmail.com</TD>
+                <TD>ADMIN</TD>
+                <TD>hace 18 horas</TD>
+              </TR>
 
-              </TBody>
-            </Table>
+              <TR>
+                <TD>hecsolmay@gmail.com</TD>
+                <TD>ADMIN</TD>
+                <TD>hace 18 horas</TD>
+              </TR>
+            </AdminTable>
+
           </div>
         </div>
       </div>
