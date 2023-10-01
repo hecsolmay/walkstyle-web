@@ -1,5 +1,5 @@
-import { IconButton } from '@/components/icon-button'
-import { PlusIcon, SearchIcon } from '@/components/icons'
+import ModalButton from '@/components/admin/modal-button'
+import { SearchIcon } from '@/components/icons'
 import { cn } from '@/utils/cn'
 
 interface AdminHeaderProps {
@@ -28,9 +28,9 @@ export function AdminHeader (
           </div>
         </div>
 
-        <IconButton text={buttonText} className='h-9 w-fit bg-blue-500 text-white'>
-          <PlusIcon />
-        </IconButton>
+        <ModalButton text={buttonText} >
+          {children}
+        </ModalButton>
       </div>
     </header>
   )
