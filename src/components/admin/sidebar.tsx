@@ -39,7 +39,7 @@ export function SidebarContent () {
   return (
     <>
       <div className='grid h-16 place-content-center border-b border-slate-500'>
-        <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
+        <Link href='/admin/dashboard'><Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' /></Link>
       </div>
       <ul className='flex h-[95%] flex-col gap-1 overflow-y-scroll scroll-smooth py-5 pl-3 text-white scrollbar-none'>
         {
