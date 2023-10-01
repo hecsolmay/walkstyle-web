@@ -144,3 +144,11 @@ export function ShoppingBag ({ className }: IconProps) {
     </svg>
   )
 }
+
+export function PlusIcon ({ className }: IconProps) {
+  return (
+    <svg className={cn(defaultSize, className)} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+    </svg>
+  )
+}
