@@ -4,6 +4,11 @@ export interface NavLinks {
   divider?: boolean
 }
 
+export interface SortLinks {
+  label: string
+  sort: string
+}
+
 export const links: NavLinks[] = [
   {
     label: 'Hombre',
@@ -52,26 +57,26 @@ export const dropdownAdminLinks: NavLinks[] = [
   }
 ]
 
-export const sortLinks: NavLinks[] = [
+export const sortLinks: SortLinks[] = [
   {
     label: 'Recientes',
-    href: '?sort=recents'
+    sort: 'recents'
   },
   {
     label: '$ - $$$',
-    href: '?sort=price-asc'
+    sort: 'price-asc'
   },
   {
     label: '$$$ - $',
-    href: '?sort=price-desc'
+    sort: 'price-desc'
   },
   {
     label: 'A - Z',
-    href: '?sort=name-asc'
+    sort: 'name-asc'
   },
   {
     label: 'Z - A',
-    href: '?sort=name-desc'
+    sort: 'name-desc'
   }
 ]
 

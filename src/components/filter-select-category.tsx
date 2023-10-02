@@ -2,18 +2,18 @@
 
 import { FilterSearchIcon } from '@/components/icons'
 import { SortKeys, sortLinks, type SortKey } from '@/contants/navlinks'
+import useNextQuery from '@/hooks/useNextQuey'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 export function ProductFilter () {
   const [showSort, setShowSort] = useState(false)
+  const { searchParams, createQueryString } = useNextQuery()
   const divRef = useRef<HTMLDivElement>(null)
-  const searchParams = useSearchParams()
   const sort = searchParams.get('sort') as SortKey | null
 
-  const sortedParam = SortKeys[sort ?? 'recents']
+  const sortedParam = SortKeys[sort ?? 'recents'] ?? 'Recientes'
 
   useEffect(() => {
     const clickOutSide = (e: MouseEvent) => {
@@ -42,9 +42,9 @@ export function ProductFilter () {
         <span className='hidden md:block'>: {sortedParam}</span>
       </div>
       <ul className={cn('text-slate-800 absolute right-14 translate-x-1/2 top-[125%] border border-slate-400 bg-white shadow transition-opacity duration-300', showSort ? 'visible opacity-100' : 'invisible opacity-0')}>
-        {sortLinks.map(({ href, label }) => (
-          <li key={href} className='cursor-pointer text-center transition-all hover:bg-slate-200 hover:text-slate-600'>
-            <Link className='block px-4 py-2 ' href={href}>{label}</Link>
+        {sortLinks.map(({ sort, label }) => (
+          <li key={sort} className='cursor-pointer text-center transition-all hover:bg-slate-200 hover:text-slate-600'>
+            <Link className='block px-4 py-2 ' href={`?${createQueryString('sort', sort)}`}>{label}</Link>
           </li>
         ))}
 

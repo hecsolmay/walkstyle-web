@@ -11,7 +11,13 @@ export default function SearchBarInput () {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+    if (searchWord.length === 0) {
+      router.push('/search')
+      return
+    }
+
     router.push(`/search?q=${searchWord}`)
+    clear()
   }
 
   return (
