@@ -19,7 +19,7 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Marcas',
-    href: '#',
+    href: '/admin/brands',
     icon: <BrandIcon />
   },
   {
