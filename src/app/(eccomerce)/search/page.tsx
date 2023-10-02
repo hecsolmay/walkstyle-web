@@ -1,4 +1,5 @@
 import { ProductFilter } from '@/components/filter-select-category'
+import { Pagination } from '@/components/pagination'
 import { ProductCard } from '@/components/product-card'
 
 const product = {
@@ -41,7 +42,9 @@ export default function SearchPage ({
             <ProductCard key={index} className='h-80 w-60 gap-8 pt-5 shadow-xl' product={product} />
           ))}
         </div>
-
+        <div className='flex justify-end p-10'>
+          <Pagination />
+        </div>
       </div>
     </>
   )
