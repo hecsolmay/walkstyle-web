@@ -5,13 +5,14 @@ import { cn } from '@/utils/cn'
 interface AdminHeaderProps {
   className?: string
   searchPlaceholder?: string
-  buttonText: string
+  buttonText?: string
   children?: React.ReactNode
   title: string
+  showButton?: boolean
 }
 
 export function AdminHeader (
-  { buttonText, children, className, searchPlaceholder, title }: AdminHeaderProps
+  { buttonText, children, className, searchPlaceholder, title, showButton = true }: AdminHeaderProps
 ) {
   return (
     <header className={cn('flex flex-col gap-8 py-3', className)}>
@@ -19,9 +20,11 @@ export function AdminHeader (
       <div className="flex flex-col-reverse justify-between gap-3 md:flex md:flex-row md:items-center">
         <SearchInput placeholder={searchPlaceholder} />
 
-        <ModalButton text={buttonText} >
-          {children}
-        </ModalButton>
+        {showButton &&
+          (<ModalButton text={buttonText ?? ''} >
+            {children}
+          </ModalButton>)
+        }
       </div>
     </header>
   )
