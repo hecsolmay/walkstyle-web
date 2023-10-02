@@ -5,14 +5,18 @@ import useNextQuery from '@/hooks/useNextQuey'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
 
-export function Pagination () {
+interface PaginationProps {
+  className?: string
+}
+
+export function Pagination ({ className }: PaginationProps) {
   const { createQueryString, searchParams } = useNextQuery()
   const page = searchParams.get('page') ?? '1'
   const pageNumber = isNaN(parseInt(page)) ? 1 : parseInt(page)
 
   return (
     <nav aria-label='Page navigation'>
-      <ul className='mb-4 flex gap-1.5'>
+      <ul className={cn('mb-4 flex gap-1.5', className)}>
         <li >
           {/* <Link href='#' className={'block py-2 text-black hover:opacity-90'}>
             <ChevronDoubleLeftIcon />
