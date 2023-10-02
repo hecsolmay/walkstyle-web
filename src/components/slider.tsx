@@ -3,16 +3,18 @@
 import { LinkButton } from '@/components/link-button'
 import { cn } from '@/utils/cn'
 import SwiperCore from 'swiper/core'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
+import { type Category } from '@/types/category'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { CategoryCard } from './category-card'
 
 // import required modules
-SwiperCore.use([Autoplay, Pagination, Navigation])
+SwiperCore.use([Autoplay, Pagination, Navigation, FreeMode])
 
 export function Carrusel () {
   return (
@@ -37,7 +39,7 @@ export function Carrusel () {
           src='https://tafmx.vtexassets.com/assets/vtex.file-manager-graphql/images/e4e28d41-a7f4-41ef-b02a-848495982c08___0585f82118a943b317747e509853c4ff.jpg'
         />
       </SwiperSlide>
-      <SwiperSlide className='px-2md:w-[calc(100%_-_4rem)] w-full  md:px-6'>
+      <SwiperSlide className='w-full px-2 md:w-[calc(100%_-_4rem)]  md:px-6'>
         <SliderContent
           title='Deportes'
           subtitle='Hasta 50% de descuento'
@@ -89,7 +91,105 @@ export function SliderContent ({
           <LinkButton className='mt-2' text={linkText} href={href} />
         </div>
       </div>
-      <img className='h-1/2 w-full flex-[1] object-cover md:h-full md:w-1/2' src={src} alt={`${title} image`} />
+      <img className='w-full flex-[1] object-cover md:h-full md:w-1/2' src={src} alt={`${title} image`} />
     </div>
   )
 }
+
+interface SliderCategorySectionProps {
+  categories: Category[]
+}
+
+export function SliderCategorySection ({ categories }: SliderCategorySectionProps) {
+  return (
+    <Swiper
+      freeMode={true}
+      spaceBetween={25}
+      slidesPerView={1}
+      breakpoints={{
+        300: {
+          slidesPerView: 2,
+          spaceBetween: 25
+        },
+        580: {
+          slidesPerView: 3,
+          spaceBetween: 25
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 25
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 25
+        }
+
+      }}
+      modules={[FreeMode]}
+      style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
+      className="mySwiper my-5 w-full cursor-grab px-6"
+    >
+      {categories.map(category => (
+        <SwiperSlide key={category.categoryId}>
+          <CategoryCard category={category}/>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  )
+}
+// export function SliderBrandsSection () {
+//   return (
+//     <Swiper
+//       freeMode={true}
+//       spaceBetween={25}
+//       slidesPerView={1}
+//       breakpoints={{
+//         300: {
+//           slidesPerView: 2,
+//           spaceBetween: 25
+//         },
+//         580: {
+//           slidesPerView: 3,
+//           spaceBetween: 25
+//         },
+//         768: {
+//           slidesPerView: 4,
+//           spaceBetween: 25
+//         },
+//         1024: {
+//           slidesPerView: 5,
+//           spaceBetween: 25
+//         }
+
+//       }}
+//       modules={[FreeMode]}
+//       style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
+//       className="mySwiper my-5 w-full cursor-grab px-6"
+//     >
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//       <SwiperSlide>
+//         <CategoryCard category={category}/>
+//       </SwiperSlide>
+//     </Swiper>
+//   )
+// }
