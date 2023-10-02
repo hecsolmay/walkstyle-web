@@ -1,13 +1,15 @@
 import Button from '@/components/button-product-card'
 import type { Product } from '@/types/product'
+import { cn } from '@/utils/cn'
 
 interface ProductCardProps {
   product: Product
+  className?: string
 }
 
-export function ProductCard ({ product }: ProductCardProps) {
+export function ProductCard ({ product, className }: ProductCardProps) {
   return (
-    <div className='flex h-72  w-52 flex-col justify-between gap-4 bg-white p-4 shadow-md'>
+    <div className={cn('flex h-72  w-52 flex-col justify-between gap-4 bg-white p-4 shadow-md', className)}>
       <div className='mx-auto  h-20 w-36'>
         <img
           className="h-full w-full object-cover"
