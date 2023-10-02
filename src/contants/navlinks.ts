@@ -89,3 +89,31 @@ export const SortKeys: Record<SortKey, string> = {
   'name-asc': 'A - Z',
   'name-desc': 'Z - A'
 }
+
+interface HeaderTitle {
+  main: string
+  sub?: string
+}
+
+export const NavTitle: Record<string, HeaderTitle> = {
+  '/admin/dashboard': {
+    main: 'Dashboard',
+    sub: 'Analitycs'
+  },
+  '/admin/products': {
+    main: 'Productos',
+    sub: 'Tablas de Productos'
+  },
+  '/admin/brands': {
+    main: 'Marcas'
+  },
+  default: {
+    main: 'Seccion'
+  }
+}
+
+export function getNavTitle (path: string) {
+  const title = NavTitle[path]
+
+  return title ?? NavTitle.default
+}

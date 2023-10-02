@@ -1,7 +1,8 @@
 'use client'
 
 import { HamburguerIcon, UserCircleIcon } from '@/components/icons'
-import { dropdownAdminLinks } from '@/contants/navlinks'
+import { dropdownAdminLinks, getNavTitle } from '@/contants/navlinks'
+import useNextQuery from '@/hooks/useNextQuey'
 import { cn } from '@/utils/cn'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -14,6 +15,8 @@ export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
   const userRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLUListElement>(null)
   const [showUser, setShowUser] = useState(false)
+  const { pathname } = useNextQuery()
+  const title = getNavTitle(pathname)
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -34,7 +37,9 @@ export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
         <button onClick={toogleShowSideBar}>
           <HamburguerIcon className='h-7 w-7' />
         </button>
-        <p><span className='text-slate-500'>Dashboard</span> / Analitycs</p>
+        <p><span className='text-slate-500'>{title.main}
+        </span>{title?.sub !== undefined ? ` / ${title.sub}` : ''}
+        </p>
       </div>
       <div className='relative flex items-center text-slate-700'>
         <button ref={userRef} onClick={() => { setShowUser(!showUser) }}>
