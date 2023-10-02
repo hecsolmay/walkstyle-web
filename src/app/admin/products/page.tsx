@@ -1,5 +1,6 @@
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
+import PaginationSection from '@/components/admin/pagination-section'
 import ProductRow from '@/components/admin/product-row'
 import { type Product } from '@/types/product'
 
@@ -24,6 +25,7 @@ export default function ProductsPage () {
           <ProductRow key={product.productId} product={product}/>
         )}
       </AdminTable>
+      <PaginationSection />
     </div>
   )
 }

@@ -20,13 +20,15 @@ export default function ProductRow ({ product }: ProductRowProps) {
         </Link>
       </TD>
 
-      <TD className='flex items-center gap-8 text-black'>
-        <button>
-          <PencilSquareIcon />
-        </button>
-        <button>
-          <TrashCanIcon />
-        </button>
+      <TD className=' text-black'>
+        <div className='flex items-center gap-6'>
+          <button>
+            <PencilSquareIcon />
+          </button>
+          <button>
+            <TrashCanIcon />
+          </button>
+        </div>
       </TD>
     </TR>
   )
