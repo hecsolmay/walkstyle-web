@@ -30,8 +30,8 @@ export default function SearchPage ({
       <div>
         <h1 className="mb-5 p-6 text-xl font-bold">Searched Param</h1>
         <span className="block w-full border-t border-gray-400"></span>
-        <div className='flex flex-row items-center justify-between px-7'>
-          <h1 className="p-6 font-semibold">2220 Productos</h1>
+        <div className='flex flex-row items-center justify-between px-7 py-6'>
+          <h1 className="font-semibold">2220 Productos</h1>
           <ProductFilter />
 
         </div>
@@ -42,7 +42,7 @@ export default function SearchPage ({
             <ProductCard key={index} className='h-80 w-60 gap-8 pt-5 shadow-xl' product={product} />
           ))}
         </div>
-        <div className='flex justify-end p-10'>
+        <div className='flex justify-center p-10 md:justify-end'>
           <Pagination />
         </div>
       </div>
