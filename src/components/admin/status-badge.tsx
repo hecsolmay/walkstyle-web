@@ -19,7 +19,7 @@ export default function StatusBadge ({ status, className }: StatusBadgeProps) {
 
   return (
     <span className={cn(defaultStyles, 'bg-green-200 text-green-800 ', className)}>
-      Active
+      Activo
     </span>
   )
 }

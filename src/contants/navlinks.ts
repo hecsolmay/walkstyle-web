@@ -110,6 +110,14 @@ export const NavTitle: Record<string, HeaderTitle> = {
   '/admin/categories': {
     main: 'Categorias'
   },
+  '/admin/users': {
+    main: 'Usuarios',
+    sub: 'Tablas de usuarios'
+  },
+  '/admin/sales': {
+    main: 'Ventas',
+    sub: 'Datos de ventas'
+  },
   default: {
     main: 'Seccion'
   }

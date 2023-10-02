@@ -34,7 +34,7 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Usuarios',
-    href: '#',
+    href: '/admin/users',
     icon: <UsersPairIcon />
   }
 ]
