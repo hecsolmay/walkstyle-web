@@ -24,7 +24,7 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Categorías',
-    href: '#',
+    href: '/admin/categories',
     icon: <CategoryIcon />
   },
   {

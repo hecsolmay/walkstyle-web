@@ -107,6 +107,9 @@ export const NavTitle: Record<string, HeaderTitle> = {
   '/admin/brands': {
     main: 'Marcas'
   },
+  '/admin/categories': {
+    main: 'Categorias'
+  },
   default: {
     main: 'Seccion'
   }
