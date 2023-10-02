@@ -24,7 +24,7 @@ export function Carrusel () {
       pagination={{
         clickable: true
       }}
-      className='mySwiper my-5 h-[50vh] w-full border-y border-slate-400 md:h-[70vh]'
+      className='mySwiper my-5 h-[75vh] w-full border-y border-slate-400 md:h-[70vh]'
     >
       <SwiperSlide className='px-2md:w-[calc(100%_-_4rem)] w-full  md:px-6'>
         <SliderContent
@@ -75,8 +75,8 @@ export function SliderContent ({
   return (
     <div
       className={cn(
-        'flex h-full w-full',
-        direction === 'right' ? 'flex-row-reverse' : ''
+        'flex flex-col-reverse md:flex-row gap-2 h-full w-full',
+        direction === 'right' ? 'md:flex-row-reverse' : ''
       )}
     >
       <div className='grid flex-[1] place-content-center'>
@@ -89,7 +89,7 @@ export function SliderContent ({
           <LinkButton className='mt-2' text={linkText} href={href} />
         </div>
       </div>
-      <img className='h-full w-1/2 flex-[1] object-cover' src={src} alt={`${title} image`} />
+      <img className='h-1/2 w-full flex-[1] object-cover md:h-full md:w-1/2' src={src} alt={`${title} image`} />
     </div>
   )
 }
