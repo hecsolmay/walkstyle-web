@@ -9,12 +9,12 @@ export interface NavLinks {
 export const links: NavLinks[] = [
   {
     label: 'Dashboard',
-    href: '#',
+    href: '/admin/dashboard',
     icon: <HomeIcon />
   },
   {
     label: 'Productos',
-    href: '#',
+    href: '/admin/products',
     icon: <ProductIcon />
   },
   {

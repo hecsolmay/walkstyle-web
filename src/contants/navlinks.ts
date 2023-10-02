@@ -36,7 +36,7 @@ export const dropdownLinks: NavLinks[] = [
   },
   {
     label: 'ir al Admin',
-    href: '/admin'
+    href: '/admin/dashboard'
   }
 ]
 
