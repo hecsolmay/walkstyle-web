@@ -29,7 +29,7 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Ventas',
-    href: '#',
+    href: '/admin/sales',
     icon: <SalesIcon />
   },
   {
