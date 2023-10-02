@@ -32,9 +32,8 @@ export function ShoppingCartIcon ({ className = '' }: IconProps) {
 
 export function FilterSearchIcon ({ className = '' }: IconProps) {
   return (
-    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20" className={cn(defaultSize, className)}>
-
-      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6v13m0 0 3-3m-3 3-3-3m11-2V1m0 0L9 4m3-3 3 3"/>
+    <svg className={cn(defaultSize, className)} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"></path>
     </svg>
   )
 }

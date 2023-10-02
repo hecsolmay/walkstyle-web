@@ -51,3 +51,36 @@ export const dropdownAdminLinks: NavLinks[] = [
     href: '/'
   }
 ]
+
+export const sortLinks: NavLinks[] = [
+  {
+    label: 'Recientes',
+    href: '?sort=recents'
+  },
+  {
+    label: '$ - $$$',
+    href: '?sort=price-asc'
+  },
+  {
+    label: '$$$ - $',
+    href: '?sort=price-desc'
+  },
+  {
+    label: 'A - Z',
+    href: '?sort=name-asc'
+  },
+  {
+    label: 'Z - A',
+    href: '?sort=name-desc'
+  }
+]
+
+export type SortKey = 'recents' | 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc'
+
+export const SortKeys: Record<SortKey, string> = {
+  recents: 'Recientes',
+  'price-asc': '$ - $$$',
+  'price-desc': '$$$ - $',
+  'name-asc': 'A - Z',
+  'name-desc': 'Z - A'
+}
