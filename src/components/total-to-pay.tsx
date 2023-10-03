@@ -1,9 +1,9 @@
-import { LinkButton } from './link-button'
-import { TextButton } from './text-button'
+import { LinkButton } from '@/components/link-button'
+import { TextButton } from '@/components/text-button'
 
 export function TotalToPay () {
   return (
-    <div className="mx-5 my-10 h-[565px] max-w-[334px] flex-none grow bg-slate-200">
+    <div className="mb-5 ml-6 h-[565px] w-full bg-slate-200 md:my-6 md:mr-4 md:max-w-[334px]">
       <div className="flex flex-col gap-4 bg-slate-200 p-3 pt-12 text-lg font-semibold text-slate-600">
         <div className="flex justify-between border-t border-black px-4 py-2 pt-5">
           <p>Subtotal</p>

@@ -7,7 +7,7 @@ export default function CartPage () {
       <div className='col-span-2 mx-3 my-6 grid place-items-center'>
         <TotalProducts/>
       </div>
-      <div className='col-span-1'>
+      <div className='col-span-1 flex justify-center'>
         <TotalToPay/>
       </div>
     </div>
