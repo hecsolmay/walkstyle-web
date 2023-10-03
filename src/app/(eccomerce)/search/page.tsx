@@ -1,13 +1,14 @@
 import { ProductFilter } from '@/components/filter-select-category'
 import { Pagination } from '@/components/pagination'
 import { ProductCard } from '@/components/product-card'
+import { type Product } from '@/types/product'
 
-const product = {
+const product: Product = {
   productId: '1',
-  name: 'Jordan',
+  name: 'Tenis Nike Revolution 6 Next Nature',
   brand: {
     brandId: '123',
-    name: 'Tenis Nike Revolution 6 Next Nature'
+    name: 'Jordan'
   },
   price: 999.00,
   imageUrl: 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f8b6c5d4-f53d-4798-a833-7a7c8b063d66/calzado-air-max-intrlk-lite-Sp1WFC.png',
@@ -15,15 +16,16 @@ const product = {
     genderId: '1',
     name: 'Mujer'
   },
-  description: 'Tenis Nike Revolution 6 Next Nature'
+  description: 'Tenis Nike Revolution 6 Next Nature',
+  sizes: [21, 22, 23, 24, 24.5, 25, 25.5, 26]
 }
 
 export default function SearchPage ({
   searchParams
 }: {
-  searchParams: Record<string, string | string[] | undefined>
+  searchParams?: Record<string, string>
 }) {
-  console.log(searchParams)
+  console.log({ searchParams })
 
   return (
     <>
@@ -37,7 +39,7 @@ export default function SearchPage ({
         </div>
 
         <span className="block w-full border-t border-gray-400"></span>
-        <div className='grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-center gap-y-5'>
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] justify-items-center gap-y-5'>
           {Array(16).fill(0).map((_, index) => (
             <ProductCard key={index} className='h-80 w-60 gap-8 pt-5 shadow-xl' product={product} />
           ))}
