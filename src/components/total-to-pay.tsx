@@ -21,7 +21,7 @@ export function TotalToPay () {
       <div className="mt-32">
         <div className="flex flex-col justify-between gap-4 bg-slate-200 p-2">
           <TextButton className="h-11 bg-teal-500" text="Finalizar compra" />
-          <LinkButton className="h-11 bg-black" text="Seguir Explorando" href="/cart" />
+          <LinkButton className="h-11 bg-black" text="Seguir Explorando" href="/search" />
         </div>
       </div>
 

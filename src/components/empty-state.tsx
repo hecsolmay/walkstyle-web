@@ -1,6 +1,5 @@
-import React from 'react'
-import { LinkButton } from './link-button'
-import { ShoppingBagIcon } from './icons'
+import { ShoppingBagIcon } from '@/components/icons'
+import { LinkButton } from '@/components/link-button'
 
 export default function EmptyState () {
   return (

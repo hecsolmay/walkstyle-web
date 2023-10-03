@@ -22,7 +22,8 @@ const products: ItemProduct[] = [
       },
       imageUrl: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
       description: 'Camisa de manga corta',
-      productId: '1'
+      productId: '1',
+      sizes: [24, 25, 25.5, 26, 26.5, 27, 32]
     },
     quantity: 1,
     size: 32
@@ -42,7 +43,7 @@ export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
         </button>
       </div>
 
-      <CartInfo products={products}/>
+      <CartInfo products={products} onClickLink={CloseSideBar} />
 
     </aside>
   )
@@ -50,9 +51,10 @@ export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
 
 interface CartInfoProps {
   products: ItemProduct[]
+  onClickLink?: () => void
 }
 
-export function CartInfo ({ products }: CartInfoProps) {
+export function CartInfo ({ products, onClickLink }: CartInfoProps) {
   if (products.length === 0) {
     return (
       <div className='grid flex-1 place-content-center text-center text-slate-500'>
@@ -95,7 +97,7 @@ export function CartInfo ({ products }: CartInfoProps) {
           <p>{total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
         </div>
 
-        <LinkButton href='/cart' className='h-11 bg-teal-500' text='VER CARRITO Y PAGAR'/>
+        <LinkButton onClick={onClickLink} href='/cart' className='h-11 bg-teal-500' text='VER CARRITO Y PAGAR'/>
       </div>
     </>
 

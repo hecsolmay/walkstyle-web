@@ -1,6 +1,6 @@
 import { AdminTable } from '@/components/admin/admin-table'
 import DashboardCard from '@/components/admin/dashboard-card'
-import { ShoppingBag, ShoppingCartIcon, UsersPairIcon } from '@/components/icons'
+import { ShoppingBagIcon, ShoppingCartIcon, UsersPairIcon } from '@/components/icons'
 import { TD, TR } from '@/components/table'
 import dynamic from 'next/dynamic'
 
@@ -30,7 +30,7 @@ export default function AdminPage () {
           <UsersPairIcon className='h-10 w-10 text-green-600'/>
         </DashboardCard>
         <DashboardCard title="Total Products" info="450">
-          <ShoppingBag className='h-10 w-10 text-yellow-400'/>
+          <ShoppingBagIcon className='h-10 w-10 text-yellow-400'/>
         </DashboardCard>
       </div>
 

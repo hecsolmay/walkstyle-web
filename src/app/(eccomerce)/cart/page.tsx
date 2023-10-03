@@ -1,9 +1,9 @@
 import EmptyState from '@/components/empty-state'
 import { TotalProducts } from '@/components/total-products'
 import { TotalToPay } from '@/components/total-to-pay'
-import { type ItemProduct } from '@/types/product'
+import { type ItemProduct, type Product } from '@/types/product'
 
-const product = {
+const product: Product = {
   name: 'Camisa de manga corta',
   price: 10495,
   gender: {
@@ -16,7 +16,8 @@ const product = {
   },
   imageUrl: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
   description: 'Camisa de manga corta',
-  productId: '1'
+  productId: '1',
+  sizes: [24, 25, 25.5, 26, 26.5, 27]
 }
 
 const itemProduct: ItemProduct = {
@@ -35,7 +36,7 @@ const products = Array(15).fill(0).map(_ => ({
 export default function CartPage () {
   if (products.length === 0) {
     return (
-      <div>
+      <div className='my-10'>
         <EmptyState />
       </div>
     )
