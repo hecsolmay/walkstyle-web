@@ -8,6 +8,7 @@ export interface Product {
   imageUrl: string
   gender: Gender
   description: string
+  sizes: number[]
 }
 
 export interface ItemProduct {
