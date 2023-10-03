@@ -1,3 +1,4 @@
+import EmptyState from '@/components/empty-state'
 import { TotalProducts } from '@/components/total-products'
 import { TotalToPay } from '@/components/total-to-pay'
 import { type ItemProduct } from '@/types/product'
@@ -32,7 +33,13 @@ const products = Array(15).fill(0).map(_ => ({
 }))
 
 export default function CartPage () {
-  // AQUI VALIDAS SI EL LENGTH ES 0 Y MANDARIAS EL EMPTY STATE
+  if (products.length === 0) {
+    return (
+      <div>
+        <EmptyState />
+      </div>
+    )
+  }
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3 ">
