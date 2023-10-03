@@ -12,11 +12,11 @@ export interface SortLinks {
 export const links: NavLinks[] = [
   {
     label: 'Hombre',
-    href: '/shop/man'
+    href: '/search?gender=male'
   },
   {
     label: 'Mujer',
-    href: '/shop/woman',
+    href: '/search?gender=female',
     divider: true
   },
   {
