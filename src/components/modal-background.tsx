@@ -14,8 +14,13 @@ export function Background ({ close, show = false, className, children }: Backgr
       close()
     }
   }
+
+  if (!show) {
+    return null
+  }
+
   return (
-    <div onClick={handleClick} className={cn('bg-black/40 absolute overflow-hidden block left-0 top-0 z-20 min-h-screen h-screen w-screen ', !show && 'hidden', className)}>
+    <div onClick={handleClick} className={cn('bg-black/40 absolute overflow-hidden block left-0 top-0 z-50 min-h-screen h-screen w-screen ', !show && 'hidden', className)}>
       {children}
     </div>
   )
