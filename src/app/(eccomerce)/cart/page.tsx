@@ -1,8 +1,15 @@
+import { TotalProducts } from '@/components/total-products'
+import { TotalToPay } from '@/components/total-to-pay'
+
 export default function CartPage () {
   return (
-    <div className="flex justify-center">
-      <div className="mx-4 my-10 flex h-[562px] max-w-[800px] grow flex-col bg-slate-200"></div>
-      <div className="mx-5 my-10 h-[565px] max-w-[334px] flex-none grow bg-slate-200"></div>
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3 ">
+      <div className='col-span-2 mx-3 my-6 grid place-items-center'>
+        <TotalProducts/>
+      </div>
+      <div className='col-span-1'>
+        <TotalToPay/>
+      </div>
     </div>
   )
 }
