@@ -11,6 +11,7 @@ const product: Product = {
   gender: { genderId: '21', name: 'Gender 1' },
   price: 1000,
   description: 'Description',
+  sizes: [24, 25, 25.5, 26, 27, 27.5],
   imageUrl: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto'
 }
 
