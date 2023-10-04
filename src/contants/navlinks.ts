@@ -16,17 +16,17 @@ export const links: NavLinks[] = [
   },
   {
     label: 'Mujer',
-    href: '/search?gender=female',
-    divider: true
-  },
-  {
-    label: 'Marcas',
-    href: '/brands'
-  },
-  {
-    label: 'Categorias',
-    href: '/categories'
+    href: '/search?gender=female'
+    // divider: true
   }
+  // {
+  //   label: 'Marcas',
+  //   href: '/brands'
+  // },
+  // {
+  //   label: 'Categorias',
+  //   href: '/categories'
+  // }
 ]
 
 export const dropdownLinks: NavLinks[] = [
