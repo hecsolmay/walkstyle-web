@@ -7,11 +7,15 @@ import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
+import { BrandCard } from '@/components/brand-card'
+import { CategoryCard } from '@/components/category-card'
+import ProductLinkCard from '@/components/product-link-card'
+import { type BrandInfo } from '@/types/brand'
 import { type Category } from '@/types/category'
+import { type Product } from '@/types/product'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { CategoryCard } from './category-card'
 
 // import required modules
 SwiperCore.use([Autoplay, Pagination, Navigation, FreeMode])
@@ -96,44 +100,115 @@ export function SliderContent ({
   )
 }
 
+interface BreakpointsConfig {
+  slidesPerView: number
+  spaceBetween: number
+}
+
+type Breakpoints = Record<number, BreakpointsConfig>
+
+const defaultBreackPoints: Breakpoints = {
+  350: {
+    slidesPerView: 2,
+    spaceBetween: 25
+  },
+  580: {
+    slidesPerView: 3,
+    spaceBetween: 25
+  },
+  768: {
+    slidesPerView: 4,
+    spaceBetween: 25
+  },
+  1024: {
+    slidesPerView: 5,
+    spaceBetween: 25
+  }
+}
+
+export function CustomSwipper (
+  { breakpoints = defaultBreackPoints, className, children }:
+  { breakpoints?: Breakpoints, className?: string, children?: React.ReactNode }
+) {
+  return (
+    <Swiper
+      freeMode={true}
+      spaceBetween={25}
+      slidesPerView={1}
+      breakpoints={breakpoints}
+      modules={[FreeMode]}
+      style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
+      className={cn('mySwiper my-5 w-full cursor-grab px-6', className)}
+    >
+      {children}
+    </Swiper>
+  )
+}
+
 interface SliderCategorySectionProps {
   categories: Category[]
 }
 
 export function SliderCategorySection ({ categories }: SliderCategorySectionProps) {
   return (
-    <Swiper
-      freeMode={true}
-      spaceBetween={25}
-      slidesPerView={1}
-      breakpoints={{
-        300: {
-          slidesPerView: 2,
-          spaceBetween: 25
-        },
-        580: {
-          slidesPerView: 3,
-          spaceBetween: 25
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 25
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 25
-        }
-
-      }}
-      modules={[FreeMode]}
-      style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
-      className="mySwiper my-5 w-full cursor-grab px-6"
-    >
+    <CustomSwipper>
       {categories.map(category => (
         <SwiperSlide key={category.categoryId}>
           <CategoryCard category={category}/>
         </SwiperSlide>
       ))}
-    </Swiper>
+    </CustomSwipper>
+  )
+}
+
+interface SliderBrandSectionProps {
+  brands: BrandInfo[]
+}
+
+export function SliderBrandSection ({ brands }: SliderBrandSectionProps) {
+  return (
+    <CustomSwipper breakpoints={
+      {
+        ...defaultBreackPoints,
+        350: {
+          slidesPerView: 1,
+          spaceBetween: 25
+        },
+        460: {
+          slidesPerView: 2,
+          spaceBetween: 25
+        }
+      }
+    } >
+      {brands.map((brand, index) => (
+        <SwiperSlide key={brand.brandId}>
+          <BrandCard brand={brand} colorVariant={index % 5}/>
+        </SwiperSlide>
+      ))}
+    </CustomSwipper>
+  )
+}
+
+export function SliderProductsSection ({ products }: { products: Product[] }) {
+  return (
+    <CustomSwipper breakpoints={
+      {
+        ...defaultBreackPoints,
+        350: {
+          slidesPerView: 1,
+          spaceBetween: 0
+        },
+        500: {
+          slidesPerView: 2,
+          spaceBetween: 25
+        }
+      }
+    } className='cursor-default'>
+      {products.map(product => (
+        <SwiperSlide className='grid place-content-center sm:block' key={product.productId}>
+          <ProductLinkCard product={product}/>
+        </SwiperSlide>
+      ))}
+    </CustomSwipper>
   )
 }

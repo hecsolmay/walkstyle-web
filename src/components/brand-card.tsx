@@ -1,12 +1,11 @@
 'use client'
 
+import { type BrandInfo } from '@/types/brand'
 import { cn } from '@/utils/cn'
 
 // Define el tipo para el tipo de variante
-type ColorVariant = 0 | 1 | 2 | 3 | 4
-
 // Define un objeto de mapeo de variantes a clases de estilo
-const colorVariants: { [key in ColorVariant]: string } = {
+const colorVariants: Record<number, string> = {
   0: 'bg-green-300 text-white',
   1: 'bg-red-400 text-white',
   2: 'bg-yellow-200 text-white',
@@ -16,11 +15,8 @@ const colorVariants: { [key in ColorVariant]: string } = {
 
 // Define la interfaz para las props del componente
 interface BrandComponentProps {
-  brand: {
-    name: string
-    logoUrl: string
-  }
-  colorVariant?: ColorVariant
+  brand: BrandInfo
+  colorVariant?: number
 }
 
 export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
@@ -32,7 +28,7 @@ export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
       <div className="flex h-56 w-44 flex-col items-center justify-center ">
         <div className={cn('grid h-44 w-44  place-content-center opacity-90', colorClass)}>
           <img
-            src={brand.logoUrl}
+            src={brand.imgUrl}
             alt={brand.name}
             className="h-20 object-cover" />
         </div>
