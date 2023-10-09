@@ -32,7 +32,7 @@ const products: ItemProduct[] = [
 
 export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
   return (
-    <aside className="fixed right-0 top-0 z-20 flex h-screen w-[90vw] flex-col justify-between bg-white transition-transform duration-500 ease-in-out md:w-[50vw] lg:w-[40vw]">
+    <aside className="fixed right-0 top-0 z-20 flex h-full w-[90vw] flex-col justify-between bg-white transition-transform duration-500 ease-in-out md:w-[50vw] lg:w-[40vw]">
 
       {/* HEADER DEL CARRITO  */}
 

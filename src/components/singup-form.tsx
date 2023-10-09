@@ -11,7 +11,7 @@ export default function SignupForm () {
   return (
     <form className="mx-auto flex max-w-screen-md flex-col items-center justify-center gap-1 p-4">
       <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-2' />
-      <h2 className="my-3 text-2xl font-semibold text-black">Create your Free Account</h2>
+      <h2 className="my-3 text-center text-2xl font-semibold text-black">Create your Free Account</h2>
 
       <IconButton text="Sign up with Google" className='my-5 w-full' >
         <GoogleIcon className="ml-2 h-5" />
@@ -19,7 +19,7 @@ export default function SignupForm () {
 
       <div className="my-5 flex w-full items-center justify-between">
         <hr className=" w-32 border-t-2 border-gray-600" />
-        <span className="mx-2 text-sm text-gray-600">Or sign up with</span>
+        <span className="mx-2 text-sm text-gray-600">Or</span>
         <hr className=" w-32 border-t-2 border-gray-600  " />
       </div>
 

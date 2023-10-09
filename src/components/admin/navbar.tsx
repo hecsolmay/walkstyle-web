@@ -32,7 +32,7 @@ export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
   }, [])
 
   return (
-    <nav className='sticky top-0 z-10 flex h-16 items-center justify-between bg-white pl-6 pr-10 shadow-lg'>
+    <nav className='stickytop-0 z-10 flex h-16 items-center justify-between bg-white pl-6 pr-7 shadow-lg'>
       <div className='flex gap-6 text-slate-700'>
         <button onClick={toogleShowSideBar}>
           <HamburguerIcon className='h-7 w-7' />

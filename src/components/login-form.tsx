@@ -57,7 +57,7 @@ export default function LoginForm () {
 
       <div className="my-4 flex w-full items-center justify-between">
         <hr className=" w-32 border-t-2 border-gray-600" />
-        <span className="mx-2 text-sm text-gray-600">Or continue with</span>
+        <span className="mx-2 text-sm text-gray-600">Or</span>
         <hr className=" w-32 border-t-2 border-gray-600  " />
       </div>
 

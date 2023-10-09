@@ -51,10 +51,10 @@ export function SelectSizeWithCounter ({ sizes, className }: SelectSizeProps) {
 
   return (
     <SelectSize sizes={sizes} className={className}>
-      <div className='my-2 flex gap-6'>
-        <button onClick={handleRemove} className='w-14 border border-slate-400 py-2 text-center'>-</button>
+      <div className='my-2 flex gap-3'>
+        <button onClick={handleRemove} className='w-16 border border-slate-400 py-2 text-center'>-</button>
         <input onChange={handleChange} value={quantity} min={0} className='block flex-1 border border-slate-400 py-2 text-center' type="number" />
-        <button onClick={handleAdd} className='w-14 border border-slate-400 py-2 text-center'>+</button>
+        <button onClick={handleAdd} className='w-16 border border-slate-400 py-2 text-center'>+</button>
       </div>
       <TextButton disabled={!(quantity > 0)} text='Agregar al carrito' />
     </SelectSize>

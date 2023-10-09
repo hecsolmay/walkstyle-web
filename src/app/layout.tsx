@@ -19,7 +19,7 @@ export default function RootLayout ({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${inter.className} overflow-hidden`}>{children}</body>
+      <body className={`${inter.className} md:overflow-hidden`}>{children}</body>
     </html>
   )
 }

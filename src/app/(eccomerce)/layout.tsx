@@ -7,7 +7,7 @@ export default function EcommerceLayout ({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex h-screen min-h-screen w-screen flex-col">
+    <div className="h-screen min-h-screen w-screen">
       <Navbar />
       <div className='flex h-full w-full flex-col overflow-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-400'>
         <main className='flex-1' >

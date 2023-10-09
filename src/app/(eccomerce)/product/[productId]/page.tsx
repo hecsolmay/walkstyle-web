@@ -31,8 +31,8 @@ export default function ProductPage (
   ]
 
   return (
-    <div className='mb-10 grid w-full grid-cols-1 p-4 md:h-[90vh] md:grid-cols-2 md:p-10'>
-      <div className='my-6 flex flex-col gap-6 md:hidden'>
+    <div className='mb-10 grid w-full grid-cols-1 p-4 pt-6 md:h-[90vh] md:grid-cols-2 md:p-10 '>
+      <div className='mb-6 flex flex-col gap-6 md:hidden'>
         <p className='text-xl uppercase'>{product.brand.name}</p>
         <div className=' text-black'>
           <h2 className='text-3xl font-bold'>{product.name}</h2>
