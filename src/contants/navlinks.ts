@@ -40,6 +40,10 @@ export const dropdownLinks: NavLinks[] = [
     divider: true
   },
   {
+    label: 'Perfil',
+    href: '/profile'
+  },
+  {
     label: 'ir al Admin',
     href: '/admin/dashboard'
   }
@@ -48,7 +52,7 @@ export const dropdownLinks: NavLinks[] = [
 export const dropdownAdminLinks: NavLinks[] = [
   {
     label: 'Perfil',
-    href: '/admin/user/profile',
+    href: '/admin/profile',
     divider: true
   },
   {
@@ -117,6 +121,9 @@ export const NavTitle: Record<string, HeaderTitle> = {
   '/admin/sales': {
     main: 'Ventas',
     sub: 'Datos de ventas'
+  },
+  'admin/profile': {
+    main: 'Perfil'
   },
   default: {
     main: 'Seccion'
