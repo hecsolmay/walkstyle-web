@@ -7,9 +7,9 @@ export default function EcommerceLayout ({
   children: React.ReactNode
 }) {
   return (
-    <div className="h-screen min-h-screen w-screen">
+    <div className="h-screen min-h-screen w-screen max-w-[100%]">
       <Navbar />
-      <div className='flex h-full w-full flex-col overflow-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-400'>
+      <div className='flex h-full w-full flex-col'>
         <main className='flex-1' >
           {/* MARGIN TO ADD TO CONTAINER HEIGHT mx-6 md:mx-8 lg:mx-12 */}
           {children}

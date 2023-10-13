@@ -19,7 +19,10 @@ export default function RootLayout ({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${inter.className} md:overflow-hidden`}>{children}</body>
+      <body className={`${inter.className} overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-400`}>
+        {children}
+        <div id="modal-root"></div>
+      </body>
     </html>
   )
 }

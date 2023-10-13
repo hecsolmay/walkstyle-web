@@ -27,7 +27,7 @@ export default function AddProductModal ({ handleClose, product }: AddProductMod
             <img className='object-cover mix-blend-darken' src={product.imageUrl} alt={product.name} />
           </div>
         </div>
-        <div className='col-span-2 mt-8 flex flex-col justify-between gap-10 text-slate-600 md:m-0 md:max-w-[440px] md:gap-0'>
+        <div className='col-span-2 mt-8 flex flex-col justify-between gap-10 text-slate-600 md:m-0 md:max-w-[440px] md:gap-1'>
           <div className='flex flex-col gap-4'>
             <p className='text-xl uppercase'>{product.brand.name}</p>
             <div className=' text-black'>

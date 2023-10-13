@@ -2,6 +2,7 @@
 
 import AdminNavbar from '@/components/admin/navbar'
 import AdminSideBar, { AdminMobileSideBar } from '@/components/admin/sidebar'
+import { cn } from '@/utils/cn'
 import { useState } from 'react'
 
 export default function AdminLayout ({
@@ -18,13 +19,13 @@ export default function AdminLayout ({
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="relative flex min-h-screen">
       <AdminSideBar show={showSideBar}/>
       <AdminMobileSideBar closeSideBar={() => { setShowSideBar(true) }} show={!showSideBar} />
 
-      <div className='max-h-screen flex-1 overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-slate-300'>
+      <div className={cn('max-h-screen flex-1 transition-all', showSideBar && 'md:ml-[20vw] lg:ml-[18vw]')}>
         <AdminNavbar toogleShowSideBar={toogleShowSideBar} />
-        <main className='px-5 py-4 '>
+        <main className='max-w-[100vw] px-5 py-4 '>
           {children}
         </main>
       </div>

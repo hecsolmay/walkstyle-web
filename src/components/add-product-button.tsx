@@ -22,10 +22,8 @@ export default function AddProductButton ({ product }: ButtonProps) {
 
   return (
     <>
-      <Background className='fixed inset-0' close={handleClose} show={show}>
-        <div className='flex h-full max-h-screen items-center justify-center'>
-          <AddProductModal product={product} handleClose={handleClose} />
-        </div>
+      <Background className='fixed inset-0 grid place-content-center' close={handleClose} show={show}>
+        <AddProductModal product={product} handleClose={handleClose} />
       </Background>
       <button onClick={handleClick} className='rounded-lg border border-slate-400 px-2 py-1 font-semibold text-teal-400'>Add to cart</button>
     </>

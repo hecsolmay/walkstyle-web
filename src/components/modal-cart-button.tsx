@@ -21,9 +21,11 @@ export default function ModalCartButton () {
       <button onClick={handleClick} className='cursor-pointer text-slate-600'>
         <ShoppingCartIcon />
       </button>
+      {show &&
       <Background className='fixed inset-0 max-h-screen max-w-[100vw] overflow-hidden' close={handleClose} show={show}>
         <ModalCartInfo CloseSideBar={handleClose}/>
       </Background>
+      }
     </>
   )
 }

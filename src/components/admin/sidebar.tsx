@@ -11,7 +11,7 @@ interface AdminSideBarProps {
 
 export default function AdminSideBar ({ show }: AdminSideBarProps) {
   return (
-    <aside className={cn('sticky top-0 max-h-screen md:flex md:flex-col hidden w-[20vw] lg:w-[18vw] bg-[#18243b] duration-300 z-30', !show && 'w-0 lg:w-0')}>
+    <aside className={cn('fixed left-0 top-0 h-full md:flex md:flex-col hidden w-[20vw] lg:w-[18vw] bg-[#18243b] duration-300 z-30', !show && 'w-0 lg:w-0')}>
       <SidebarContent />
     </aside>
   )
