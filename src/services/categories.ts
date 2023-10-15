@@ -8,7 +8,7 @@ interface CategoryDetailsResponse {
 }
 
 export async function getCategories (): Promise<CategoryDetailsResponse> {
-  const response = await axios.get('/categories')
+  const response = await axios.get('/categories/all')
   const { data } = response
 
   return {

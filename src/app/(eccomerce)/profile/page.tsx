@@ -1,5 +1,5 @@
 import { PencilSquareIcon } from '@/components/icons'
-import Input from '@/components/input'
+import Input, { InputPassword } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 
 export default function ProfilePage () {
@@ -39,7 +39,7 @@ export default function ProfilePage () {
             <Input label='Apellido' placeholder='Apellido'/>
           </div>
           <div className='md:col-span-2'>
-            <Input label='Correo Electronico' placeholder='example@.com'/>
+            <Input type='email' label='Correo Electronico' placeholder='example@.com'/>
           </div>
         </div>
 
@@ -63,23 +63,13 @@ export default function ProfilePage () {
 
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           <div className='md:col-span-1'>
-            <Input label='Contraseña actual' type='password' placeholder='password'/>
+            <InputPassword label='Contraseña actual' placeholder='password'/>
           </div>
           <div className='md:col-span-1'>
-            <Input label='Nueva contraseña' type='password' placeholder='new-password'/>
+            <InputPassword label='Nueva contraseña' placeholder='new-password'/>
           </div>
           <div className='md:col-span-2'>
-            <label className='mb-2 block text-sm font-medium text-slate-600 '>
-              Confirmar Nueva Contraseña
-            </label>
-            <div className='relative'>
-              <input
-                type='password'
-                className='block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500'
-                placeholder='Nueva password'
-              />
-
-            </div>
+            <InputPassword label='Confirmar Nueva Contraseña' placeholder='Nueva password' showChangeType={false}/>
           </div>
         </div>
 
