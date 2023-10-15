@@ -1,4 +1,4 @@
-import Form from '@/components/admin/Form'
+import Form from '@/components/admin/categories/Form'
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import CategoryRow from '@/components/admin/category-row'
