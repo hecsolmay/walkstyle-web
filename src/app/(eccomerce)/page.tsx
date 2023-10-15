@@ -7,10 +7,19 @@ import { type Product } from '@/types/product'
 
 const category: Category = {
   categoryId: '1',
-  status: Status.ACTIVE,
-  totalProducts: 20,
   name: 'Deportes',
-  imgUrl: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png'
+  banner: {
+    imageId: '1',
+    main: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png',
+    preview: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png',
+    thumbnail: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png'
+  },
+  image: {
+    imageId: '1',
+    main: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png',
+    preview: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png',
+    thumbnail: 'https://www.pngmart.com/files/1/Nike-Shoes-Transparent-Background.png'
+  }
 }
 
 const brand: BrandInfo = {
