@@ -2,7 +2,9 @@
 
 import Input, { InputFile } from '@/components/input'
 import { TextButton } from '@/components/text-button'
+import useNextQuery from '@/hooks/useNextQuey'
 import { categoryCreateShema } from '@/schemas/category'
+import { createCategory } from '@/services/categories'
 import { type CategoryCreate } from '@/types/forms'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -11,6 +13,8 @@ export default function Form () {
   const { register, watch, handleSubmit,  formState: {errors, isSubmitting},reset } = useForm<CategoryCreate>({
     resolver: zodResolver(categoryCreateShema)
   })
+
+  const {router} = useNextQuery()
 
   const imageWatch = watch('image')
   const bannerWatch = watch('banner')
@@ -23,9 +27,17 @@ export default function Form () {
   const bannerPreview = bannerFile !== undefined ? URL.createObjectURL(bannerFile) : undefined
 
   const onSubmit = async (data: CategoryCreate) => {
-    await new Promise(resolve => setTimeout(resolve, 3000))
-    console.log({ data })
+    const formData = new FormData()
+
+    formData.append('name', data.name)
+    formData.append('image', data.image[0])
+    formData.append('banner', data.banner[0])
+
+    const result = await createCategory(formData)
+
+    console.log({ result })
     reset()
+    router.refresh()
   }
 
   return (

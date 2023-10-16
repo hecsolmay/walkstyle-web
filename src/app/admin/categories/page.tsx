@@ -9,6 +9,8 @@ export default async function CategoriesPage () {
   const response = await getCategories()
   const { categories } = response
 
+  console.log({ categories })
+
   return (
     <div className='flex flex-col gap-8'>
       <AdminHeader modalClassName='grid place-content-center' buttonText='Add Category' searchPlaceholder='Search...' title='All Categories'>
