@@ -14,7 +14,7 @@ const DEFAULT_WARNING_ALERT: WarnignAlertProps = {
   cancelButtonText: 'No'
 }
 
-export async function WarningAlert({
+export async function WarningAlert ({
   title, cancelButtonText, confirmButtonText, text
 }: WarnignAlertProps = DEFAULT_WARNING_ALERT) {
   const result = await Swal.fire({
@@ -25,7 +25,7 @@ export async function WarningAlert({
     icon: 'warning',
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    showCancelButton: true,
+    showCancelButton: true
   })
 
   return result.isConfirmed

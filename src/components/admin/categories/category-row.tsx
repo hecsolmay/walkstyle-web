@@ -22,9 +22,7 @@ export default function CategoryRow ({ category }: CategoryRowProps) {
       </TD>
 
       <TD className=' text-black'>
-        <div className='flex items-center gap-6'>
-          <CategoryActions category={category} />
-        </div>
+        <CategoryActions category={category} />
       </TD>
     </TR>
   )

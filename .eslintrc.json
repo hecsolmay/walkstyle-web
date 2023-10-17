@@ -25,6 +25,6 @@
         "no-custom-classname": "off",
         "tailwindcss/no-custom-classname": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-misused-promises": "off"
     }
 }

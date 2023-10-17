@@ -22,11 +22,16 @@ export async function deleteCategory (id: string) {
   return response
 }
 
+export async function restoreCategory (id: string) {
+  const response = await axios.patch(`/categories/restore/${id}`)
+  return response
+}
+
 export async function createCategory (formData: FormData) {
   try {
     const response = await axios.post('/categories', formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
+        'Content-Type': 'multipart/form-data'
       }
     })
     return response
