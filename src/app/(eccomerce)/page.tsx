@@ -2,7 +2,7 @@ import SectionEccomerce from '@/components/section-ecommerce'
 import { Carrusel, SliderBrandSection, SliderCategorySection, SliderProductsSection } from '@/components/slider'
 import { type BrandInfo } from '@/types/brand'
 import { type Category } from '@/types/category'
-import { Status } from '@/types/enums'
+import { STATUS } from '@/types/enums'
 import { type Product } from '@/types/product'
 
 const category: Category = {
@@ -25,7 +25,7 @@ const category: Category = {
 const brand: BrandInfo = {
   brandId: '1',
   name: 'Nike',
-  status: Status.ACTIVE,
+  status: STATUS.ACTIVE,
   totalProducts: 20,
   imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Puma-Logo.png'
 }

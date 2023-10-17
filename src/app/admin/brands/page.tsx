@@ -3,14 +3,14 @@ import { AdminTable } from '@/components/admin/admin-table'
 import BrandRow from '@/components/admin/brand-row'
 import PaginationSection from '@/components/admin/pagination-section'
 import { type BrandInfo } from '@/types/brand'
-import { Status } from '@/types/enums'
+import { STATUS } from '@/types/enums'
 
 const brand: BrandInfo = {
   brandId: '1',
   imgUrl: 'https://1000marcas.net/wp-content/uploads/2020/01/Air-Jordan-logo.png',
   name: 'Brand 1',
   totalProducts: 10,
-  status: Status.ACTIVE
+  status: STATUS.ACTIVE
 }
 
 const brands = Array(15).fill(0).map(() => ({ ...brand, brandId: crypto.randomUUID() }))

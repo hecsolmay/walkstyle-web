@@ -1,4 +1,4 @@
-import { type Status } from '@/types/enums'
+import { type STATUS } from '@/types/enums'
 
 export interface Brand {
   brandId: string
@@ -10,5 +10,5 @@ export interface BrandInfo {
   imgUrl: string
   name: string
   totalProducts: number
-  status: Status
+  status: STATUS
 }

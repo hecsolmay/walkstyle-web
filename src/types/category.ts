@@ -1,5 +1,5 @@
 import { type Image } from '@/types/image'
-import { type Status } from '@/types/enums'
+import { type STATUS } from '@/types/enums'
 
 export interface Category {
   categoryId: string
@@ -10,7 +10,7 @@ export interface Category {
 
 export interface CategoryDetails extends Category {
   totalProducts?: number
-  status: Status
+  status: STATUS
   createdAt: Date
   updatedAt: Date
 }

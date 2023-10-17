@@ -1,15 +1,15 @@
-import { Status } from '@/types/enums'
+import { STATUS } from '@/types/enums'
 import { cn } from '@/utils/cn'
 
 interface StatusBadgeProps {
   className?: string
-  status: Status
+  status: STATUS
 }
 
 export default function StatusBadge ({ status, className }: StatusBadgeProps) {
   const defaultStyles = 'rounded-full bg-slate-100 px-3 py-1 text-xs font-medium'
 
-  if (status === Status.INACTIVE) {
+  if (status === STATUS.INACTIVE) {
     return (
       <span className={cn(defaultStyles, 'bg-red-200 text-red-800 ', className)}>
         Eliminado
