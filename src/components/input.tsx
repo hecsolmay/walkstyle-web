@@ -54,8 +54,7 @@ interface InputPasswordProps extends Omit<InputProps, 'type'> {
 }
 
 export function InputPassword (
-  { label, className, error, name, register, placeholder, required, showChangeType = true }
-  : InputPasswordProps) {
+  { label, className, error, name, register, placeholder, required, showChangeType = true }: InputPasswordProps) {
   const [showPassword, setShowPassword] = useState(false)
 
   const togglePasswordVisibility = () => {

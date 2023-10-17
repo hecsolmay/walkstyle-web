@@ -10,11 +10,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
 export default function Form () {
-  const { register, watch, handleSubmit,  formState: {errors, isSubmitting},reset } = useForm<CategoryCreate>({
+  const { register, watch, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<CategoryCreate>({
     resolver: zodResolver(categoryCreateShema)
   })
 
-  const {router} = useNextQuery()
+  const { router } = useNextQuery()
 
   const imageWatch = watch('image')
   const bannerWatch = watch('banner')
@@ -41,12 +41,12 @@ export default function Form () {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin lg:max-w-[40vw] md:max-w-[55vw]">
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin md:max-w-[55vw] lg:max-w-[40vw]">
       <div className='flex flex-col gap-6 border-t border-slate-400 p-6 md:gap-4'>
         <div>
-          <Input 
-            register={register('name')} 
-            className='p-1.5' 
+          <Input
+            register={register('name')}
+            className='p-1.5'
             label='Nombre'
             error={errors.name?.message}
           />
@@ -54,38 +54,38 @@ export default function Form () {
 
         <div>
 
-          <InputFile 
-            register={register('image', { required: true })} 
+          <InputFile
+            register={register('image', { required: true })}
             label='Logo'
-            accept='image/*' 
+            accept='image/*'
             error={errors.image?.message}
-           />
+          />
 
           {imageFile !== undefined && (
             <div className='mt-3 grid h-full w-full place-content-center'>
-            <div className='h-48 w-48'>
-              <img className='h-full w-full object-cover' src={imagePreview} alt={imageFile.name} />
+              <div className='h-48 w-48'>
+                <img className='h-full w-full object-cover' src={imagePreview} alt={imageFile.name} />
+              </div>
             </div>
-          </div>
           )}
 
         </div>
 
         <div>
 
-          <InputFile 
-            register={register('banner', { required: true })} 
-            label='Banner' 
+          <InputFile
+            register={register('banner', { required: true })}
+            label='Banner'
             accept='image/*'
             error={errors.banner?.message}
           />
 
           {bannerFile !== undefined && (
             <div className='mt-3 grid h-full w-full place-content-center'>
-            <div className='h-48 w-48'>
-              <img className='h-full w-full object-cover' src={bannerPreview} alt={bannerFile.name} />
+              <div className='h-48 w-48'>
+                <img className='h-full w-full object-cover' src={bannerPreview} alt={bannerFile.name} />
+              </div>
             </div>
-          </div>
           )}
 
         </div>
