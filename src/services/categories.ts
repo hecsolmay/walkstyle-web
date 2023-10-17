@@ -7,7 +7,7 @@ interface CategoryDetailsResponse {
   categories: CategoryDetails[]
 }
 
-export async function getCategories (): Promise<CategoryDetailsResponse> {
+export async function getAdminCategories (): Promise<CategoryDetailsResponse> {
   const response = await axios.get('/categories/all')
   const { data } = response
 
@@ -15,6 +15,11 @@ export async function getCategories (): Promise<CategoryDetailsResponse> {
     info: data.info,
     categories: data.categories
   }
+}
+
+export async function deleteCategory (id: string) {
+  const response = await axios.delete(`/categories/${id}`)
+  return response
 }
 
 export async function createCategory (formData: FormData) {

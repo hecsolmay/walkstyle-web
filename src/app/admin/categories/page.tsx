@@ -1,12 +1,12 @@
 import Form from '@/components/admin/categories/Form'
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
-import CategoryRow from '@/components/admin/category-row'
+import CategoryRow from '@/components/admin/categories/category-row'
 import PaginationSection from '@/components/admin/pagination-section'
-import { getCategories } from '@/services/categories'
+import { getAdminCategories } from '@/services/categories'
 
 export default async function CategoriesPage () {
-  const response = await getCategories()
+  const response = await getAdminCategories()
   const { categories } = response
 
   console.log({ categories })

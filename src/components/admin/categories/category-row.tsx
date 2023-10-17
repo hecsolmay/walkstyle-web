@@ -1,7 +1,7 @@
 import StatusBadge from '@/components/admin/status-badge'
-import { PencilSquareIcon, TrashCanIcon } from '@/components/icons'
 import { TD, TR } from '@/components/table'
 import { type CategoryDetails } from '@/types/category'
+import CategoryActions from '@/components/admin/categories/actions'
 
 interface CategoryRowProps {
   category: CategoryDetails
@@ -23,12 +23,7 @@ export default function CategoryRow ({ category }: CategoryRowProps) {
 
       <TD className=' text-black'>
         <div className='flex items-center gap-6'>
-          <button>
-            <PencilSquareIcon />
-          </button>
-          <button>
-            <TrashCanIcon />
-          </button>
+          <CategoryActions category={category} />
         </div>
       </TD>
     </TR>
