@@ -1,7 +1,7 @@
 import { FILE_SIZE_NUMBER, MAX_FILE_SIZE, VALID_IMAGE_EXTENSION, VALID_IMAGE_TYPES } from '@/contants'
 import { z } from 'zod'
 
-export const categoryCreateShema = z.object({
+export const bannerAndImageShema = z.object({
   name: z.string().trim().toUpperCase().min(1, { message: 'Se esperaba un nombre en la categoria' }),
   banner: z.custom<FileList>()
     .refine((banner) => Array.from(banner).every((banner: any) => banner instanceof File), {

@@ -1,4 +1,4 @@
-import { type categoryCreateShema } from '@/schemas/category'
+import { type bannerAndImageShema } from '@/schemas/category'
 import { type z } from 'zod'
 
-export type CategoryCreate = z.infer<typeof categoryCreateShema>
+export type BannerAndImage = z.infer<typeof bannerAndImageShema>
