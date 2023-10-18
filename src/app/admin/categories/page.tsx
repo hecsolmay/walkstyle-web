@@ -12,6 +12,7 @@ export default async function CategoriesPage () {
   const { categories } = response
 
   console.log({ categories })
+  console.log('Add a new Commit')
 
   return (
     <div className='flex flex-col gap-8'>
