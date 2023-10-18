@@ -5,6 +5,8 @@ import CategoryRow from '@/components/admin/categories/category-row'
 import PaginationSection from '@/components/admin/pagination-section'
 import { getAdminCategories } from '@/services/categories'
 
+export const dynamic = 'force-dynamic'
+
 export default async function CategoriesPage () {
   const response = await getAdminCategories()
   const { categories } = response
