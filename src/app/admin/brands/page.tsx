@@ -1,30 +1,29 @@
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
-import BrandRow from '@/components/admin/brand-row'
+import BrandRow from '@/components/admin/brands/brand-row'
+import FormCreate from '@/components/admin/brands/form'
 import PaginationSection from '@/components/admin/pagination-section'
-import { type BrandInfo } from '@/types/brand'
-import { STATUS } from '@/types/enums'
+import { getAdminBrands } from '@/services/brands'
 
-const brand: BrandInfo = {
-  brandId: '1',
-  imgUrl: 'https://1000marcas.net/wp-content/uploads/2020/01/Air-Jordan-logo.png',
-  name: 'Brand 1',
-  totalProducts: 10,
-  status: STATUS.ACTIVE
-}
+export const dynamic = 'force-dynamic'
 
-const brands = Array(15).fill(0).map(() => ({ ...brand, brandId: crypto.randomUUID() }))
+export default async function BrandsPage () {
+  const response = await getAdminBrands()
+  const { brands } = response
 
-export default function BrandsPage () {
+  console.log({ brands })
   return (
-    <div className='flex flex-col gap-8'>
-      <AdminHeader buttonText='Add Brand' searchPlaceholder='Search...' title='All Brands'/>
+
+    <div className=' flex flex-col gap-8'>
+      <AdminHeader modalClassName='grid place-content-center' buttonText='Add Brand' searchPlaceholder='Search...' title='All Brands'>
+        <FormCreate/>
+      </AdminHeader>
       <AdminTable headers={['Logo', 'Name', 'Total Products', 'Status', 'Actions']}>
         {brands.map(brand =>
           <BrandRow key={brand.brandId} brand={brand}/>
         )}
       </AdminTable>
-      <PaginationSection />
+      <PaginationSection/>
     </div>
   )
 }

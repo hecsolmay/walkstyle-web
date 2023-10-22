@@ -1,6 +1,6 @@
 import SectionEccomerce from '@/components/section-ecommerce'
 import { Carrusel, SliderBrandSection, SliderCategorySection, SliderProductsSection } from '@/components/slider'
-import { type BrandInfo } from '@/types/brand'
+import { type BrandDetails } from '@/types/brand'
 import { type Category } from '@/types/category'
 import { STATUS } from '@/types/enums'
 import { type Product } from '@/types/product'
@@ -22,12 +22,25 @@ const category: Category = {
   }
 }
 
-const brand: BrandInfo = {
-  brandId: '1',
-  name: 'Nike',
-  status: STATUS.ACTIVE,
-  totalProducts: 20,
-  imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Puma-Logo.png'
+const brand: BrandDetails = {
+  brandId: '123',
+  name: 'Jordan',
+  banner: {
+    imageId: '1234', // Provide a unique imageId value
+    main: 'some-main-value',
+    preview: 'some-preview-value',
+    thumbnail: 'some-thumbnail-value'
+  },
+  image: {
+    imageId: '5678', // Provide a unique imageId value
+    main: 'some-main-value',
+    preview: 'some-preview-value',
+    thumbnail: 'some-thumbnail-value'
+  },
+  totalProducts: 0,
+  updatedAt: new Date(), // Add the 'new' keyword before 'Date'
+  createdAt: new Date(), // Add the 'new' keyword before 'Date'
+  status: STATUS.ACTIVE
 }
 
 const categories: Category[] = Array(15).fill(0).map(() => ({
@@ -35,17 +48,14 @@ const categories: Category[] = Array(15).fill(0).map(() => ({
   categoryId: crypto.randomUUID()
 }))
 
-const brands: BrandInfo[] = Array(15).fill(0).map(() => ({
+const brands: BrandDetails[] = Array(15).fill(0).map(() => ({
   ...brand, brandId: crypto.randomUUID()
 }))
 
 const product: Product = {
   productId: '1',
   name: 'Tenis Nike Revolution 6 Next Nature',
-  brand: {
-    brandId: '123',
-    name: 'Jordan'
-  },
+  brand,
   price: 999.00,
   imageUrl: 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f8b6c5d4-f53d-4798-a833-7a7c8b063d66/calzado-air-max-intrlk-lite-Sp1WFC.png',
   gender: {

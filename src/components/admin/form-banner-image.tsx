@@ -92,7 +92,7 @@ export default function FormBannerImage ({ onSubmit }: FormBannerImageProps) {
       </div>
 
       <div className='flex flex-1 justify-end pr-6'>
-        <TextButton disabled={isSubmitting} className='w-44 bg-blue-500 py-2' text='Agregar Categoria' />
+        <TextButton disabled={isSubmitting} className='w-44 bg-blue-500 py-2' text='Agregar' />
       </div>
 
     </form>
