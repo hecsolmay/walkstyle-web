@@ -2,7 +2,7 @@ import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import UserRow from '@/components/admin/user-row'
-import { Role, Status } from '@/types/enums'
+import { Role, STATUS } from '@/types/enums'
 import { type User } from '@/types/user'
 
 const user: User = {
@@ -12,7 +12,7 @@ const user: User = {
   fullname: 'Juan Perez',
   email: 'Lrj7X@example.com',
   role: Role.USER,
-  status: Status.ACTIVE,
+  status: STATUS.ACTIVE,
   createdAt: new Date(),
   imgUrl: null
 }

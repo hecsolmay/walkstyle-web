@@ -1,7 +1,7 @@
 // SignupForm.tsx
 import { IconButton } from '@/components/icon-button'
 import { GoogleIcon } from '@/components/icons'
-import Input from '@/components/input'
+import Input, { InputPassword } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 import Link from 'next/link'
 
@@ -26,8 +26,6 @@ export default function SignupForm () {
       <div className="mb-5 w-full">
         <Input
           label="Name"
-          name="name"
-          type='name'
           placeholder="Enter your name"
           required
         />
@@ -36,8 +34,6 @@ export default function SignupForm () {
       <div className="mb-5 w-full">
         <Input
           label="LastName"
-          name="lastname"
-          type='lastname'
           placeholder="Enter your lastname"
           required
         />
@@ -46,7 +42,6 @@ export default function SignupForm () {
       <div className="mb-5 w-full">
         <Input
           label="Email address"
-          name="email"
           type='email'
           placeholder="Enter your email"
           required
@@ -54,20 +49,18 @@ export default function SignupForm () {
       </div>
 
       <div className="mb-5 w-full">
-        <Input
+        <InputPassword
           label="Password"
-          name="password"
-          type="password"
           placeholder="Enter your password"
           required
         />
       </div>
       <div className="mb-5 w-full">
-        <Input
+
+        <InputPassword
           label="Confirm Password"
-          name="confirm password"
-          type="password"
           placeholder="Enter your password"
+          showChangeType={false}
           required
         />
       </div>

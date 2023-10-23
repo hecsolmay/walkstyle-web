@@ -9,10 +9,11 @@ interface AdminHeaderProps {
   children?: React.ReactNode
   title: string
   showButton?: boolean
+  modalClassName?: string
 }
 
 export function AdminHeader (
-  { buttonText, children, className, searchPlaceholder, title, showButton = true }: AdminHeaderProps
+  { buttonText, children, className, searchPlaceholder, title, modalClassName, showButton = true }: AdminHeaderProps
 ) {
   return (
     <header className={cn('flex flex-col gap-8 py-3', className)}>
@@ -21,7 +22,7 @@ export function AdminHeader (
         <SearchInput placeholder={searchPlaceholder} />
 
         {showButton &&
-          (<ModalButton text={buttonText ?? ''} >
+          (<ModalButton bgClassName={modalClassName} text={buttonText ?? ''} >
             {children}
           </ModalButton>)
         }
