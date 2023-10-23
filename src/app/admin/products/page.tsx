@@ -1,6 +1,7 @@
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
+import { DEFAULT_INFO } from '@/contants'
 import { type ServerProps } from '@/types'
 // import ProductRow from '@/components/admin/product-row'
 
@@ -15,7 +16,7 @@ export default function ProductsPage ({ searchParams }: ServerProps) {
           <ProductRow key={product.productId} product={product}/>
         )} */}
       </AdminTable>
-      <PaginationSection />
+      <PaginationSection info={DEFAULT_INFO}/>
     </div>
   )
 }

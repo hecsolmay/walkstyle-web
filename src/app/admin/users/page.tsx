@@ -2,6 +2,7 @@ import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import UserRow from '@/components/admin/user-row'
+import { DEFAULT_INFO } from '@/contants'
 import { Role, STATUS } from '@/types/enums'
 import { type UserDetails } from '@/types/user'
 
@@ -33,7 +34,7 @@ export default function UsersPage () {
           <UserRow key={user.userId} user={user}/>
         )}
       </AdminTable>
-      <PaginationSection />
+      <PaginationSection info={DEFAULT_INFO}/>
     </div>
 
   )

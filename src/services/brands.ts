@@ -8,8 +8,8 @@ interface BrandDetailsResponse {
   brands: BrandDetails[]
 }
 
-export async function getAdminBrands ({ q = '' }: SearchParams = {}): Promise<BrandDetailsResponse> {
-  const response = await axios.get(`/brands/all?q=${q}`)
+export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandDetailsResponse> {
+  const response = await axios.get(`/brands/all?q=${q}&page=${page}`)
   const { data } = response
 
   return {

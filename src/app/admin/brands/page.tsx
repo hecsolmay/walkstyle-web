@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function BrandsPage ({ searchParams }: ServerProps) {
   const response = await getAdminBrands(searchParams)
-  const { brands } = response
+  const { brands, info } = response
 
   console.log({ brands })
   return (
@@ -24,7 +24,7 @@ export default async function BrandsPage ({ searchParams }: ServerProps) {
           <BrandRow key={brand.brandId} brand={brand}/>
         )}
       </AdminTable>
-      <PaginationSection/>
+      <PaginationSection info={info}/>
     </div>
   )
 }

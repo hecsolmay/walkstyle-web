@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function CategoriesPage ({ searchParams }: ServerProps) {
   const response = await getAdminCategories(searchParams)
-  const { categories } = response
+  const { categories, info } = response
 
   console.log({ categories })
 
@@ -24,7 +24,7 @@ export default async function CategoriesPage ({ searchParams }: ServerProps) {
           <CategoryRow key={category.categoryId} category={category}/>
         )}
       </AdminTable>
-      <PaginationSection />
+      <PaginationSection info={info}/>
     </div>
   )
 }

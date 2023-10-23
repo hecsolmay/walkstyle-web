@@ -2,6 +2,7 @@ import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import SalesRow from '@/components/admin/sales-row'
+import { DEFAULT_INFO } from '@/contants'
 import { Role } from '@/types/enums'
 import { type Sale } from '@/types/sale'
 
@@ -37,7 +38,7 @@ export default function SalesPage () {
           <SalesRow key={sale.saleId} sale={sale}/>
         )}
       </AdminTable>
-      <PaginationSection />
+      <PaginationSection info={DEFAULT_INFO}/>
     </div>
   )
 }

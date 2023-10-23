@@ -8,8 +8,8 @@ interface CategoryDetailsResponse {
   categories: CategoryDetails[]
 }
 
-export async function getAdminCategories ({ q = '' }: SearchParams = {}): Promise<CategoryDetailsResponse> {
-  const response = await axios.get(`/categories/all?q=${q}`)
+export async function getAdminCategories ({ q = '', page = 1 }: SearchParams = {}): Promise<CategoryDetailsResponse> {
+  const response = await axios.get(`/categories/all?q=${q}&page=${page}`)
   const { data } = response
 
   return {

@@ -1,5 +1,6 @@
 import { ProductFilter } from '@/components/filter-select-category'
 import { Pagination } from '@/components/pagination'
+import { DEFAULT_INFO } from '@/contants'
 import { type ServerProps } from '@/types'
 // import { ProductCard } from '@/components/product-card'
 
@@ -24,7 +25,7 @@ export default function SearchPage ({ searchParams }: ServerProps) {
           ))} */}
         </div>
         <div className='flex justify-center p-10 md:justify-end'>
-          <Pagination />
+          <Pagination info={DEFAULT_INFO}/>
         </div>
       </div>
     </>
