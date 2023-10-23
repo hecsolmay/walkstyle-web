@@ -9,9 +9,10 @@ import { useEffect, useRef, useState } from 'react'
 
 interface AdminNavbarProps {
   toogleShowSideBar: () => void
+  toogleShowMobileBar: () => void
 }
 
-export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
+export default function AdminNavbar ({ toogleShowSideBar, toogleShowMobileBar }: AdminNavbarProps) {
   const userRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLUListElement>(null)
   const [showUser, setShowUser] = useState(false)
@@ -34,7 +35,10 @@ export default function AdminNavbar ({ toogleShowSideBar }: AdminNavbarProps) {
   return (
     <nav className='stickytop-0 z-10 flex h-16 items-center justify-between bg-white pl-6 pr-7 shadow-lg'>
       <div className='flex gap-6 text-slate-700'>
-        <button onClick={toogleShowSideBar}>
+        <button className='block md:hidden' onClick={toogleShowMobileBar}>
+          <HamburguerIcon className='h-7 w-7' />
+        </button>
+        <button className='hidden md:block' onClick={toogleShowSideBar}>
           <HamburguerIcon className='h-7 w-7' />
         </button>
         <p><span className='text-slate-500'>{title.main}

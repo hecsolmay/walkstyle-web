@@ -10,21 +10,26 @@ export default function AdminLayout ({
 }: {
   children: React.ReactNode
 }) {
-  const [showSideBar, setShowSideBar] = useState(true)
+  const [showSideBar, setShowSideBar] = useState({
+    mobile: false,
+    desktop: true
+  })
 
   const toogleShowSideBar = () => {
-    console.log('Button Pressed')
+    setShowSideBar(prev => ({ ...prev, desktop: !prev.desktop }))
+  }
 
-    setShowSideBar(!showSideBar)
+  const toogleShowMobileBar = () => {
+    setShowSideBar(prev => ({ ...prev, mobile: !prev.mobile }))
   }
 
   return (
     <div className="relative flex min-h-screen">
-      <AdminSideBar show={showSideBar}/>
-      <AdminMobileSideBar closeSideBar={() => { setShowSideBar(true) }} show={!showSideBar} />
+      <AdminSideBar show={showSideBar.desktop}/>
+      <AdminMobileSideBar closeSideBar={() => { setShowSideBar(prev => ({ ...prev, mobile: false })) }} show={showSideBar.mobile} />
 
-      <div className={cn('max-h-screen flex-1 transition-all', showSideBar && 'md:ml-[20vw] lg:ml-[18vw]')}>
-        <AdminNavbar toogleShowSideBar={toogleShowSideBar} />
+      <div className={cn('max-h-screen flex-1 transition-all', showSideBar.desktop && 'md:ml-[20vw] lg:ml-[18vw]')}>
+        <AdminNavbar toogleShowMobileBar={toogleShowMobileBar} toogleShowSideBar={toogleShowSideBar} />
         <main className='max-w-[100vw] px-5 py-4 '>
           {children}
         </main>
