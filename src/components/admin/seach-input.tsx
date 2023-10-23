@@ -1,9 +1,11 @@
 'use client'
 
 import { SearchIcon, XMarkIcon } from '@/components/icons'
+import { useDebounce } from '@/hooks/useDebounce'
 import UseInput from '@/hooks/useInput'
 import useNextQuery from '@/hooks/useNextQuey'
 import { cn } from '@/utils/cn'
+import { useEffect } from 'react'
 
 interface SearchInputProps {
   className?: string
@@ -12,7 +14,9 @@ interface SearchInputProps {
 
 export default function SearchInput ({ className, placeholder }: SearchInputProps) {
   const { clear, onChange, value: searchWord } = UseInput('')
+  const debouncedValue = useDebounce(searchWord, 300)
   const { router, pathname } = useNextQuery()
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
@@ -24,6 +28,14 @@ export default function SearchInput ({ className, placeholder }: SearchInputProp
     router.push(`?q=${searchWord}`)
     clear()
   }
+
+  useEffect(() => {
+    if (debouncedValue.length === 0) {
+      router.push(pathname)
+      return
+    }
+    router.push(`?q=${debouncedValue}`)
+  }, [debouncedValue])
 
   return (
     <form onSubmit={handleSubmit} className="relative flex">
