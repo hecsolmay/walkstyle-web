@@ -4,14 +4,17 @@ import { EyeClosedIcon, EyeOpenIcon } from '@/components/icons'
 import { cn } from '@/utils/cn'
 import React, { useState } from 'react'
 
+type InputType = 'text' | 'number' | 'email' | 'tel'
+
 interface InputProps {
   label: string
   name?: string
   placeholder?: string
   className?: string
   required?: boolean
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  type?: string
+  error?: string
+  type?: InputType
+  register?: any
 }
 
 export default function Input ({
@@ -20,9 +23,38 @@ export default function Input ({
   placeholder,
   className,
   required,
-  onChange,
-  type = 'text'
+  type,
+  error,
+  register
 }: InputProps) {
+  return (
+    <>
+      <label
+        htmlFor={name}
+        className='mb-2 block text-sm font-medium text-slate-600 '
+      >
+        {label}
+      </label>
+      <div className='relative'>
+        <input
+          {...register}
+          type={type}
+          className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className, error !== undefined && 'border-red-500')}
+          placeholder={placeholder}
+          required={required}
+        />
+      </div>
+      <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
+    </>
+  )
+}
+
+interface InputPasswordProps extends Omit<InputProps, 'type'> {
+  showChangeType?: boolean
+}
+
+export function InputPassword (
+  { label, className, error, name, register, placeholder, required, showChangeType = true }: InputPasswordProps) {
   const [showPassword, setShowPassword] = useState(false)
 
   const togglePasswordVisibility = () => {
@@ -39,14 +71,13 @@ export default function Input ({
       </label>
       <div className='relative'>
         <input
-          type={showPassword ? 'text' : type}
-          name={name}
-          className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className)}
+          type={showPassword ? 'text' : 'password'}
+          {...register}
+          className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className, error !== undefined && 'border-red-500')}
           placeholder={placeholder}
           required={required}
-          onChange={onChange}
         />
-        {type === 'password' && (
+        {showChangeType && (
           <button
             type='button'
             onClick={togglePasswordVisibility}
@@ -56,6 +87,39 @@ export default function Input ({
           </button>
         )}
       </div>
+      <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
+    </>
+  )
+}
+
+interface InputFileProps extends Omit<InputProps, 'type' | 'onChange' | 'placeholder'> {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  accept?: string
+}
+
+export function InputFile (
+  { label, name, error, required, accept, register }: InputFileProps
+) {
+  return (
+    <>
+      <label
+        htmlFor={name}
+        className='mb-2 block text-sm font-medium text-slate-600 '
+      >
+        {label}
+      </label>
+      <input
+        type="file"
+        {...register}
+        accept={accept}
+        required={required}
+        className={cn(`block w-full cursor-pointer rounded-lg border border-slate-300 text-sm text-slate-500 file:mr-4
+        file:cursor-pointer file:rounded-md file:border-0 file:bg-blue-50
+        file:px-4 file:py-2 file:text-sm
+        file:font-semibold file:text-blue-700
+        hover:file:bg-blue-100`, error !== undefined && 'border-red-500')}
+      />
+      <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
     </>
   )
 }

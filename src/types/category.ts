@@ -1,9 +1,16 @@
-import { type Status } from '@/types/enums'
+import { type Image } from '@/types/image'
+import { type STATUS } from '@/types/enums'
 
 export interface Category {
   categoryId: string
   name: string
-  imgUrl: string
-  totalProducts: number
-  status: Status
+  banner: Image
+  image: Image
+}
+
+export interface CategoryDetails extends Category {
+  totalProducts?: number
+  status: STATUS
+  createdAt: Date
+  updatedAt: Date
 }

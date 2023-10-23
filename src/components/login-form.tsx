@@ -1,6 +1,6 @@
 // LoginForm.tsx
 import Link from 'next/link'
-import Input from './input'
+import Input, { InputPassword } from './input'
 import { TextButton } from './text-button'
 import { IconButton } from './icon-button'
 import { GoogleIcon } from './icons'
@@ -24,13 +24,12 @@ export default function LoginForm () {
       </div>
 
       <div className="mb-4 w-full">
-        <Input
+
+        <InputPassword
           label="Password"
           name="password"
-          type='password'
           placeholder="Password"
-          required
-        />
+          required/>
       </div>
 
       <div className="mb-4 flex w-full items-center justify-between">

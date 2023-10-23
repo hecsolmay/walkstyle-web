@@ -11,12 +11,10 @@ interface BackgroundProps {
 }
 
 export function Background ({ close, show = false, className, children }: BackgroundProps) {
-  const prevOverflow = 'auto'
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // Si se hace clic en el fondo oscurecido, cierra el modal
     if (e.target === e.currentTarget) {
-      document.body.style.overflow = prevOverflow
+      document.body.style.overflow = 'auto'
       close()
     }
   }
@@ -28,7 +26,8 @@ export function Background ({ close, show = false, className, children }: Backgr
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = prevOverflow
+      console.log('Desmounting Background')
+      document.body.style.overflow = 'auto'
     }
   }, [])
   const modalContent = (

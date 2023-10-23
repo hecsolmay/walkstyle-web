@@ -2,7 +2,7 @@ import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import SalesRow from '@/components/admin/sales-row'
-import { Role, Status } from '@/types/enums'
+import { Role, STATUS } from '@/types/enums'
 import { type Sale } from '@/types/sale'
 
 const sale: Sale = {
@@ -18,7 +18,7 @@ const sale: Sale = {
     lastname: 'Perez',
     imgUrl: null,
     role: Role.USER,
-    status: Status.ACTIVE,
+    status: STATUS.ACTIVE,
     createdAt: new Date()
   }
 }
