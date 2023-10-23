@@ -3,9 +3,9 @@ import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import UserRow from '@/components/admin/user-row'
 import { Role, STATUS } from '@/types/enums'
-import { type User } from '@/types/user'
+import { type UserDetails } from '@/types/user'
 
-const user: User = {
+const user: UserDetails = {
   userId: '1',
   name: 'Juan',
   lastname: 'Perez',
@@ -14,6 +14,7 @@ const user: User = {
   role: Role.USER,
   status: STATUS.ACTIVE,
   createdAt: new Date(),
+  updatedAt: new Date(),
   imgUrl: null
 }
 

@@ -18,7 +18,19 @@ const products: ItemProduct[] = [
       },
       brand: {
         brandId: '1',
-        name: 'Nike'
+        name: 'Nike',
+        banner: {
+          imageId: '1',
+          main: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
+          preview: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
+          thumbnail: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto'
+        },
+        image: {
+          imageId: '1',
+          main: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
+          preview: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
+          thumbnail: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto'
+        }
       },
       imageUrl: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
       description: 'Camisa de manga corta',

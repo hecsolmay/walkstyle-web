@@ -1,4 +1,5 @@
-import { type STATUS, type Role } from '@/types/enums'
+import { type Details } from '@/types/details'
+import { type Role } from '@/types/enums'
 
 export interface User {
   userId: string
@@ -8,6 +9,6 @@ export interface User {
   email: string
   role: Role
   imgUrl: string | null
-  status: STATUS
-  createdAt: Date
 }
+
+export interface UserDetails extends User, Details {}

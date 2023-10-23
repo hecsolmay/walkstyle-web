@@ -1,6 +1,6 @@
 'use client'
 
-import { type BrandInfo } from '@/types/brand'
+import { type Brand } from '@/types/brand'
 import { cn } from '@/utils/cn'
 
 // Define el tipo para el tipo de variante
@@ -15,7 +15,7 @@ const colorVariants: Record<number, string> = {
 
 // Define la interfaz para las props del componente
 interface BrandComponentProps {
-  brand: BrandInfo
+  brand: Brand
   colorVariant?: number
 }
 
@@ -28,7 +28,7 @@ export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
       <div className="flex h-56 w-44 flex-col items-center justify-center ">
         <div className={cn('grid h-44 w-44  place-content-center opacity-90', colorClass)}>
           <img
-            src={brand.imgUrl}
+            src={brand.image.preview}
             alt={brand.name}
             className="h-20 object-cover" />
         </div>

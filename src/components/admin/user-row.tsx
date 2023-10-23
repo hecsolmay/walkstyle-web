@@ -2,10 +2,10 @@ import StatusBadge from '@/components/admin/status-badge'
 import { ConfigIcon, TrashCanIcon } from '@/components/icons'
 import { TD, TR } from '@/components/table'
 import { Role } from '@/types/enums'
-import { type User } from '@/types/user'
+import { type UserDetails } from '@/types/user'
 
 interface UserRowProps {
-  user: User
+  user: UserDetails
 }
 
 const roleText: Record<Role, string> = {

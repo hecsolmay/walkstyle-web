@@ -1,8 +1,7 @@
 import SectionEccomerce from '@/components/section-ecommerce'
 import { Carrusel, SliderBrandSection, SliderCategorySection, SliderProductsSection } from '@/components/slider'
-import { type BrandDetails } from '@/types/brand'
+import { type Brand } from '@/types/brand'
 import { type Category } from '@/types/category'
-import { STATUS } from '@/types/enums'
 import { type Product } from '@/types/product'
 
 const category: Category = {
@@ -22,7 +21,7 @@ const category: Category = {
   }
 }
 
-const brand: BrandDetails = {
+const brand: Brand = {
   brandId: '123',
   name: 'Jordan',
   banner: {
@@ -36,11 +35,7 @@ const brand: BrandDetails = {
     main: 'some-main-value',
     preview: 'some-preview-value',
     thumbnail: 'some-thumbnail-value'
-  },
-  totalProducts: 0,
-  updatedAt: new Date(), // Add the 'new' keyword before 'Date'
-  createdAt: new Date(), // Add the 'new' keyword before 'Date'
-  status: STATUS.ACTIVE
+  }
 }
 
 const categories: Category[] = Array(15).fill(0).map(() => ({
@@ -48,7 +43,7 @@ const categories: Category[] = Array(15).fill(0).map(() => ({
   categoryId: crypto.randomUUID()
 }))
 
-const brands: BrandDetails[] = Array(15).fill(0).map(() => ({
+const brands: Brand[] = Array(15).fill(0).map(() => ({
   ...brand, brandId: crypto.randomUUID()
 }))
 

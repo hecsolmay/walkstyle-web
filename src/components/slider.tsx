@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { BrandCard } from '@/components/brand-card'
 import { CategoryCard } from '@/components/category-card'
 import ProductLinkCard from '@/components/product-link-card'
-import { type BrandInfo } from '@/types/brand'
+import { type Brand } from '@/types/brand'
 import { type Category } from '@/types/category'
 import { type Product } from '@/types/product'
 import 'swiper/css'
@@ -162,7 +162,7 @@ export function SliderCategorySection ({ categories }: SliderCategorySectionProp
 }
 
 interface SliderBrandSectionProps {
-  brands: BrandInfo[]
+  brands: Brand[]
 }
 
 export function SliderBrandSection ({ brands }: SliderBrandSectionProps) {

@@ -1,5 +1,5 @@
-import { type Image } from './image'
-import { type STATUS } from '@/types/enums'
+import { type Details } from '@/types/details'
+import { type Image } from '@/types/image'
 
 export interface Brand {
   brandId: string
@@ -8,9 +8,6 @@ export interface Brand {
   image: Image
 }
 
-export interface BrandDetails extends Brand {
+export interface BrandDetails extends Brand, Details {
   totalProducts?: number
-  status: STATUS
-  createdAt: Date
-  updatedAt: Date
 }
