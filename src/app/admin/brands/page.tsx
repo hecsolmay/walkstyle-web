@@ -4,11 +4,12 @@ import BrandRow from '@/components/admin/brands/brand-row'
 import FormCreate from '@/components/admin/brands/form'
 import PaginationSection from '@/components/admin/pagination-section'
 import { getAdminBrands } from '@/services/brands'
+import { type ServerProps } from '@/types'
 
 export const dynamic = 'force-dynamic'
 
-export default async function BrandsPage () {
-  const response = await getAdminBrands()
+export default async function BrandsPage ({ searchParams }: ServerProps) {
+  const response = await getAdminBrands(searchParams)
   const { brands } = response
 
   console.log({ brands })

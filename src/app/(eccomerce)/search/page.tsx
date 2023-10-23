@@ -1,12 +1,9 @@
 import { ProductFilter } from '@/components/filter-select-category'
 import { Pagination } from '@/components/pagination'
+import { type ServerProps } from '@/types'
 // import { ProductCard } from '@/components/product-card'
 
-export default function SearchPage ({
-  searchParams
-}: {
-  searchParams?: Record<string, string>
-}) {
+export default function SearchPage ({ searchParams }: ServerProps) {
   console.log({ searchParams })
 
   return (

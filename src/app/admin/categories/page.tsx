@@ -4,11 +4,12 @@ import CategoryRow from '@/components/admin/categories/category-row'
 import FormCreate from '@/components/admin/categories/form'
 import PaginationSection from '@/components/admin/pagination-section'
 import { getAdminCategories } from '@/services/categories'
+import { type ServerProps } from '@/types'
 
 export const dynamic = 'force-dynamic'
 
-export default async function CategoriesPage () {
-  const response = await getAdminCategories()
+export default async function CategoriesPage ({ searchParams }: ServerProps) {
+  const response = await getAdminCategories(searchParams)
   const { categories } = response
 
   console.log({ categories })
