@@ -1,3 +1,4 @@
+import { type SearchParams } from '@/types'
 import { type CategoryDetails } from '@/types/category'
 import { type Info } from '@/types/response'
 import axios from '@/utils/axios'
@@ -7,8 +8,8 @@ interface CategoryDetailsResponse {
   categories: CategoryDetails[]
 }
 
-export async function getAdminCategories (): Promise<CategoryDetailsResponse> {
-  const response = await axios.get('/categories/all')
+export async function getAdminCategories ({ q = '' }: SearchParams = {}): Promise<CategoryDetailsResponse> {
+  const response = await axios.get(`/categories/all?q=${q}`)
   const { data } = response
 
   return {

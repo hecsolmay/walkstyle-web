@@ -1,3 +1,4 @@
+import { type SearchParams } from '@/types'
 import { type BrandDetails } from '@/types/brand'
 import { type Info } from '@/types/response'
 import axios from '@/utils/axios'
@@ -7,8 +8,8 @@ interface BrandDetailsResponse {
   brands: BrandDetails[]
 }
 
-export async function getAdminBrands (): Promise<BrandDetailsResponse> {
-  const response = await axios.get('/brands/all')
+export async function getAdminBrands ({ q = '' }: SearchParams = {}): Promise<BrandDetailsResponse> {
+  const response = await axios.get(`/brands/all?q=${q}`)
   const { data } = response
 
   return {
