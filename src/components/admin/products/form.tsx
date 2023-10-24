@@ -9,11 +9,15 @@ import { Controller, useForm } from 'react-hook-form'
 import SelectGender from '@/components/admin/select-gender'
 import { SelectCategories } from '@/components/select-categories'
 import { SelectBrand } from '../select-brand'
+import { createProduct } from '@/services/products'
+import useNextQuery from '@/hooks/useNextQuey'
 
 export default function FormProductCreate () {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, watch, control } = useForm<ProductCreate>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, watch, control, reset } = useForm<ProductCreate>({
     resolver: zodResolver(productCreateSchema)
   })
+
+  const { router } = useNextQuery()
 
   const imagesFiles: FileList | undefined = watch('images')
   const brandId = watch('brandId')
@@ -29,7 +33,7 @@ export default function FormProductCreate () {
     console.log(data)
     const formData = new FormData()
 
-    const { images, ...rest } = data
+    const { images, ...product } = data
 
     const imagesArray = Array.from(imagesFiles ?? [])
 
@@ -37,7 +41,14 @@ export default function FormProductCreate () {
       formData.append('images', image)
     })
 
-    console.log({ product: rest })
+    const jsonString = JSON.stringify(product)
+
+    formData.append('product', jsonString)
+
+    await createProduct(formData)
+
+    reset()
+    router.refresh()
   }
 
   return (
