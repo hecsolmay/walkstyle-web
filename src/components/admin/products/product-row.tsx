@@ -1,10 +1,10 @@
-import { PencilSquareIcon, TagIcon, TrashCanIcon } from '@/components/icons'
+import StatusBadge from '@/components/admin/status-badge'
 import { TD, TR } from '@/components/table'
-import { type Product } from '@/types/product'
-import Link from 'next/link'
+import { type ProductDetails } from '@/types/product'
+import ProductActions from './actions'
 
 interface ProductRowProps {
-  product: Product
+  product: ProductDetails
 }
 
 export default function ProductRow ({ product }: ProductRowProps) {
@@ -14,21 +14,12 @@ export default function ProductRow ({ product }: ProductRowProps) {
       <TD>{product.brand.name}</TD>
       <TD>{product.gender.name}</TD>
       <TD>{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</TD>
-      <TD className='text-black'>
-        <Link href='#'>
-          <TagIcon />
-        </Link>
+      <TD>
+        <StatusBadge status={product.status}/>
       </TD>
 
       <TD className=' text-black'>
-        <div className='flex items-center gap-6'>
-          <button>
-            <PencilSquareIcon />
-          </button>
-          <button>
-            <TrashCanIcon />
-          </button>
-        </div>
+        <ProductActions product={product} />
       </TD>
     </TR>
   )

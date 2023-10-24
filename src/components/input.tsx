@@ -95,10 +95,11 @@ export function InputPassword (
 interface InputFileProps extends Omit<InputProps, 'type' | 'onChange' | 'placeholder'> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   accept?: string
+  multiple?: boolean
 }
 
 export function InputFile (
-  { label, name, error, required, accept, register }: InputFileProps
+  { label, name, error, required, accept, register, multiple = false }: InputFileProps
 ) {
   return (
     <>
@@ -113,6 +114,7 @@ export function InputFile (
         {...register}
         accept={accept}
         required={required}
+        multiple={multiple}
         className={cn(`block w-full cursor-pointer rounded-lg border border-slate-300 text-sm text-slate-500 file:mr-4
         file:cursor-pointer file:rounded-md file:border-0 file:bg-blue-50
         file:px-4 file:py-2 file:text-sm
@@ -120,6 +122,45 @@ export function InputFile (
         hover:file:bg-blue-100`, error !== undefined && 'border-red-500')}
       />
       <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
+    </>
+  )
+}
+
+interface InputTextTareaProps extends Omit <InputProps, 'type'> {
+  rows?: number
+  resize?: boolean
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export function InputTextarea ({
+  label,
+  name,
+  placeholder,
+  required,
+  register,
+  rows = 3,
+  onChange,
+  resize = false,
+  error
+}: InputTextTareaProps) {
+  return (
+    <>
+      <label
+        htmlFor={name}
+        className='mb-2 block text-sm font-medium text-slate-600 '
+      >
+        {label}
+      </label>
+      <textarea
+        {...register}
+        rows={rows}
+        onChange={onChange}
+        className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', !resize && 'resize-none', error !== undefined && 'border-red-500')}
+        placeholder={placeholder}
+        required={required}
+      />
+      <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
+
     </>
   )
 }

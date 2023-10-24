@@ -126,7 +126,7 @@ export const NavTitle: Record<string, HeaderTitle> = {
     main: 'Perfil'
   },
   default: {
-    main: 'Seccion'
+    main: ''
   }
 }
 

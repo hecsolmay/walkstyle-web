@@ -1,22 +1,27 @@
 import { AdminHeader } from '@/components/admin/admin-header'
 import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
-import { DEFAULT_INFO } from '@/contants'
+import FormProductCreate from '@/components/admin/products/form'
+import ProductRow from '@/components/admin/products/product-row'
+import { getAdminProducts } from '@/services/products'
 import { type ServerProps } from '@/types'
-// import ProductRow from '@/components/admin/product-row'
 
-export default function ProductsPage ({ searchParams }: ServerProps) {
-  console.log({ searchParams })
+export const dynamic = 'force-dynamic'
+
+export default async function ProductsPage ({ searchParams }: ServerProps) {
+  const { info, products } = await getAdminProducts(searchParams)
 
   return (
     <div className='flex flex-col gap-8'>
-      <AdminHeader buttonText='Add Product' searchPlaceholder='Search...' title='All Products'/>
-      <AdminTable headers={['Name', 'Brand', 'Gender', 'Price', 'Size', 'Actions']}>
-        {/* {productsArray.map(product =>
+      <AdminHeader modalClassName='grid place-content-center' buttonText='Add Product' searchPlaceholder='Search...' title='All Products'>
+        <FormProductCreate />
+      </AdminHeader>
+      <AdminTable headers={['Name', 'Brand', 'Gender', 'Price', 'Status', 'Actions']}>
+        {products.map(product =>
           <ProductRow key={product.productId} product={product}/>
-        )} */}
+        )}
       </AdminTable>
-      <PaginationSection info={DEFAULT_INFO}/>
+      <PaginationSection info={info}/>
     </div>
   )
 }
