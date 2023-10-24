@@ -1,16 +1,14 @@
 import SectionEccomerce from '@/components/section-ecommerce'
 import { Carrusel, SliderBrandSection, SliderCategorySection, SliderProductsSection } from '@/components/slider'
-import { type Brand } from '@/types/brand'
-import { type Category } from '@/types/category'
-import { type Product } from '@/types/product'
+import { getBrands } from '@/services/brands'
+import { getCategories } from '@/services/categories'
+import { getProducts } from '@/services/products'
 
-const categories: Category[] = []
+export default async function Home () {
+  const [{ categories }, { brands }, { products }] = await Promise.all(
+    [getCategories(), getBrands(), getProducts()]
+  )
 
-const brands: Brand[] = []
-
-const products: Product[] = []
-
-export default function Home () {
   return (
     <div className='mb-14 flex flex-col gap-8'>
       <Carrusel />
