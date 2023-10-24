@@ -1,14 +1,17 @@
 import { type Details } from '@/types/details'
 import { type Role } from '@/types/enums'
 
-export interface User {
-  userId: string
+export interface UserDTO {
   name: string
   lastname: string
   fullname: string
   email: string
   role: Role
   profileUrl: string | null
+}
+
+export interface User extends UserDTO {
+  userId: string
   rememberToken: string
 }
 
