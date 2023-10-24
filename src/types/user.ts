@@ -1,12 +1,12 @@
 import { type Details } from '@/types/details'
-import { type Role } from '@/types/enums'
+import { type ROLE } from '@/types/enums'
 
 export interface UserDTO {
   name: string
   lastname: string
   fullname: string
   email: string
-  role: Role
+  role: ROLE
   profileUrl: string | null
 }
 

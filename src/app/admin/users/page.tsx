@@ -3,7 +3,7 @@ import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import UserRow from '@/components/admin/user-row'
 import { DEFAULT_INFO } from '@/contants'
-import { Role, STATUS } from '@/types/enums'
+import { ROLE, STATUS } from '@/types/enums'
 import { type UserDetails } from '@/types/user'
 
 const user: UserDetails = {
@@ -12,7 +12,7 @@ const user: UserDetails = {
   lastname: 'Perez',
   fullname: 'Juan Perez',
   email: 'Lrj7X@example.com',
-  role: Role.USER,
+  role: ROLE.USER,
   status: STATUS.ACTIVE,
   createdAt: new Date(),
   updatedAt: new Date(),

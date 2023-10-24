@@ -7,40 +7,7 @@ interface ModalCartInfoProps {
   CloseSideBar: () => void
 }
 
-const products: ItemProduct[] = [
-  {
-    product: {
-      name: 'Camisa de manga corta',
-      price: 10495,
-      gender: {
-        genderId: 'M',
-        name: 'Mujer'
-      },
-      brand: {
-        brandId: '1',
-        name: 'Nike',
-        banner: {
-          imageId: '1',
-          main: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
-          preview: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
-          thumbnail: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto'
-        },
-        image: {
-          imageId: '1',
-          main: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
-          preview: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
-          thumbnail: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto'
-        }
-      },
-      imageUrl: 'https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto',
-      description: 'Camisa de manga corta',
-      productId: '1',
-      sizes: [24, 25, 25.5, 26, 26.5, 27, 32]
-    },
-    quantity: 1,
-    size: 32
-  }
-]
+const products: ItemProduct[] = []
 
 export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
   return (

@@ -1,16 +1,16 @@
 import StatusBadge from '@/components/admin/status-badge'
 import { ConfigIcon, TrashCanIcon } from '@/components/icons'
 import { TD, TR } from '@/components/table'
-import { Role } from '@/types/enums'
+import { ROLE } from '@/types/enums'
 import { type UserDetails } from '@/types/user'
 
 interface UserRowProps {
   user: UserDetails
 }
 
-const roleText: Record<Role, string> = {
-  [Role.USER]: 'Usuario',
-  [Role.ADMIN]: 'Administrador'
+const roleText: Record<ROLE, string> = {
+  [ROLE.USER]: 'Usuario',
+  [ROLE.ADMIN]: 'Administrador'
 }
 
 export default function UserRow ({ user }: UserRowProps) {

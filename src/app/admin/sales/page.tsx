@@ -3,7 +3,7 @@ import { AdminTable } from '@/components/admin/admin-table'
 import PaginationSection from '@/components/admin/pagination-section'
 import SalesRow from '@/components/admin/sales-row'
 import { DEFAULT_INFO } from '@/contants'
-import { Role } from '@/types/enums'
+import { ROLE } from '@/types/enums'
 import { type Sale } from '@/types/sale'
 
 const sale: Sale = {
@@ -19,7 +19,7 @@ const sale: Sale = {
     lastname: 'Perez',
     profileUrl: null,
     rememberToken: '',
-    role: Role.USER
+    role: ROLE.USER
   }
 }
 

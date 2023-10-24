@@ -1,14 +1,21 @@
 import type { Brand } from '@/types/brand'
+import { type Category } from '@/types/category'
+import { type GENDER } from '@/types/enums'
+import { type Image } from '@/types/image'
+import { type Size } from '@/types/size'
+
+type CategoryWithoutImage = Omit<Category, 'image' | 'banner'>
 
 export interface Product {
   productId: string
   name: string
   brand: Brand
   price: number
-  imageUrl: string
+  details: string
+  images: Image[]
   gender: Gender
-  description: string
-  sizes: number[]
+  sizes: Size[]
+  categories: CategoryWithoutImage[]
 }
 
 export interface ItemProduct {
@@ -19,5 +26,5 @@ export interface ItemProduct {
 
 export interface Gender {
   genderId: string
-  name: string
+  name: GENDER
 }

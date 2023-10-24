@@ -1,5 +1,5 @@
 import { type SearchParams } from '@/types'
-import { type Role } from '@/types/enums'
+import { type ROLE } from '@/types/enums'
 import { type Info } from '@/types/response'
 import { type User, type UserDTO, type UserDetails } from '@/types/user'
 import axios, { axiosAuth } from '@/utils/axios'
@@ -21,7 +21,7 @@ interface UpdateUser {
 
 interface ChangeUserRole {
   userId: string
-  role: Role
+  role: ROLE
 }
 
 interface ChangeUserPassword {

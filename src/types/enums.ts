@@ -3,7 +3,13 @@ export enum STATUS {
   INACTIVE = 'INACTIVE',
 }
 
-export enum Role {
+export enum ROLE {
   ADMIN = 'ADMIN',
   USER = 'USER',
+}
+
+export enum GENDER {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  KID = 'KID'
 }
