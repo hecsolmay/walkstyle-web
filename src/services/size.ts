@@ -1,16 +1,29 @@
 import { type SizeDetails, type SizeCreate } from '@/types/size'
 import { axiosAuth } from '@/utils/axios'
+import { AxiosError } from 'axios'
 
 interface UpdateSize {
   sizeId: string
   size: Partial<SizeCreate>
 }
 
-export async function getSizeByProduct (productId: string): Promise<SizeDetails[]> {
-  const response = await axiosAuth.get(`/products/${productId}/sizes`)
-  const { data } = response
+export async function getSizeByProduct (productId: string): Promise<SizeDetails[] | undefined> {
+  try {
+    const response = await axiosAuth.get(`/products/${productId}/sizes`)
+    const { data } = response
 
-  return data.sizes
+    return data.sizes
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const { status } = error
+
+      if (status === 404) return undefined
+
+      console.error(error)
+    }
+
+    console.error(error)
+  }
 }
 
 export async function createSize (size: SizeCreate) {

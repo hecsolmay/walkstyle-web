@@ -14,7 +14,7 @@ interface BrandResponse {
 }
 
 export async function getBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandResponse> {
-  const response = await axios.get(`/brands/all?q=${q}&page=${page}`)
+  const response = await axios.get(`/brands?q=${q}&page=${page}`)
   const { data } = response
 
   return {
