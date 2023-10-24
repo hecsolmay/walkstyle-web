@@ -29,7 +29,7 @@ export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): 
 
   return {
     info: data.info,
-    brands: data.brand
+    brands: data.brands
   }
 }
 

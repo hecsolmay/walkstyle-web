@@ -19,14 +19,6 @@ export default function SearchInput ({ className, placeholder }: SearchInputProp
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    if (searchWord.length === 0) {
-      router.push(pathname)
-      return
-    }
-
-    router.push(`?q=${searchWord}`)
-    clear()
   }
 
   useEffect(() => {

@@ -38,7 +38,7 @@ export async function getProductById (id: string): Promise<Product | undefined> 
       return undefined
     }
 
-    return data
+    return data.product
   } catch (error) {
     console.error(error)
     return undefined
