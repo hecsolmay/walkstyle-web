@@ -1,15 +1,30 @@
 import { type SearchParams } from '@/types'
-import { type BrandDetails } from '@/types/brand'
+import { type Brand, type BrandDetails } from '@/types/brand'
 import { type Info } from '@/types/response'
-import axios from '@/utils/axios'
+import axios, { axiosAuth } from '@/utils/axios'
 
 interface BrandDetailsResponse {
   info: Info
   brands: BrandDetails[]
 }
 
-export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandDetailsResponse> {
+interface BrandResponse {
+  info: Info
+  brands: Brand[]
+}
+
+export async function getBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandResponse> {
   const response = await axios.get(`/brands/all?q=${q}&page=${page}`)
+  const { data } = response
+
+  return {
+    info: data.info,
+    brands: data.brands
+  }
+}
+
+export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandDetailsResponse> {
+  const response = await axiosAuth.get(`/brands/all?q=${q}&page=${page}`)
   const { data } = response
 
   return {
@@ -18,19 +33,26 @@ export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): 
   }
 }
 
+export async function getBrandById (id = ''): Promise<Brand> {
+  const response = await axios.get(`/brands/${id}`)
+  const { data } = response
+
+  return data.brand
+}
+
 export async function deleteBrand (id: string) {
-  const response = await axios.delete(`/brands/${id}`)
+  const response = await axiosAuth.delete(`/brands/${id}`)
   return response
 }
 
 export async function restoreBrand (id: string) {
-  const response = await axios.patch(`/brands/restore/${id}`)
+  const response = await axiosAuth.patch(`/brands/restore/${id}`)
   return response
 }
 
 export async function createBrand (formData: FormData) {
   try {
-    const response = await axios.post('/brands', formData, {
+    const response = await axiosAuth.post('/brands', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
