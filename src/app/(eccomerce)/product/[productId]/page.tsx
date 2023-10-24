@@ -1,46 +1,18 @@
 import ProductImagesSlider from '@/components/product-images'
 import { SelectSizeWithCounter } from '@/components/select-size'
-import { type Product } from '@/types/product'
+import { getProductById } from '@/services/products'
+import { notFound } from 'next/navigation'
 
-const product: Product = {
-  productId: '1',
-  name: 'Tenis Nike Revolution 6 Next Nature',
-  brand: {
-    brandId: '123',
-    name: 'Jordan',
-    banner: {
-      imageId: '1234', // Provide a unique imageId value
-      main: 'some-main-value',
-      preview: 'some-preview-value',
-      thumbnail: 'some-thumbnail-value'
-    },
-    image: {
-      imageId: '5678', // Provide a unique imageId value
-      main: 'some-main-value',
-      preview: 'some-preview-value',
-      thumbnail: 'some-thumbnail-value'
-    }
-  },
-  price: 999.00,
-  imageUrl: 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f8b6c5d4-f53d-4798-a833-7a7c8b063d66/calzado-air-max-intrlk-lite-Sp1WFC.png',
-  gender: {
-    genderId: '1',
-    name: 'Mujer'
-  },
-  description: 'Tenis Nike Revolution 6 Next Nature',
-  sizes: [21, 22, 23, 24, 24.5, 25, 25.5, 26]
-}
-
-export default function ProductPage (
+export default async function ProductPage (
   { params }: { params: { productId: string } }
 ) {
-  console.log({ params })
-  const exampleImages = [
-    product.imageUrl,
-    'https://e7.pngegg.com/pngimages/238/23/png-clipart-shoe-sneakers-nike-mercurial-vapor-tennis-women-shoes-orange-outdoor-shoe-thumbnail.png',
-    'https://e7.pngegg.com/pngimages/817/134/png-clipart-sports-shoes-nike-free-adidas-adizero-ubersonic-clay-damen-tennisschuh-tennis-court-60-feet-white-orange-thumbnail.png',
-    'https://e7.pngegg.com/pngimages/323/773/png-clipart-sneakers-basketball-shoe-sportswear-nike-shoe-outdoor-shoe-running-thumbnail.png'
-  ]
+  const product = await getProductById(params.productId)
+
+  if (product === undefined) {
+    notFound()
+  }
+
+  console.log(product)
 
   return (
     <div className='mb-10 grid w-full grid-cols-1 p-4 pt-6 md:h-[90vh] md:grid-cols-2 md:p-10 '>
@@ -53,7 +25,7 @@ export default function ProductPage (
       </div>
 
       <div className='grid place-content-center'>
-        <ProductImagesSlider images={exampleImages}/>
+        <ProductImagesSlider images={product.images}/>
       </div>
       <div className='mt-5 flex flex-col justify-around gap-10 text-slate-600 md:max-w-[440px] md:gap-0 md:py-3'>
         <div className='hidden flex-col gap-4 md:flex'>

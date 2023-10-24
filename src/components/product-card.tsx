@@ -1,5 +1,5 @@
 import AddProductButton from '@/components/add-product-button'
-import type { Product } from '@/types/product'
+import { type Product } from '@/types/product'
 import { cn } from '@/utils/cn'
 
 interface ProductCardProps {
@@ -13,7 +13,7 @@ export function ProductCard ({ product, className }: ProductCardProps) {
       <div className='mx-auto  h-20 w-36'>
         <img
           className="h-full w-full object-cover"
-          src={product.imageUrl}
+          src={product.images[0].preview}
           alt={product.name}
         />
       </div>

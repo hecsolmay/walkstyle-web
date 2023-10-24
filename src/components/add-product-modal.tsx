@@ -24,7 +24,7 @@ export default function AddProductModal ({ handleClose, product }: AddProductMod
             <ChevronLeftIcon className='h-12 w-8 rotate-180'/>
           </button>
           <div className='h-52 w-48'>
-            <img className='object-cover mix-blend-darken' src={product.imageUrl} alt={product.name} />
+            <img className='object-cover mix-blend-darken' src={product.images[0].main} alt={product.name} />
           </div>
         </div>
         <div className='col-span-2 mt-8 flex flex-col justify-between gap-10 text-slate-600 md:m-0 md:max-w-[440px] md:gap-1'>

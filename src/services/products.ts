@@ -28,11 +28,21 @@ export async function getProducts ({ q = '', page = 1 }: SearchParams = {}): Pro
   }
 }
 
-export async function getProductById (id: string): Promise<Product> {
-  const response = await axios.get(`/products/${id}`)
-  const { data } = response
+export async function getProductById (id: string): Promise<Product | undefined> {
+  try {
+    const response = await axios.get(`/products/${id}`)
 
-  return data
+    const { data, status } = response
+
+    if (status !== 200) {
+      return undefined
+    }
+
+    return data
+  } catch (error) {
+    console.error(error)
+    return undefined
+  }
 }
 
 export async function getAdminProducts ({ q = '', page = 1 }: SearchParams = {}): Promise<ProductsAdminResponse> {

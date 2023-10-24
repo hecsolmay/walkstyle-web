@@ -13,7 +13,7 @@ export default function ProductLinkCard ({ product, className }: ProductLinkCard
       <div className='h-20 w-36'>
         <img
           className="h-full w-full object-cover"
-          src={product.imageUrl}
+          src={product.images[0].preview}
           alt={product.name}
         />
       </div>

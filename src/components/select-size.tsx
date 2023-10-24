@@ -1,19 +1,20 @@
 'use client'
 
 import { TextButton } from '@/components/text-button'
+import { type Size } from '@/types/size'
 import { cn } from '@/utils/cn'
 import { useState } from 'react'
 
 interface SelectSizeProps {
-  sizes: number[]
+  sizes: Size[]
   children?: React.ReactNode
   className?: string
 }
 
 export function SelectSize ({ sizes, children, className }: SelectSizeProps) {
-  const [selectedSize, setSelectedSize] = useState<number | null>(null)
+  const [selectedSize, setSelectedSize] = useState<Size | null>(null)
 
-  const handleSelect = (size: number) => {
+  const handleSelect = (size: Size) => {
     setSelectedSize(size)
   }
 
@@ -22,7 +23,7 @@ export function SelectSize ({ sizes, children, className }: SelectSizeProps) {
       <p className='text-lg text-slate-700'>Tallas:</p>
       <div className='grid max-w-[440px] grid-cols-[repeat(auto-fit,minmax(60px,1fr))] gap-6'>
         {sizes.map(size => (
-          <button key={size} className={cn('border w-14 text-center border-slate-400 py-2', selectedSize === size ? 'bg-black text-white border-black' : 'bg-white text-black')} onClick={() => { handleSelect(size) }}>{size}</button>
+          <button key={size.sizeId} className={cn('border w-14 text-center border-slate-400 py-2', selectedSize?.sizeId === size.sizeId ? 'bg-black text-white border-black' : 'bg-white text-black')} onClick={() => { handleSelect(size) }}>{size.size}</button>
         ))}
       </div>
       {children}
