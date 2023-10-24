@@ -3,6 +3,7 @@ import { type Category } from '@/types/category'
 import { type GENDER } from '@/types/enums'
 import { type Image } from '@/types/image'
 import { type Size } from '@/types/size'
+import { type Details } from '@/types/details'
 
 type CategoryWithoutImage = Omit<Category, 'image' | 'banner'>
 
@@ -28,3 +29,5 @@ export interface Gender {
   genderId: string
   name: GENDER
 }
+
+export interface ProductDetails extends Product, Details {}
