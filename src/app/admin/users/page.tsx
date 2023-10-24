@@ -16,7 +16,8 @@ const user: UserDetails = {
   status: STATUS.ACTIVE,
   createdAt: new Date(),
   updatedAt: new Date(),
-  imgUrl: null
+  profileUrl: null,
+  rememberToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ZDljODA2My1jZjJlLTQ1M2UtODcxOS1kZmM5N2QwNjQ2YTciLCJpYXQiOjE2OTY5NTc4MTAsImV4cCI6MTcyODQ5MzgxMH0.F0zQMX26ADiVe0ocB4FimwMwzmCjyrUX_Wlk_B_0y8g'
 }
 
 const users = Array(15).fill(0).map((_, index) => ({

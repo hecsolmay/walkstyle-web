@@ -14,14 +14,14 @@ const roleText: Record<Role, string> = {
 }
 
 export default function UserRow ({ user }: UserRowProps) {
-  const { email, fullname, imgUrl, role, status } = user
+  const { email, fullname, profileUrl, role, status } = user
 
   return (
     <TR className='text-slate-500'>
       <TD>
         <div className='flex items-center gap-3'>
           <div className='h-12 w-12'>
-            <img className='rounded-full object-cover' src={imgUrl ?? '/default-user.png'} alt={`${fullname} profile`} />
+            <img className='rounded-full object-cover' src={profileUrl ?? '/default-user.png'} alt={`imagen de perfil de ${fullname} `} />
           </div>
           {fullname}
         </div>

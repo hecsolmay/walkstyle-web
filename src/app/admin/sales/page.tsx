@@ -17,7 +17,8 @@ const sale: Sale = {
     fullname: 'Juan Perez',
     email: 'Lrj7X@example.com',
     lastname: 'Perez',
-    imgUrl: null,
+    profileUrl: null,
+    rememberToken: '',
     role: Role.USER
   }
 }

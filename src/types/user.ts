@@ -8,7 +8,8 @@ export interface User {
   fullname: string
   email: string
   role: Role
-  imgUrl: string | null
+  profileUrl: string | null
+  rememberToken: string
 }
 
 export interface UserDetails extends User, Details {}
