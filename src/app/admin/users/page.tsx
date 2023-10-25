@@ -10,7 +10,7 @@ export default async function UsersPage ({ searchParams }: ServerProps) {
 
   return (
     <div className='flex flex-col gap-8'>
-      <AdminHeader showButton={false} searchPlaceholder='Search...' title='Usuarios'/>
+      <AdminHeader showButton={false} searchPlaceholder='Buscar...' title='Usuarios'/>
       <AdminTable headers={['Name', 'Email', 'Role', 'Status', 'Actions']} >
         {users.map(user =>
           <UserRow key={user.userId} user={user}/>

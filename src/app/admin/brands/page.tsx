@@ -16,7 +16,7 @@ export default async function BrandsPage ({ searchParams }: ServerProps) {
   return (
 
     <div className=' flex flex-col gap-8'>
-      <AdminHeader modalClassName='grid place-content-center' buttonText='Add Brand' searchPlaceholder='Search...' title='All Brands'>
+      <AdminHeader modalClassName='grid place-content-center' buttonText='Agregar Marca' searchPlaceholder='Buscar...' title='Marcas'>
         <FormCreate/>
       </AdminHeader>
       <AdminTable headers={['Logo', 'Name', 'Total Products', 'Status', 'Actions']}>

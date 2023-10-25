@@ -4,6 +4,8 @@ import { getBrands } from '@/services/brands'
 import { getCategories } from '@/services/categories'
 import { getProducts } from '@/services/products'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home () {
   const [{ categories }, { brands }, { products }] = await Promise.all(
     [getCategories(), getBrands(), getProducts()]

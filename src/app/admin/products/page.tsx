@@ -13,7 +13,7 @@ export default async function ProductsPage ({ searchParams }: ServerProps) {
 
   return (
     <div className='flex flex-col gap-8'>
-      <AdminHeader modalClassName='grid place-content-center' buttonText='Add Product' searchPlaceholder='Search...' title='All Products'>
+      <AdminHeader modalClassName='grid place-content-center' buttonText='Agregar Producto' searchPlaceholder='Buscar...' title='Productos'>
         <FormProductCreate />
       </AdminHeader>
       <AdminTable headers={['Name', 'Brand', 'Gender', 'Price', 'Status', 'Actions']}>

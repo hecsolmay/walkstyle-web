@@ -33,7 +33,7 @@ const sales = Array(15).fill(0).map((_, index) => ({
 export default function SalesPage () {
   return (
     <div className='flex flex-col gap-8'>
-      <AdminHeader showButton={false} searchPlaceholder='Search...' title='All Sales'/>
+      <AdminHeader showButton={false} searchPlaceholder='Buscar...' title='Ventas'/>
       <AdminTable headers={['Usuario', 'Total Pagado', 'Cantidad', 'Fecha', 'Detalles']} >
         {sales.map(sale =>
           <SalesRow key={sale.saleId} sale={sale}/>

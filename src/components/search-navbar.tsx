@@ -25,7 +25,7 @@ export default function SearchBarInput () {
       <button className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-1.5 text-teal-500">
         <SearchIcon/>
       </button>
-      <input onChange={onChange} value={searchWord} type="text" name='search' className="block w-52 rounded-lg border border-gray-300 bg-gray-50 p-1.5 px-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Search...' />
+      <input onChange={onChange} value={searchWord} type="text" name='search' className="block w-52 rounded-lg border border-gray-300 bg-gray-50 p-1.5 px-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Buscar...' />
 
       {searchWord.length > 0 && (
         <button onClick={clear} type='button' className="absolute inset-y-0 right-2 flex items-center pl-1.5 text-slate-400">
@@ -65,7 +65,7 @@ export function SearchMobileInput ({ showSearch, closeSearch }: SearchMobileProp
       <button type='button' onClick={handleClose} className="absolute inset-y-0 right-2 flex items-center pl-1.5 text-slate-400">
         <XMarkIcon />
       </button>
-      <input type="text" value={searchWord} onChange={onChange} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-1.5 pl-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Search...' />
+      <input type="text" value={searchWord} onChange={onChange} className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-1.5 pl-8 text-sm text-gray-900 focus:outline focus:outline-teal-500" placeholder='Buscar...' />
     </form>
   )
 }

@@ -16,7 +16,7 @@ export default async function CategoriesPage ({ searchParams }: ServerProps) {
 
   return (
     <div className='flex flex-col gap-8'>
-      <AdminHeader modalClassName='grid place-content-center' buttonText='Add Category' searchPlaceholder='Search...' title='All Categories'>
+      <AdminHeader modalClassName='grid place-content-center' buttonText='Agregar Categoria' searchPlaceholder='Buscar...' title='Categorias'>
         <FormCreate />
       </AdminHeader>
       <AdminTable headers={['Logo', 'Name', 'Total Products', 'Status', 'Actions']}>
