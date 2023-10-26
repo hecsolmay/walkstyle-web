@@ -62,3 +62,16 @@ export async function createBrand (formData: FormData) {
     console.log('There was something wrong', error)
   }
 }
+
+export async function updateBrand (brandId: string, formData: FormData) {
+  try {
+    const response = await axiosAuth.put(`/brands/${brandId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    return response
+  } catch (error) {
+    console.log('There was something wrong', error)
+  }
+}

@@ -5,7 +5,7 @@ import { type Image } from '@/types/image'
 import { type Size } from '@/types/size'
 import { type Details } from '@/types/details'
 
-type CategoryWithoutImage = Omit<Category, 'image' | 'banner'>
+export type CategoryWithoutImage = Omit<Category, 'image' | 'banner'>
 
 export interface Product {
   productId: string

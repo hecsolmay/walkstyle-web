@@ -26,7 +26,6 @@ export function Background ({ close, show = false, className, children }: Backgr
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => {
-      console.log('Desmounting Background')
       document.body.style.overflow = 'auto'
     }
   }, [])

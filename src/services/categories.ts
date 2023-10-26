@@ -62,3 +62,16 @@ export async function createCategory (formData: FormData) {
     console.log('There was something wrong', error)
   }
 }
+
+export async function updateCategory (id: string, formData: FormData) {
+  try {
+    const response = await axiosAuth.put(`/categories/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    return response
+  } catch (error) {
+    console.log('There was something wrong', error)
+  }
+}

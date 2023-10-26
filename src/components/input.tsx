@@ -15,6 +15,7 @@ interface InputProps {
   error?: string
   type?: InputType
   register?: any
+  defaultValue?: string
 }
 
 export default function Input ({
@@ -24,6 +25,7 @@ export default function Input ({
   className,
   required,
   type,
+  defaultValue,
   error,
   register
 }: InputProps) {
@@ -42,6 +44,7 @@ export default function Input ({
           className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className, error !== undefined && 'border-red-500')}
           placeholder={placeholder}
           required={required}
+          defaultValue={defaultValue}
         />
       </div>
       <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
@@ -99,7 +102,7 @@ interface InputFileProps extends Omit<InputProps, 'type' | 'onChange' | 'placeho
 }
 
 export function InputFile (
-  { label, name, error, required, accept, register, multiple = false }: InputFileProps
+  { label, name, error, required, className, accept, register, multiple = false }: InputFileProps
 ) {
   return (
     <>
@@ -119,7 +122,7 @@ export function InputFile (
         file:cursor-pointer file:rounded-md file:border-0 file:bg-blue-50
         file:px-4 file:py-2 file:text-sm
         file:font-semibold file:text-blue-700
-        hover:file:bg-blue-100`, error !== undefined && 'border-red-500')}
+        hover:file:bg-blue-100`, error !== undefined && 'border-red-500', className)}
       />
       <p className={cn('mt-2 text-sm text-red-500', error === undefined ? 'hidden' : '')}>{error}</p>
     </>
