@@ -1,5 +1,6 @@
 import { FILE_SIZE_NUMBER, MAX_FILES_QUANTITY, MAX_FILE_SIZE, VALID_IMAGE_EXTENSION, VALID_IMAGE_TYPES } from '@/contants'
 import { GENDER } from '@/types/enums'
+import { validateFileLength, validateFileList } from '@/utils/validate'
 import { z } from 'zod'
 
 export const productCreateSchema = z.object({
@@ -42,13 +43,11 @@ export const productCreateSchema = z.object({
     required_error: 'Se esperaba una marca'
   }),
   images: z.custom<FileList>()
-    .refine((images) => Array.from(images).every((image: any) => image instanceof File), {
-      message: 'Archivo inválido'
-    })
-    .refine((images) => images.length > 0, {
-      message: 'Se esperaba un archivo'
-    })
-    .refine((images) => images.length <= MAX_FILES_QUANTITY, {
+    .refine((images) => {
+      const isFileList = validateFileList(images)
+      const isCorrectLength = validateFileLength(images, MAX_FILES_QUANTITY)
+      return isFileList && isCorrectLength
+    }, {
       message: `Se esperaba un maximo de ${MAX_FILES_QUANTITY} archivos`
     })
     .refine((images) => Array.from(images).every((image) => VALID_IMAGE_TYPES.includes(image.type)), {
@@ -59,4 +58,48 @@ export const productCreateSchema = z.object({
     })
 }).refine((data) => {
   return data.gender !== undefined && data.brandId !== undefined
+})
+
+export const productUpdateSchema = z.object({
+  name: z.string({
+    invalid_type_error: 'Nombre no valido',
+    required_error: 'Nombre no valido'
+  }).trim().toUpperCase().min(1, { message: 'Nombre no valido' }),
+  price: z.number({
+    invalid_type_error: 'El precio debe ser valido',
+    required_error: 'El precio debe ser'
+  }).gte(0, { message: 'Se esperaba un numero positivo' }),
+  details: z.string({
+    invalid_type_error: 'Se esperaba un detalle en el producto',
+    required_error: 'Se esperaba un detalle en el producto'
+  }).trim().toLowerCase().min(1, { message: 'Los detalles no pueden estar vacios' }).optional().default(''),
+  gender: z.nativeEnum(GENDER, {
+    invalid_type_error: 'Se esperaba un genero',
+    required_error: 'Se esperaba un genero'
+  }),
+  categories: z.array(z.string({
+    invalid_type_error: 'Se esperaba una categoria',
+    required_error: 'Se esperaba una categoria'
+  }), {
+    required_error: 'Se esperaba al menos una categoria'
+  }),
+  brandId: z.string({
+    invalid_type_error: 'Se esperaba una marca',
+    required_error: 'Se esperaba una marca'
+  }),
+  images: z.custom<FileList>()
+    .refine((images) => {
+      if (images.length === 0) return true
+      const isFileList = validateFileList(images)
+      const isCorrectLength = validateFileLength(images, MAX_FILES_QUANTITY)
+      return isFileList && isCorrectLength
+    }, {
+      message: `Se esperaba un maximo de ${MAX_FILES_QUANTITY} archivos`
+    })
+    .refine((images) => images.length === 0 || Array.from(images).every((image) => VALID_IMAGE_TYPES.includes(image.type)), {
+      message: `Se esperaba un archivo de imagesn con el formato ${VALID_IMAGE_EXTENSION.join(', ')}`
+    })
+    .refine((images) => images.length === 0 || Array.from(images).every((image) => image.size <= MAX_FILE_SIZE), {
+      message: `Tamaño maximo de archivo excedido (maximo de ${FILE_SIZE_NUMBER}MB)`
+    })
 })

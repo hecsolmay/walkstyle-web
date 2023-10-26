@@ -18,9 +18,13 @@ interface SelectGenderProps {
   register?: any
   onChange?: (...event: any[]) => void
   value: GENDER
+  defaultValue?: {
+    value: string
+    label: string
+  }
 }
 
-export default function SelectGender ({ className, error, register, onChange, value }: SelectGenderProps) {
+export default function SelectGender ({ className, error, defaultValue, onChange, value }: SelectGenderProps) {
   const options = Object.entries(genderLabels).map(([value, label]) => ({ value, label }))
 
   return (
@@ -32,6 +36,7 @@ export default function SelectGender ({ className, error, register, onChange, va
       <div>
         <Select
           options={options}
+          defaultValue={defaultValue}
           value={options.find((gender) => gender.value === value)}
           onChange={(val) => { onChange !== undefined && onChange(val?.value) }}
           className={cn(error !== undefined && 'border-red-500', className)}
