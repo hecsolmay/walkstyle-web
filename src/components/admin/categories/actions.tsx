@@ -1,15 +1,16 @@
 'use client'
 
+import { FormBannerImageEdit } from '@/components/admin/form-banner-image'
 import { PencilSquareIcon, RestoreIcon, TrashCanIcon } from '@/components/icons'
+import { Background } from '@/components/modal-background'
 import useNextQuery from '@/hooks/useNextQuey'
 import { deleteCategory, restoreCategory, updateCategory } from '@/services/categories'
 import { type CategoryDetails } from '@/types/category'
 import { STATUS } from '@/types/enums'
-import { WarningAlert } from '@/utils/alerts'
-import { FormBannerImageEdit } from '../form-banner-image'
-import { Background } from '@/components/modal-background'
-import { useState } from 'react'
 import { type BannerAndImageUpdate } from '@/types/forms'
+import { WarningAlert } from '@/utils/alerts'
+import { toastError, toastSuccess } from '@/utils/toast'
+import { useState } from 'react'
 
 interface CategoryActionsProps {
   category: CategoryDetails
@@ -20,29 +21,41 @@ export default function CategoryActions ({ category }: CategoryActionsProps) {
   const [show, setShow] = useState(false)
 
   const handleDelete = async () => {
-    const isConfirmed = await WarningAlert({
-      title: `¿Eliminar ${category.name}?`,
-      text: 'Al eliminarla solo sera visible para administradores',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Eliminar'
-    })
-    if (!isConfirmed) return
+    try {
+      const isConfirmed = await WarningAlert({
+        title: `¿Eliminar ${category.name}?`,
+        text: 'Al eliminarla solo sera visible para administradores',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Eliminar'
+      })
+      if (!isConfirmed) return
 
-    await deleteCategory(category.categoryId)
-    router.refresh()
+      await deleteCategory(category.categoryId)
+      toastSuccess(`${category.name} Eliminado`)
+      router.refresh()
+    } catch (error) {
+      console.error('Something Went Wrong', error)
+      toastError('No se pudo eliminar la categoría')
+    }
   }
 
   const handleRestore = async () => {
-    const isConfirmed = await WarningAlert({
-      title: `¿Restaurar ${category.name}?`,
-      text: 'Al restaurarla sera visible para todos los usuarios',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Restaurar'
-    })
-    if (!isConfirmed) return
+    try {
+      const isConfirmed = await WarningAlert({
+        title: `¿Restaurar ${category.name}?`,
+        text: 'Al restaurarla sera visible para todos los usuarios',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Restaurar'
+      })
+      if (!isConfirmed) return
 
-    await restoreCategory(category.categoryId)
-    router.refresh()
+      await restoreCategory(category.categoryId)
+      toastSuccess(`${category.name} Restaurado`)
+      router.refresh()
+    } catch (error) {
+      console.error('Something Went Wrong', error)
+      toastError('No se pudo restaurar la categoría')
+    }
   }
 
   if (category.status === STATUS.INACTIVE) {
@@ -77,7 +90,7 @@ export default function CategoryActions ({ category }: CategoryActionsProps) {
 
       await updateCategory(category.categoryId, formData)
       setShow(false)
-      // router.refresh()
+      toastSuccess(`${category.name} Actualizado`)
     } catch (error) {
       console.error(error)
     }

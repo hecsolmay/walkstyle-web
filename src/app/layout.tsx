@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout ({
       <body className={`${inter.className} overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-400`}>
         {children}
         <div id="modal-root"></div>
+        <Toaster richColors />
       </body>
     </html>
   )

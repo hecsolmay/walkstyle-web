@@ -1,15 +1,16 @@
 'use client'
 
+import { FormBannerImageEdit } from '@/components/admin/form-banner-image'
 import { PencilSquareIcon, RestoreIcon, TrashCanIcon } from '@/components/icons'
+import { Background } from '@/components/modal-background'
 import useNextQuery from '@/hooks/useNextQuey'
 import { deleteBrand, restoreBrand, updateBrand } from '@/services/brands'
 import { type BrandDetails } from '@/types/brand'
 import { STATUS } from '@/types/enums'
-import { WarningAlert } from '@/utils/alerts'
-import { useState } from 'react'
-import { FormBannerImageEdit } from '../form-banner-image'
-import { Background } from '@/components/modal-background'
 import { type BannerAndImageUpdate } from '@/types/forms'
+import { WarningAlert } from '@/utils/alerts'
+import { toastError, toastSuccess } from '@/utils/toast'
+import { useState } from 'react'
 
 interface BrandActionsProps {
   brand: BrandDetails
@@ -20,28 +21,41 @@ export default function BrandsActions ({ brand }: BrandActionsProps) {
   const [show, setShow] = useState(false)
 
   const handleDelete = async () => {
-    const isConfirmed = await WarningAlert({
-      title: `¿Eliminar ${brand.name}?`,
-      text: 'Al eliminarla solo sera visible para administradores',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Eliminar'
-    })
-    if (!isConfirmed) return
-    await deleteBrand(brand.brandId)
-    router.refresh()
+    try {
+      const isConfirmed = await WarningAlert({
+        title: `¿Eliminar ${brand.name}?`,
+        text: 'Al eliminarla solo sera visible para administradores',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Eliminar'
+      })
+      if (!isConfirmed) return
+
+      await deleteBrand(brand.brandId)
+      toastSuccess(`${brand.name} Eliminado`)
+      router.refresh()
+    } catch (error) {
+      console.error('Something Went Wrong', error)
+      toastError('No se pudo eliminar el producto')
+    }
   }
 
   const handleRestore = async () => {
-    const isConfirmed = await WarningAlert({
-      title: `¿Restaurar ${brand.name}?`,
-      text: 'Al restaurarla sera visible para todos los usuarios',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Restaurar'
-    })
-    if (!isConfirmed) return
+    try {
+      const isConfirmed = await WarningAlert({
+        title: `¿Restaurar ${brand.name}?`,
+        text: 'Al restaurarla sera visible para todos los usuarios',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Restaurar'
+      })
+      if (!isConfirmed) return
 
-    await restoreBrand(brand.brandId)
-    router.refresh()
+      await restoreBrand(brand.brandId)
+      toastSuccess(`${brand.name} Restaurado`)
+      router.refresh()
+    } catch (error) {
+      console.error('Something Went Wrong', error)
+      toastError('No se pudo restaurar el producto')
+    }
   }
 
   if (brand.status === STATUS.INACTIVE) {
@@ -58,7 +72,7 @@ export default function BrandsActions ({ brand }: BrandActionsProps) {
     banner: brand.banner.preview
   }
 
-  const handleSubmit = async (data: BannerAndImageUpdate) => {
+  const handleSubmitUpdate = async (data: BannerAndImageUpdate) => {
     try {
       const { banner, image, name = '' } = data
 
@@ -76,8 +90,11 @@ export default function BrandsActions ({ brand }: BrandActionsProps) {
 
       await updateBrand(brand.brandId, formData)
       setShow(false)
+      toastSuccess(`${brand.name} Actualizado`)
     } catch (error) {
       console.error(error)
+      toastError('No se pudo actualizar el producto')
+      throw error
     }
   }
 
@@ -85,7 +102,7 @@ export default function BrandsActions ({ brand }: BrandActionsProps) {
     <>
       {show && (
         <Background className='grid place-content-center' close={() => { setShow(false) }} show={show}>
-          <FormBannerImageEdit defaultValues={defaultValues} onSubmit={handleSubmit}/>
+          <FormBannerImageEdit defaultValues={defaultValues} onSubmit={handleSubmitUpdate}/>
         </Background>
       )}
       <div className='flex items-center gap-6'>

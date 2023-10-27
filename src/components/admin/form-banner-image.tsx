@@ -4,7 +4,7 @@ import Input, { InputFile } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 import useNextQuery from '@/hooks/useNextQuey'
 import { bannerAndImagePartialShema, bannerAndImageShema } from '@/schemas/banner-image'
-import { type BannerAndImageUpdate, type BannerAndImage } from '@/types/forms'
+import { type BannerAndImage, type BannerAndImageUpdate } from '@/types/forms'
 import { cn } from '@/utils/cn'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -41,8 +41,8 @@ export default function FormBannerImage ({ onSubmit }: FormBannerImageProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin md:max-w-[55vw] lg:max-w-[40vw]">
-      <div className='flex flex-col gap-6 border-t border-slate-400 p-6 md:gap-4'>
+    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-4 rounded-lg bg-white pb-6 pt-10 md:max-w-[55vw] lg:max-w-[40vw]">
+      <div className='flex flex-1 flex-col gap-6 overflow-y-auto  border-t border-slate-400 p-6 scrollbar-thin md:gap-4'>
         <div>
           <Input
             register={register('name')}
@@ -92,7 +92,7 @@ export default function FormBannerImage ({ onSubmit }: FormBannerImageProps) {
 
       </div>
 
-      <div className='flex flex-1 justify-end pr-6'>
+      <div className='flex  justify-end pr-6'>
         <TextButton disabled={isSubmitting} className='w-44 bg-blue-500 py-2' text='Agregar' />
       </div>
 
@@ -155,8 +155,8 @@ export function FormBannerImageEdit ({ onSubmit, defaultValues }: FormBannerImag
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin md:max-w-[55vw] lg:max-w-[40vw]">
-      <div className='flex flex-col gap-6 border-t border-slate-400 p-6 md:gap-4'>
+    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-4 rounded-lg bg-white pb-4 pt-10 md:max-w-[55vw] lg:max-w-[40vw]">
+      <div className='flex flex-1 flex-col gap-6  overflow-y-auto border-t border-slate-400 p-6 scrollbar-thin md:gap-4'>
         <div>
           <Input
             register={register('name')}
@@ -209,7 +209,7 @@ export function FormBannerImageEdit ({ onSubmit, defaultValues }: FormBannerImag
 
       </div>
 
-      <div className='flex flex-1 justify-end pr-6'>
+      <div className='flex justify-end pr-6'>
         <TextButton disabled={isSubmitting} className='w-44 bg-yellow-500 py-2' text='Editar' />
       </div>
 

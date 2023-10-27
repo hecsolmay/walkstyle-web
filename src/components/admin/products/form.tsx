@@ -1,19 +1,20 @@
 'use client'
 
+import { SelectBrand } from '@/components/admin/select-brand'
+import SelectGender from '@/components/admin/select-gender'
 import Input, { InputFile, InputTextarea } from '@/components/input'
+import { SelectCategories } from '@/components/select-categories'
 import { TextButton } from '@/components/text-button'
+import { GENDER_LABELS } from '@/contants'
+import useNextQuery from '@/hooks/useNextQuey'
 import { productCreateSchema, productUpdateSchema } from '@/schemas/product'
-import { type ProductUpdate, type ProductCreate } from '@/types/forms'
+import { createProduct, updateProduct } from '@/services/products'
+import { type Category } from '@/types/category'
+import { type ProductCreate, type ProductUpdate } from '@/types/forms'
+import { type ProductDetails } from '@/types/product'
+import { toastError, toastSuccess } from '@/utils/toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
-import SelectGender from '@/components/admin/select-gender'
-import { SelectCategories } from '@/components/select-categories'
-import { SelectBrand } from '../select-brand'
-import { createProduct, updateProduct } from '@/services/products'
-import useNextQuery from '@/hooks/useNextQuey'
-import { type ProductDetails } from '@/types/product'
-import { type Category } from '@/types/category'
-import { GENDER_LABELS } from '@/contants'
 
 export default function FormProductCreate () {
   const { register, handleSubmit, formState: { errors, isSubmitting }, watch, control, reset } = useForm<ProductCreate>({
@@ -46,14 +47,14 @@ export default function FormProductCreate () {
     formData.append('product', jsonString)
 
     await createProduct(formData)
-
+    toastSuccess('Producto Creado')
     reset()
     router.refresh()
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin md:max-w-[55vw] lg:max-w-[40vw]">
-      <div className='flex flex-col gap-6 border-t border-slate-400 p-6 md:grid md:grid-cols-2 md:gap-4'>
+    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-4  rounded-lg bg-white pb-4 pt-10 md:max-w-[55vw] lg:max-w-[40vw]">
+      <div className='flex flex-1 flex-col gap-6 overflow-y-auto border-t border-slate-400 p-6 scrollbar-thin md:grid md:grid-cols-2 md:gap-4'>
 
         <div>
           <Input
@@ -175,7 +176,7 @@ export default function FormProductCreate () {
 
       </div>
 
-      <div className='flex flex-1 justify-end pr-6'>
+      <div className='flex justify-end pr-6'>
         <TextButton disabled={isSubmitting} className='w-44 bg-blue-500 py-2' text='Agregar' />
       </div>
 
@@ -239,15 +240,17 @@ export function FormProductUpdate ({ product, closeForm = () => {} }: FormProduc
     try {
       await updateProduct({ productId: product.productId, formData })
       closeForm()
+      toastSuccess(`${product.name} Actualizado`)
       router.refresh()
     } catch (error) {
+      toastError('No se pudo actualizar el producto')
       console.error(error)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-8 overflow-y-auto rounded-lg bg-white py-10 scrollbar-thin md:max-w-[55vw] lg:max-w-[40vw]">
-      <div className='flex flex-col gap-6 border-t border-slate-400 p-6 md:grid md:grid-cols-2 md:gap-4'>
+    <form onSubmit={handleSubmit(onSubmitForm)} noValidate className="flex h-fit max-h-[90vh] w-[85vw] flex-col justify-between gap-4 rounded-lg bg-white pb-4 pt-10 md:max-w-[55vw] lg:max-w-[40vw]">
+      <div className='flex flex-1 flex-col gap-6 overflow-y-auto border-t border-slate-400 p-6 scrollbar-thin md:grid md:grid-cols-2 md:gap-4'>
 
         <div>
           <Input
@@ -337,7 +340,7 @@ export function FormProductUpdate ({ product, closeForm = () => {} }: FormProduc
 
       </div>
 
-      <div className='flex flex-1 justify-end pr-6'>
+      <div className='flex justify-end pr-6'>
         <TextButton disabled={isSubmitting} className='w-44 bg-yellow-500 py-2' text='Agregar' />
       </div>
 
