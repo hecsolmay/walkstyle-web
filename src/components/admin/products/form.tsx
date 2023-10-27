@@ -185,9 +185,10 @@ export default function FormProductCreate () {
 
 interface FormProductUpdateProps {
   product: ProductDetails
+  closeForm?: () => void
 }
 
-export function FormProductUpdate ({ product }: FormProductUpdateProps) {
+export function FormProductUpdate ({ product, closeForm = () => {} }: FormProductUpdateProps) {
   const { register, handleSubmit, formState: { errors, isSubmitting }, watch, control } = useForm<ProductUpdate>({
     resolver: zodResolver(productUpdateSchema),
     defaultValues: {
@@ -237,6 +238,7 @@ export function FormProductUpdate ({ product }: FormProductUpdateProps) {
 
     try {
       await updateProduct({ productId: product.productId, formData })
+      closeForm()
       router.refresh()
     } catch (error) {
       console.error(error)
@@ -336,7 +338,7 @@ export function FormProductUpdate ({ product }: FormProductUpdateProps) {
       </div>
 
       <div className='flex flex-1 justify-end pr-6'>
-        <TextButton disabled={isSubmitting} className='w-44 bg-blue-500 py-2' text='Agregar' />
+        <TextButton disabled={isSubmitting} className='w-44 bg-yellow-500 py-2' text='Agregar' />
       </div>
 
     </form>

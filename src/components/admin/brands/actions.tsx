@@ -75,6 +75,7 @@ export default function BrandsActions ({ brand }: BrandActionsProps) {
       }
 
       await updateBrand(brand.brandId, formData)
+      setShow(false)
     } catch (error) {
       console.error(error)
     }

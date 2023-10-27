@@ -2,7 +2,7 @@ import { validateFileList, validateFileLength, isValidExtentionFile, isCorrectSi
 import { z } from 'zod'
 
 export const bannerAndImageShema = z.object({
-  name: z.string().trim().toUpperCase().min(1, { message: 'Se esperaba un nombre en la categoria' }),
+  name: z.string().trim().toUpperCase().min(1, { message: 'Se esperaba un nombre valido' }),
   banner: z.custom<FileList>()
     .refine((banner) => {
       const isFileList = validateFileList(banner)
@@ -30,7 +30,7 @@ export const bannerAndImageShema = z.object({
 })
 
 export const bannerAndImagePartialShema = z.object({
-  name: z.string().trim().toUpperCase().min(1, { message: 'Se esperaba un nombre en la categoria' })
+  name: z.string().trim().toUpperCase().min(1, { message: 'Se esperaba un nombre valido' })
     .optional(),
   banner: z.custom<FileList>()
     .refine((banner) => {

@@ -63,7 +63,7 @@ export default function ProductActions ({ product }: ProductActionsProps) {
     <>
       {show && (
         <Background className='grid place-content-center' close={() => { setShow(false) }} show={show}>
-          <FormProductUpdate product={product} />
+          <FormProductUpdate closeForm={() => { setShow(false) }} product={product} />
         </Background>
       )}
       <div className='flex items-center gap-6'>

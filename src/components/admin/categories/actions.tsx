@@ -76,8 +76,7 @@ export default function CategoryActions ({ category }: CategoryActionsProps) {
       }
 
       await updateCategory(category.categoryId, formData)
-
-      // setShow(false)
+      setShow(false)
       // router.refresh()
     } catch (error) {
       console.error(error)
