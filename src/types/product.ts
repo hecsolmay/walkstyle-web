@@ -20,9 +20,10 @@ export interface Product {
 }
 
 export interface ItemProduct {
+  sizeId: string
   product: Product
   quantity: number
-  size: number
+  total: number
 }
 
 export interface Gender {

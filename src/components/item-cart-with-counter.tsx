@@ -7,8 +7,10 @@ interface ItemCardProps {
 }
 
 export default function ItemCardWithCounter ({ product }: ItemCardProps) {
-  const { product: item, quantity, size } = product // Acceso a la propiedad 'product' de ItemProduct
-  const { brand } = item // Acceso a la propiedad 'brand' del objeto 'item'
+  const { product: item, quantity, sizeId } = product
+
+  const size = item.sizes.find((size) => size.sizeId === sizeId)?.size ?? 0
+  const { brand } = item
 
   const totalPrice = item.price * quantity
 

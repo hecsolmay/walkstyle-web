@@ -1,13 +1,13 @@
+'use client'
+
 import { XMarkIcon } from '@/components/icons'
 import ItemCard from '@/components/item-card'
 import { LinkButton } from '@/components/link-button'
-import { type ItemProduct } from '@/types/product'
+import useCartStore from '@/store/useCartStore'
 
 interface ModalCartInfoProps {
   CloseSideBar: () => void
 }
-
-const products: ItemProduct[] = []
 
 export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
   return (
@@ -22,19 +22,21 @@ export default function ModalCartInfo ({ CloseSideBar }: ModalCartInfoProps) {
         </button>
       </div>
 
-      <CartInfo products={products} onClickLink={CloseSideBar} />
+      <CartInfo onClickLink={CloseSideBar} />
 
     </aside>
   )
 }
 
 interface CartInfoProps {
-  products: ItemProduct[]
   onClickLink?: () => void
 }
 
-export function CartInfo ({ products, onClickLink }: CartInfoProps) {
-  if (products.length === 0) {
+export function CartInfo ({ onClickLink }: CartInfoProps) {
+  const itemsProducts = useCartStore((state) => state.items)
+  const total = useCartStore((state) => state.total)
+
+  if (itemsProducts.length === 0) {
     return (
       <div className='grid flex-1 place-content-center text-center text-slate-500'>
         <p>Aun no has agregado productos</p>
@@ -42,18 +44,14 @@ export function CartInfo ({ products, onClickLink }: CartInfoProps) {
     )
   }
 
-  const subtotal = products.reduce((acc, product) => {
-    return acc + product.quantity * product.product.price
-  }, 0)
   const discount = 0
-  const total = subtotal - discount
 
   return (
     <>
 
       <div className='flex-1 overflow-y-scroll py-4 scrollbar-thin scrollbar-thumb-slate-400'>
-        {products.map(product => (
-          <ItemCard key={product.product.productId} product={product} />
+        {itemsProducts.map(itemProduct => (
+          <ItemCard key={itemProduct.sizeId} product={itemProduct} />
         ))}
 
       </div>
@@ -63,7 +61,7 @@ export function CartInfo ({ products, onClickLink }: CartInfoProps) {
 
         <div className='flex justify-between border-t border-black px-4 py-2'>
           <p>Subtotal</p>
-          <p>{subtotal.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
+          <p>{total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
         </div>
 
         <div className='flex justify-between border-t border-black px-4 py-2'>

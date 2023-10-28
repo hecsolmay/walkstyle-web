@@ -21,7 +21,7 @@ export function ProductCard ({ product, className }: ProductCardProps) {
         />
       </div>
       <div className='flex flex-col gap-1'>
-        <h3 className="text-lg font-semibold uppercase">{product.brand.name}<span className="uppercase text-gray-500"> - {label}</span></h3>
+        <h3 className="truncate text-lg font-semibold uppercase">{product.brand.name}<span className="uppercase text-gray-500"> - {label}</span></h3>
         <p className="text-overflow-ellipsis my-2 line-clamp-2 text-sm text-gray-500">{product.name}</p>
         <p className="text-sm font-bold text-black">{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
       </div>

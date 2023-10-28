@@ -3,6 +3,7 @@
 import { type Image } from '@/types/image'
 import { cn } from '@/utils/cn'
 import { useState } from 'react'
+import { ChevronLeftIcon } from './icons'
 
 interface ProductImagesSliderProps {
   images: Image[]
@@ -39,6 +40,44 @@ export default function ProductImagesSlider ({ images }: ProductImagesSliderProp
 
         ))}
 
+      </div>
+    </div>
+  )
+}
+
+interface ProductImagesModalProps {
+  images: Image[]
+}
+
+export function ProductImagesModal ({ images }: ProductImagesModalProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const currentImage = images[selectedIndex]
+
+  const nextImage = () => {
+    const nextIndex = (selectedIndex + 1) % images.length
+    setSelectedIndex(nextIndex)
+  }
+
+  const prevImage = () => {
+    const prevIndex = (selectedIndex - 1 + images.length) % images.length
+    setSelectedIndex(prevIndex)
+  }
+
+  return (
+    <div className='relative grid h-96 place-content-center rounded-lg shadow-lg md:h-full'>
+      {images.length > 1 && (
+        <>
+          <button onClick={prevImage} className='absolute left-0 top-1/2 text-slate-600'>
+            <ChevronLeftIcon className='h-12 w-8'/>
+          </button>
+          <button onClick={nextImage} className='absolute right-0 top-1/2 text-slate-600'>
+            <ChevronLeftIcon className='h-12 w-8 rotate-180'/>
+          </button>
+        </>
+      )}
+
+      <div className='h-52 w-48'>
+        <img className='object-cover mix-blend-darken' src={currentImage.main} />
       </div>
     </div>
   )

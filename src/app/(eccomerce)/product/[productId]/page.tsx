@@ -12,8 +12,6 @@ export default async function ProductPage (
     notFound()
   }
 
-  console.log(product)
-
   return (
     <div className='mb-10 grid w-full grid-cols-1 p-4 pt-6 md:h-[90vh] md:grid-cols-2 md:p-10 '>
       <div className='mb-6 flex flex-col gap-6 md:hidden'>
@@ -35,7 +33,7 @@ export default async function ProductPage (
             <p className='mt-3 text-xl font-semibold'>{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
           </div>
         </div>
-        <SelectSizeWithCounter sizes={product.sizes} />
+        <SelectSizeWithCounter product={product} />
       </div>
     </div>
 

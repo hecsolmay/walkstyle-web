@@ -1,3 +1,5 @@
+'use client'
+
 import { TrashCanIcon } from '@/components/icons'
 import { type ItemProduct } from '@/types/product'
 
@@ -6,10 +8,16 @@ interface ItemCardProps {
 }
 
 export default function ItemCard ({ product }: ItemCardProps) {
-  const { product: item, quantity, size } = product
+  const { product: item, quantity, sizeId } = product
   const { brand } = item
 
+  const size = item.sizes.find((size) => size.sizeId === sizeId)?.size ?? 0
+
   const totalPrice = item.price * quantity
+
+  const handleDelete = () => {
+    // TODO:AQUI IRIA EL BORRAR CON EL USESTORE
+  }
 
   return (
     <div className='flex h-44 w-full gap-3 p-3 md:px-6'>
@@ -21,7 +29,7 @@ export default function ItemCard ({ product }: ItemCardProps) {
             <h3 className='text-lg uppercase text-gray-600'>{item.name}</h3>
             <p className='text-xs text-gray-500'>Talla: {size}</p>
           </div>
-          <button className='text-gray-600'>
+          <button onClick={handleDelete} className='text-gray-600'>
             <TrashCanIcon />
           </button>
         </div>
