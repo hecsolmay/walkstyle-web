@@ -14,7 +14,7 @@ interface CategoryResponse {
 }
 
 export async function getCategories ({ q = '', page = 1 }: SearchParams = {}): Promise<CategoryResponse> {
-  const response = await axios.get(`/categories/all?q=${q}&page=${page}`)
+  const response = await axios.get(`/categories?q=${q}&page=${page}`)
   const { data } = response
 
   return {

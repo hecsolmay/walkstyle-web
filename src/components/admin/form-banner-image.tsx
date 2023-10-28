@@ -4,6 +4,7 @@ import Input, { InputFile } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 import useNextQuery from '@/hooks/useNextQuey'
 import { bannerAndImagePartialShema, bannerAndImageShema } from '@/schemas/banner-image'
+import useLoaderStore from '@/store/useLoader'
 import { type BannerAndImage, type BannerAndImageUpdate } from '@/types/forms'
 import { cn } from '@/utils/cn'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -17,6 +18,8 @@ export default function FormBannerImage ({ onSubmit }: FormBannerImageProps) {
   const { register, watch, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<BannerAndImage>({
     resolver: zodResolver(bannerAndImageShema)
   })
+  const showLoader = useLoaderStore((state) => state.showLoader)
+  const hideLoader = useLoaderStore((state) => state.hideLoader)
 
   const { router } = useNextQuery()
 
@@ -31,12 +34,15 @@ export default function FormBannerImage ({ onSubmit }: FormBannerImageProps) {
   const bannerPreview = bannerFile !== undefined ? URL.createObjectURL(bannerFile) : undefined
 
   const onSubmitForm = async (data: BannerAndImage) => {
+    showLoader()
     try {
       await onSubmit(data)
       reset()
       router.refresh()
     } catch (error) {
       console.error(error)
+    } finally {
+      hideLoader()
     }
   }
 
@@ -117,6 +123,9 @@ export function FormBannerImageEdit ({ onSubmit, defaultValues }: FormBannerImag
     }
   })
 
+  const showLoader = useLoaderStore((state) => state.showLoader)
+  const hideLoader = useLoaderStore((state) => state.hideLoader)
+
   const { router } = useNextQuery()
 
   const imageWatch = watch('image')
@@ -130,11 +139,14 @@ export function FormBannerImageEdit ({ onSubmit, defaultValues }: FormBannerImag
   const bannerPreview = bannerFile !== undefined ? URL.createObjectURL(bannerFile) : defaultValues?.banner
 
   const onSubmitForm = async (data: BannerAndImageUpdate) => {
+    showLoader()
     try {
       await onSubmit(data)
       router.refresh()
     } catch (error) {
       console.error(error)
+    } finally {
+      hideLoader()
     }
   }
 

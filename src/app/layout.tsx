@@ -1,3 +1,4 @@
+import LoaderModal from '@/components/loader-modal'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -24,6 +25,7 @@ export default function RootLayout ({
         {children}
         <div id="modal-root"></div>
         <Toaster richColors />
+        <LoaderModal />
       </body>
     </html>
   )

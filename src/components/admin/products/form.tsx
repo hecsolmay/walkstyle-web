@@ -9,6 +9,7 @@ import { GENDER_LABELS } from '@/contants'
 import useNextQuery from '@/hooks/useNextQuey'
 import { productCreateSchema, productUpdateSchema } from '@/schemas/product'
 import { createProduct, updateProduct } from '@/services/products'
+import useLoaderStore from '@/store/useLoader'
 import { type Category } from '@/types/category'
 import { type ProductCreate, type ProductUpdate } from '@/types/forms'
 import { type ProductDetails } from '@/types/product'
@@ -21,6 +22,9 @@ export default function FormProductCreate () {
     resolver: zodResolver(productCreateSchema)
   })
 
+  const showLoader = useLoaderStore((state) => state.showLoader)
+  const hideLoader = useLoaderStore((state) => state.hideLoader)
+
   const { router } = useNextQuery()
 
   const imagesFiles: FileList | undefined = watch('images')
@@ -32,24 +36,31 @@ export default function FormProductCreate () {
   const maxImagesPreviews = imagesPreviews.slice(0, 4)
 
   const onSubmitForm = async (data: ProductCreate) => {
-    const formData = new FormData()
+    showLoader()
+    try {
+      const formData = new FormData()
 
-    const { images, ...product } = data
+      const { images, ...product } = data
 
-    const imagesArray = Array.from(imagesFiles ?? [])
+      const imagesArray = Array.from(imagesFiles ?? [])
 
-    imagesArray.forEach(image => {
-      formData.append('images', image)
-    })
+      imagesArray.forEach(image => {
+        formData.append('images', image)
+      })
 
-    const jsonString = JSON.stringify(product)
+      const jsonString = JSON.stringify(product)
 
-    formData.append('product', jsonString)
+      formData.append('product', jsonString)
 
-    await createProduct(formData)
-    toastSuccess('Producto Creado')
-    reset()
-    router.refresh()
+      await createProduct(formData)
+      toastSuccess('Producto Creado')
+      reset()
+      router.refresh()
+    } catch (error) {
+      console.error('Something Went wrong', error)
+    } finally {
+      hideLoader()
+    }
   }
 
   return (
@@ -202,6 +213,9 @@ export function FormProductUpdate ({ product, closeForm = () => {} }: FormProduc
     }
   })
 
+  const showLoader = useLoaderStore((state) => state.showLoader)
+  const hideLoader = useLoaderStore((state) => state.hideLoader)
+
   const { router } = useNextQuery()
 
   const imagesFiles: FileList | undefined = watch('images')
@@ -236,7 +250,7 @@ export function FormProductUpdate ({ product, closeForm = () => {} }: FormProduc
     const jsonString = JSON.stringify(rest)
 
     formData.append('product', jsonString)
-
+    showLoader()
     try {
       await updateProduct({ productId: product.productId, formData })
       closeForm()
@@ -245,6 +259,8 @@ export function FormProductUpdate ({ product, closeForm = () => {} }: FormProduc
     } catch (error) {
       toastError('No se pudo actualizar el producto')
       console.error(error)
+    } finally {
+      hideLoader()
     }
   }
 
