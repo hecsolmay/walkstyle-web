@@ -1,6 +1,7 @@
 'use client'
 
 import { TextButton } from '@/components/text-button'
+import useCartStore from '@/store/useCartStore'
 import { type Product } from '@/types/product'
 import { type Size } from '@/types/size'
 import { cn } from '@/utils/cn'
@@ -20,6 +21,7 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
   const [selectedSize, setSelectedSize] = useState<Size | null>(null)
   const avalibleStock = selectedSize?.stock ?? 0
   const leftStock = isNaN(avalibleStock - quantity) ? avalibleStock : avalibleStock - quantity
+  const addProduct = useCartStore((state) => state.addProduct)
 
   const handleSelect = (size: Size) => {
     setSelectedSize(size)
@@ -54,7 +56,7 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
 
   const handleAddProduct = () => {
     if (selectedSize === null || quantity === 0) return
-    // TODO:AQUI IRIA LA PARTE DE AGREGAR
+    addProduct({ product, sizeId: selectedSize.sizeId, quantity })
 
     if (closeModal !== undefined) closeModal()
 

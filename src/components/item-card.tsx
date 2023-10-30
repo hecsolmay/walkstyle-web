@@ -1,6 +1,7 @@
 'use client'
 
 import { TrashCanIcon } from '@/components/icons'
+import useCartStore from '@/store/useCartStore'
 import { type ItemProduct } from '@/types/product'
 
 interface ItemCardProps {
@@ -8,6 +9,7 @@ interface ItemCardProps {
 }
 
 export default function ItemCard ({ product }: ItemCardProps) {
+  const removeProduct = useCartStore((state) => state.removeProduct)
   const { product: item, quantity, sizeId } = product
   const { brand } = item
 
@@ -16,7 +18,7 @@ export default function ItemCard ({ product }: ItemCardProps) {
   const totalPrice = item.price * quantity
 
   const handleDelete = () => {
-    // TODO:AQUI IRIA EL BORRAR CON EL USESTORE
+    removeProduct(sizeId)
   }
 
   return (
