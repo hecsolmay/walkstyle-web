@@ -5,6 +5,8 @@ import UserRow from '@/components/admin/users/user-row'
 import { getAdminUsers } from '@/services/users'
 import { type ServerProps } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 export default async function UsersPage ({ searchParams }: ServerProps) {
   const { info, users } = await getAdminUsers(searchParams)
 

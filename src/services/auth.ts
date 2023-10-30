@@ -26,10 +26,15 @@ export async function registerUser (user: RegisterSchema) {
 }
 
 export async function refreshToken (token: string): Promise<string> {
-  const response = await axios.post('/auth/refresh-token', { refreshToken: token })
-  const { data, status } = response
+  try {
+    const response = await axios.post('/auth/refresh-token', { refreshToken: token })
+    const { data, status } = response
 
-  if (status !== 200) throw new Error('Error al actualizar el token')
+    if (status !== 200) throw new Error('Error al actualizar el token')
 
-  return data.token
+    return data.token
+  } catch (error) {
+    console.error(error)
+    return ''
+  }
 }
