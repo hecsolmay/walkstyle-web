@@ -24,3 +24,12 @@ export async function registerUser (user: RegisterSchema) {
 
   return data
 }
+
+export async function refreshToken (token: string): Promise<string> {
+  const response = await axios.post('/auth/refresh-token', { refreshToken: token })
+  const { data, status } = response
+
+  if (status !== 200) throw new Error('Error al actualizar el token')
+
+  return data.token
+}
