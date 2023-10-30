@@ -1,8 +1,9 @@
 import LoaderModal from '@/components/loader-modal'
-import './globals.css'
+import SessionAuthProvider from '@/providers/SessionAuthProvider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'sonner'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,10 +23,12 @@ export default function RootLayout ({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={`${inter.className} overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-400`}>
-        {children}
-        <div id="modal-root"></div>
-        <Toaster richColors />
-        <LoaderModal />
+        <SessionAuthProvider>
+          {children}
+          <div id="modal-root"></div>
+          <Toaster richColors />
+          <LoaderModal />
+        </SessionAuthProvider>
       </body>
     </html>
   )

@@ -16,3 +16,7 @@ export interface User extends UserDTO {
 }
 
 export interface UserDetails extends User, Details {}
+
+export interface UserWithToken extends User {
+  token: string
+}
