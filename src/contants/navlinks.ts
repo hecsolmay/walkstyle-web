@@ -29,20 +29,26 @@ export const links: NavLinks[] = [
   // }
 ]
 
-export const dropdownLinks: NavLinks[] = [
+export const noSessionLinks: NavLinks[] = [
   {
     label: 'Iniciar Sesion',
-    href: '/login'
-  },
-  {
-    label: 'Registrarse',
-    href: '/signup',
+    href: '/login',
     divider: true
   },
   {
+    label: 'Registrarse',
+    href: '/signup'
+  }
+]
+
+export const publicLinks: NavLinks[] = [
+  {
     label: 'Perfil',
     href: '/profile'
-  },
+  }
+]
+
+export const protectedLinks: NavLinks[] = [
   {
     label: 'ir al Admin',
     href: '/admin/dashboard'

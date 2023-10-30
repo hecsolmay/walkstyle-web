@@ -4,6 +4,7 @@ import { HamburguerIcon, UserCircleIcon } from '@/components/icons'
 import { dropdownAdminLinks, getNavTitle } from '@/contants/navlinks'
 import useNextQuery from '@/hooks/useNextQuey'
 import { cn } from '@/utils/cn'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
@@ -13,6 +14,8 @@ interface AdminNavbarProps {
 }
 
 export default function AdminNavbar ({ toogleShowSideBar, toogleShowMobileBar }: AdminNavbarProps) {
+  const { data: session } = useSession()
+
   const userRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLUListElement>(null)
   const [showUser, setShowUser] = useState(false)
@@ -31,6 +34,8 @@ export default function AdminNavbar ({ toogleShowSideBar, toogleShowMobileBar }:
       window.removeEventListener('click', handleClick)
     }
   }, [])
+
+  const isLogged = session?.user != null
 
   return (
     <nav className='stickytop-0 z-10 flex h-16 items-center justify-between bg-white pl-6 pr-7 shadow-lg'>
@@ -57,6 +62,12 @@ export default function AdminNavbar ({ toogleShowSideBar, toogleShowMobileBar }:
                 <Link href={link.href} className={cn('block px-4 py-2 hover:bg-[#1c273b] hover:text-white', Boolean(link.divider) && 'border-b border-slate-400 pb-3')}>{link.label}</Link>
               </li>
             ))}
+
+            { isLogged && (
+              <li className='block border-t  px-4 py-2 hover:bg-[#1c273b] hover:text-white'>
+                <button onClick={async () => { await signOut({ callbackUrl: '/login' }) }}>Cerrar Session</button>
+              </li>
+            )}
 
           </ul>
         </div>

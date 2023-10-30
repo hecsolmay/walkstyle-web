@@ -73,7 +73,7 @@ export function InputPassword (
         htmlFor={name}
         className='mb-2 block text-sm font-medium text-slate-600 '
       >
-        {label}
+        {label} {Boolean(required) && <span className='text-red-500'>*</span>}
       </label>
       <div className='relative'>
         <input
