@@ -14,6 +14,7 @@ interface InputProps {
   required?: boolean
   error?: string
   type?: InputType
+  min?: number | string
   register?: any
   defaultValue?: string
 }
@@ -27,6 +28,7 @@ export default function Input ({
   type,
   defaultValue,
   error,
+  min,
   register
 }: InputProps) {
   return (
@@ -35,12 +37,13 @@ export default function Input ({
         htmlFor={name}
         className='mb-2 block text-sm font-medium text-slate-600 '
       >
-        {label}
+        {label} {Boolean(required) && <span className='text-red-500'>*</span>}
       </label>
       <div className='relative'>
         <input
           {...register}
           type={type}
+          min={min}
           className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className, error !== undefined && 'border-red-500')}
           placeholder={placeholder}
           required={required}

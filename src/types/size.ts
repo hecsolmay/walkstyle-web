@@ -1,4 +1,4 @@
-import { type Size as SizeForm } from '@/types/forms'
+import { type SizeDTO as SizeForm } from '@/types/forms'
 import { type Details } from '@/types/details'
 
 export interface Size {
