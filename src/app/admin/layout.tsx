@@ -24,6 +24,7 @@ export default function AdminLayout ({
   }
 
   return (
+
     <div className="relative flex min-h-screen">
       <AdminSideBar show={showSideBar.desktop}/>
       <AdminMobileSideBar closeSideBar={() => { setShowSideBar(prev => ({ ...prev, mobile: false })) }} show={showSideBar.mobile} />

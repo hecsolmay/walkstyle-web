@@ -1,4 +1,4 @@
-import type { Brand } from '@/types/brand'
+import type { Brand, BrandWithOutImage } from '@/types/brand'
 import { type Category } from '@/types/category'
 import { type GENDER } from '@/types/enums'
 import { type Image } from '@/types/image'
@@ -32,3 +32,7 @@ export interface Gender {
 }
 
 export interface ProductDetails extends Product, Details {}
+export interface ProductSale extends Omit<Product, 'brand' | 'sizes' | 'categories'> {
+  brand: BrandWithOutImage
+
+}

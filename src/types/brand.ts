@@ -8,6 +8,8 @@ export interface Brand {
   image: Image
 }
 
+export interface BrandWithOutImage extends Omit<Brand, 'image' | 'banner'> {}
+
 export interface BrandDetails extends Brand, Details {
   totalProducts?: number
 }

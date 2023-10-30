@@ -1,15 +1,15 @@
 import { EyeOpenIcon } from '@/components/icons'
 import { TD, TR } from '@/components/table'
-import { type Sale } from '@/types/sale'
+import { type SaleDetails } from '@/types/sale'
 import { getFormatedDate } from '@/utils/dates'
 import Link from 'next/link'
 
 interface SalesRowProps {
-  sale: Sale
+  sale: SaleDetails
 }
 
 export default function SalesRow ({ sale }: SalesRowProps) {
-  const { date, quantity, saleId, total, user } = sale
+  const { saleId, totalPaid, user, createdAt, products } = sale
 
   return (
     <TR className='text-slate-500'>
@@ -17,13 +17,13 @@ export default function SalesRow ({ sale }: SalesRowProps) {
         {user.fullname}
       </TD>
       <TD className='text-green-600'>
-        {total.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}
+        {totalPaid.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}
       </TD>
       <TD>
-        {quantity}
+        {products.length}
       </TD>
       <TD>
-        {getFormatedDate(date)}
+        {getFormatedDate(createdAt)}
       </TD>
 
       <TD className='grid w-28  place-content-center text-black'>
