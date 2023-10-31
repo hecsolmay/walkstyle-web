@@ -26,7 +26,7 @@ export function TotalToPay () {
         quantity: item.quantity
       }))
 
-      await createSale(itemsRequest, session?.user.token ?? '')
+      await createSale(itemsRequest, session?.user.userId ?? '')
       toastSuccess('Venta realizada')
       reset()
     } catch (error) {

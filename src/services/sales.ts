@@ -33,14 +33,12 @@ interface ProductRequest {
   quantity: number
 }
 
-export async function createSale (products: ProductRequest[], userToken: string) {
+export async function createSale (products: ProductRequest[], userId: string) {
   const response = await axiosAuth.post('/sales', {
-    products
-  }, {
-    headers: {
-      Authorization: `Bearer ${userToken}`
-    }
-  })
+    products,
+    userId
+  }
+  )
 
   return response
 }
