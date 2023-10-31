@@ -27,3 +27,20 @@ export async function getSaleById (saleId: string): Promise<SaleDetails | null> 
     return null
   }
 }
+
+interface ProductRequest {
+  sizeId: string
+  quantity: number
+}
+
+export async function createSale (products: ProductRequest[], userToken: string) {
+  const response = await axiosAuth.post('/sales', {
+    products
+  }, {
+    headers: {
+      Authorization: `Bearer ${userToken}`
+    }
+  })
+
+  return response
+}
