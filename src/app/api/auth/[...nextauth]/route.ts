@@ -31,9 +31,9 @@ const handler = NextAuth({
     })
   ],
   callbacks: {
-    async jwt ({ token, user, trigger }) {
+    async jwt ({ token, user, trigger, session }) {
       if (trigger === 'update') {
-        console.log('updating session')
+        return { ...token, ...session.user }
       }
       return { ...token, ...user }
     },

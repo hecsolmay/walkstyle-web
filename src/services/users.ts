@@ -84,3 +84,28 @@ export async function changePassword ({ userId, newPassword, oldPassword }: Chan
   })
   return response
 }
+
+interface ChangeProfilePicture {
+  userId?: string
+  formData: FormData
+}
+
+export const changeProfilePicture = async ({ formData, userId = '' }: ChangeProfilePicture) => {
+  const response = await axiosAuth.post(`/users/${userId}/profile-image`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+
+  return response
+}
+
+export const removeProfilePicture = async (userId = '') => {
+  const formData = new FormData()
+  const response = await axiosAuth.put(`/users/${userId}/profile-image`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+  return response
+}
