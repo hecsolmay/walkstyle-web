@@ -1,3 +1,5 @@
+import { GENDER } from '@/types/enums'
+
 export interface NavLinks {
   label: string
   href: string
@@ -12,11 +14,16 @@ export interface SortLinks {
 export const links: NavLinks[] = [
   {
     label: 'Hombre',
-    href: '/search?gender=male'
+    href: `/genders/${GENDER.MALE}`
   },
   {
     label: 'Mujer',
-    href: '/search?gender=female'
+    href: `/genders/${GENDER.FEMALE}`
+    // divider: true
+  },
+  {
+    label: 'Niños',
+    href: `/genders/${GENDER.KID}`
     // divider: true
   }
   // {

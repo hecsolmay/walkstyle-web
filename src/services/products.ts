@@ -1,4 +1,5 @@
 import { type SearchParams } from '@/types'
+import { GENDER } from '@/types/enums'
 import { type ProductDetails, type Product } from '@/types/product'
 import { type Info } from '@/types/response'
 import axios, { axiosAuth } from '@/utils/axios'
@@ -20,6 +21,21 @@ interface UpdateProduct {
 
 export async function getProducts ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<ProductsResponse> {
   const response = await axios.get(`/products?q=${q}&page=${page}&order=${sort}`)
+  const { data } = response
+
+  return {
+    info: data.info,
+    products: data.products
+  }
+}
+
+interface SearchParamsByGender extends SearchParams {
+  gender?: GENDER
+}
+
+export async function getProductsByGender ({ gender = GENDER.MALE, q = '', page = 1, sort = '' }: SearchParamsByGender = {}): Promise<ProductsResponse> {
+  const response = await axios.get(`/genders/${gender}/products?q=${q}&page=${page}&order=${sort}`)
+  console.log(response)
   const { data } = response
 
   return {

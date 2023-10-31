@@ -35,7 +35,7 @@ export default function ItemCardWithCounter ({ product }: ItemCardProps) {
 
   return (
     <div className='flex h-48 w-full gap-3 rounded-md border-2 bg-white p-3 shadow-md md:px-6'>
-      <img src="https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto" alt="TENIS" className='aspect-[2/3] rounded-lg'/>
+      <img src={item.images[0].main} alt={item.name} className='aspect-[2/3] w-32 rounded-lg md:w-44'/>
       <div className='flex w-full flex-col justify-between pb-2 text-gray-400'>
         <div className='flex items-start justify-between'>
           <div className='flex flex-col gap-2'>

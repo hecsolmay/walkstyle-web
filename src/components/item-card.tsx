@@ -22,7 +22,7 @@ export default function ItemCard ({ product }: ItemCardProps) {
 
   return (
     <div className='flex h-44 w-full gap-3 p-3 md:px-6'>
-      <img src="https://tafmx.vtexassets.com/arquivos/ids/406372-192-auto" alt="" className='aspect-[2/3] rounded-lg '/>
+      <img src={item.images[0].main}/>
       <div className='flex w-full flex-col justify-between pb-2 text-gray-400'>
         <div className='flex items-start justify-between'>
           <div className='flex flex-col gap-1'>
