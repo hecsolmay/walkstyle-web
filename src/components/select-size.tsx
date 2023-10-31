@@ -1,6 +1,7 @@
 'use client'
 
 import { TextButton } from '@/components/text-button'
+import useNextQuery from '@/hooks/useNextQuey'
 import useCartStore from '@/store/useCartStore'
 import { type Product } from '@/types/product'
 import { type Size } from '@/types/size'
@@ -17,11 +18,12 @@ interface SelectSizeProps {
 
 export function SelectSizeWithCounter ({ product, className, closeModal }: SelectSizeProps) {
   const { sizes } = product
-  const [quantity, setQuantity] = useState(0)
   const [selectedSize, setSelectedSize] = useState<Size | null>(null)
+  const [quantity, setQuantity] = useState(0)
   const avalibleStock = selectedSize?.stock ?? 0
   const leftStock = isNaN(avalibleStock - quantity) ? avalibleStock : avalibleStock - quantity
   const addProduct = useCartStore((state) => state.addProduct)
+  const { router } = useNextQuery()
 
   const handleSelect = (size: Size) => {
     setSelectedSize(size)
@@ -58,18 +60,31 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
     if (selectedSize === null || quantity === 0) return
     addProduct({ product, sizeId: selectedSize.sizeId, quantity })
 
-    if (closeModal !== undefined) closeModal()
-
     toastSuccess('Producto Agregado al carrito')
+
+    if (closeModal !== undefined) {
+      closeModal()
+      return
+    }
+
+    router.back()
   }
 
   return (
     <div className={cn('flex flex-col gap-6', className)}>
       <p className='text-lg text-slate-700'>Tallas:</p>
       <div className='grid max-w-[440px] grid-cols-[repeat(auto-fit,minmax(60px,.1fr))] gap-2'>
-        {sizes.map(size => (
-          <button key={size.sizeId} className={cn('border w-14 text-center border-slate-400 py-2', selectedSize?.sizeId === size.sizeId ? 'bg-black text-white border-black' : 'bg-white text-black')} onClick={() => { handleSelect(size) }}>{size.size}</button>
-        ))}
+        {sizes.map(size => {
+          if (size.stock > 0) {
+            return (
+              <button key={size.sizeId} className={cn('border w-14 text-center border-slate-400 py-2', selectedSize?.sizeId === size.sizeId ? 'bg-black text-white border-black' : 'bg-white text-black')} onClick={() => { handleSelect(size) }}>{size.size}</button>
+            )
+          }
+
+          return (
+            <button key={size.sizeId} disabled className={cn('border w-14 text-center border-slate-400 py-2bg-white text-black cursor-default opacity-60')} title='No hay suficiente stock para el producto' >{size.size}</button>
+          )
+        })}
       </div>
 
       <div>
@@ -82,7 +97,7 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
           <button disabled={leftStock === 0} onClick={handleAdd} className={cn('w-16 border border-slate-400 py-2 text-center', (leftStock === 0) && 'opacity-80 hover:opacity-80 hover:shadow-none cursor-not-allowed')}>+</button>
 
         </div>
-        {quantity !== 0 && <p className='text-center'>Quedan {leftStock} unidades disponibles</p>}
+        {selectedSize !== null && <p className='text-center'>Quedan {leftStock} unidades disponibles</p>}
       </div>
       <TextButton onClick={handleAddProduct} disabled={!(quantity > 0)} text='Agregar al carrito' />
 

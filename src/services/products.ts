@@ -18,8 +18,8 @@ interface UpdateProduct {
   formData: FormData
 }
 
-export async function getProducts ({ q = '', page = 1 }: SearchParams = {}): Promise<ProductsResponse> {
-  const response = await axios.get(`/products?q=${q}&page=${page}`)
+export async function getProducts ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<ProductsResponse> {
+  const response = await axios.get(`/products?q=${q}&page=${page}&order=${sort}`)
   const { data } = response
 
   return {

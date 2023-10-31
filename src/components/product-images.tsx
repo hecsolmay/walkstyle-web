@@ -79,6 +79,14 @@ export function ProductImagesModal ({ images }: ProductImagesModalProps) {
       <div className='h-52 w-48'>
         <img className='object-cover mix-blend-darken' src={currentImage.main} />
       </div>
+
+      {images.length > 1 && (
+        <ul className='absolute bottom-3 flex w-full justify-center gap-2'>
+          {images.map((image, index) => (
+            <li key={image.imageId} className={cn('border border-slate-600 rounded-full p-2 md:p-1 cursor-pointer', index === selectedIndex && 'bg-slate-600')} onClick={() => { setSelectedIndex(index) }} />
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

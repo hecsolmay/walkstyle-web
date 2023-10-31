@@ -11,7 +11,6 @@ interface ItemCardProps {
 export default function ItemCard ({ product }: ItemCardProps) {
   const removeProduct = useCartStore((state) => state.removeProduct)
   const { product: item, quantity, sizeId } = product
-  const { brand } = item
 
   const size = item.sizes.find((size) => size.sizeId === sizeId)?.size ?? 0
 
@@ -27,7 +26,7 @@ export default function ItemCard ({ product }: ItemCardProps) {
       <div className='flex w-full flex-col justify-between pb-2 text-gray-400'>
         <div className='flex items-start justify-between'>
           <div className='flex flex-col gap-1'>
-            <p className='text-xs uppercase'>{brand.name}</p>
+            <p className='text-xs uppercase'>{item?.brand?.name}</p>
             <h3 className='text-lg uppercase text-gray-600'>{item.name}</h3>
             <p className='text-xs text-gray-500'>Talla: {size}</p>
           </div>

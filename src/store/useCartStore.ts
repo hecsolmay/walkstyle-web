@@ -17,6 +17,7 @@ interface Actions {
   addProduct: (itemProduct: AddProductType) => void
   removeProduct: (sizeId: string) => void
   removeAll: () => void
+  changeQuantity: (sizeId: string, quantity: number) => void
 }
 
 const useCartStore = create<State & Actions>((set, get) => ({
@@ -41,6 +42,49 @@ const useCartStore = create<State & Actions>((set, get) => ({
   },
   removeAll: () => {
     set(INITIAL_STATE)
+  },
+  changeQuantity: (sizeId, quantity) => {
+    const prevItems = get().items
+
+    const foundItemIndex = prevItems.findIndex((item) => item.sizeId === sizeId)
+
+    if (foundItemIndex === -1) {
+      return
+    }
+
+    const foundItem = prevItems[foundItemIndex]
+
+    const foundSize = foundItem.product.sizes.find((size) => size.sizeId === sizeId)
+
+    if (foundSize === undefined) {
+      return
+    }
+
+    if (quantity > foundSize.stock || quantity < 1) {
+      return
+    }
+
+    let prevItemTotal = 0
+    let newItemTotal = 0
+
+    const newItems = prevItems.map((item) => {
+      if (item.sizeId !== sizeId) {
+        return item
+      }
+
+      prevItemTotal = item.total
+      item.total = quantity * item.product.price
+      item.quantity = quantity
+      newItemTotal = item.total
+
+      return item
+    })
+
+    const prevTotal = get().total
+
+    const newTotal = prevTotal - prevItemTotal + newItemTotal
+
+    set({ items: newItems, total: newTotal })
   }
 }))
 
