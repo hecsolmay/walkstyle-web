@@ -22,6 +22,10 @@ export default async function SaleDetailsPage (
     <div className='flex flex-col gap-8'>
       <header className='flex flex-col gap-8 py-3'>
         <h1 className="text-3xl font-bold text-black">Venta {date}</h1>
+        <div className='pr-4 md:flex md:justify-between'>
+          <p>Compra realizada por el usuario {sale.user.fullname}</p>
+          <p>Total de la venta: <span className='text-green-600'>{sale.totalPaid.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</span></p>
+        </div>
       </header>
       <AdminTable headers={['Imagen', 'Nombre', 'Talla', 'Cantidad', 'Precio unitario', 'Precio total']} >
         {sale.products.map(product => (
