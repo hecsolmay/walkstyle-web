@@ -9,7 +9,7 @@ interface CategoryProps {
 
 export function CategoryCard ({ category }: CategoryProps) {
   return (
-    <Link href={`/category/${category.categoryId}/products`} className="flex h-48 flex-col items-center justify-center gap-3 ">
+    <Link href={`/categories/${category.categoryId}/products`} className="flex h-48 flex-col items-center justify-center gap-3 ">
       <div className="grid h-32 w-32 place-content-center  rounded-full bg-slate-200 p-4">
         <img
           src={category.image.preview}

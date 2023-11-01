@@ -2,6 +2,7 @@
 
 import { type Brand } from '@/types/brand'
 import { cn } from '@/utils/cn'
+import Link from 'next/link'
 
 // Define el tipo para el tipo de variante
 // Define un objeto de mapeo de variantes a clases de estilo
@@ -24,7 +25,7 @@ export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
   const colorClass = colorVariants[colorVariant ?? 0] ?? 'bg-blue-500 text-white'
 
   return (
-    <div className="flex items-center justify-center">
+    <Link href={`/brands/${brand.brandId}/products`} className="flex items-center justify-center">
       <div className="flex h-56 w-44 flex-col items-center justify-center ">
         <div className={cn('grid h-44 w-44  place-content-center opacity-90', colorClass)}>
           <img
@@ -34,6 +35,6 @@ export function BrandCard ({ brand, colorVariant }: BrandComponentProps) {
         </div>
         <h2 className="text-xl font-bold">{brand.name}</h2>
       </div>
-    </div>
+    </Link>
   )
 }

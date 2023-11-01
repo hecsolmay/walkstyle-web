@@ -62,12 +62,40 @@ export async function getProductsByCategory ({ categoryId = '', q = '', page = 1
       }
     }
 
-    console.log(response)
-
     const responseProduct = data.products.map((res: any) => res.product)
     return {
       info: data.info,
       products: responseProduct
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      info: DEFAULT_INFO,
+      products: []
+    }
+  }
+}
+
+interface SearchParamsByBrand extends SearchParams {
+  brandId?: string
+}
+
+export async function getProductsByBrand ({ brandId = '', q = '', page = 1, sort = '' }: SearchParamsByBrand = {}): Promise<ProductsResponse> {
+  try {
+    const response = await axios.get(`/brands/${brandId}/products?q=${q}&page=${page}&order=${sort}`)
+    console.log(response)
+    const { data, status } = response
+
+    if (status !== 200) {
+      return {
+        info: DEFAULT_INFO,
+        products: []
+      }
+    }
+
+    return {
+      info: data.info,
+      products: data.products
     }
   } catch (error) {
     console.error(error)
