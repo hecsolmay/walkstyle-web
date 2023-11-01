@@ -46,7 +46,7 @@ export default function NavActions () {
           isLoggedIn
             ? (
               <button ref={userRef} onClick={() => { setShowUser(!showUser) }} className='h-8 w-8 rounded-full text-center'>
-                <img src={imageUrl} className="h-full w-full object-contain" alt={session?.user?.name} />
+                <img src={imageUrl} className="h-full w-full rounded-full object-contain" alt={session?.user?.name} />
               </button>)
             : <button ref={userRef} className='cursor-pointer text-slate-600' onClick={() => { setShowUser(!showUser) }}>
               <UserIcon />
