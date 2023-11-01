@@ -73,7 +73,7 @@ export default function SizeFormCreate () {
 
         <div>
           <Input
-            register={register('stock')}
+            register={register('stock', { setValueAs: value => parseFloat(value) })}
             className='p-1.5'
             type='number'
             min={0}
