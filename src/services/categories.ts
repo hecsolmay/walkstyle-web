@@ -13,8 +13,8 @@ interface CategoryResponse {
   categories: Category[]
 }
 
-export async function getCategories ({ q = '', page = 1 }: SearchParams = {}): Promise<CategoryResponse> {
-  const response = await axios.get(`/categories?q=${q}&page=${page}`)
+export async function getCategories ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<CategoryResponse> {
+  const response = await axios.get(`/categories?q=${q}&page=${page}&order=${sort}`)
   const { data } = response
 
   return {

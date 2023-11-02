@@ -36,7 +36,6 @@ interface SearchParamsByGender extends SearchParams {
 
 export async function getProductsByGender ({ gender = GENDER.MALE, q = '', page = 1, sort = '' }: SearchParamsByGender = {}): Promise<ProductsResponse> {
   const response = await axios.get(`/genders/${gender}/products?q=${q}&page=${page}&order=${sort}`)
-  console.log(response)
   const { data } = response
 
   return {
@@ -52,7 +51,6 @@ interface SearchParamsByGender extends SearchParams {
 export async function getProductsByCategory ({ categoryId = '', q = '', page = 1, sort = '' }: SearchParamsByGender = {}): Promise<ProductsResponse> {
   try {
     const response = await axios.get(`/categories/${categoryId}/products?q=${q}&page=${page}&order=${sort}`)
-    console.log(response)
     const { data, status } = response
 
     if (status !== 200) {
@@ -62,10 +60,9 @@ export async function getProductsByCategory ({ categoryId = '', q = '', page = 1
       }
     }
 
-    const responseProduct = data.products.map((res: any) => res.product)
     return {
       info: data.info,
-      products: responseProduct
+      products: data.products
     }
   } catch (error) {
     console.error(error)
@@ -83,7 +80,6 @@ interface SearchParamsByBrand extends SearchParams {
 export async function getProductsByBrand ({ brandId = '', q = '', page = 1, sort = '' }: SearchParamsByBrand = {}): Promise<ProductsResponse> {
   try {
     const response = await axios.get(`/brands/${brandId}/products?q=${q}&page=${page}&order=${sort}`)
-    console.log(response)
     const { data, status } = response
 
     if (status !== 200) {

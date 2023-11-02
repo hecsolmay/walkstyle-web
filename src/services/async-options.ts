@@ -8,7 +8,7 @@ interface SearchParams {
 export async function getCategoryOptions (searchQuery: string,
   loadedOptions: any,
   { page }: SearchParams) {
-  const { info, categories } = await getCategories({ q: searchQuery, page })
+  const { info, categories } = await getCategories({ q: searchQuery, page, sort: 'name-asc' })
 
   return {
     options: categories,
@@ -21,7 +21,7 @@ export async function getCategoryOptions (searchQuery: string,
 export async function getBrandsOptions (searchQuery: string,
   loadedOptions: any,
   { page }: SearchParams) {
-  const { info, brands } = await getBrands({ q: searchQuery, page })
+  const { info, brands } = await getBrands({ q: searchQuery, page, sort: 'name-asc' })
 
   return {
     options: brands,

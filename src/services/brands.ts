@@ -13,8 +13,8 @@ interface BrandResponse {
   brands: Brand[]
 }
 
-export async function getBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandResponse> {
-  const response = await axios.get(`/brands?q=${q}&page=${page}`)
+export async function getBrands ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<BrandResponse> {
+  const response = await axios.get(`/brands?q=${q}&page=${page}&order=${sort}`)
   const { data } = response
 
   return {
