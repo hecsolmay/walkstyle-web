@@ -15,7 +15,7 @@ export function ProductCard ({ product, className }: ProductCardProps) {
   return (
     <div className={cn('flex w-52 flex-col justify-between gap-2 bg-white p-4 shadow-md', className)}>
       <Link href={`/product/${product.productId}`} className='flex flex-col gap-6'>
-        <div className='h-40 w-full'>
+        <div className='h-56 w-full'>
           <img
             className="h-full w-full object-cover"
             src={product.images[0].preview}

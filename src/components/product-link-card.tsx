@@ -13,7 +13,7 @@ export default function ProductLinkCard ({ product, className }: ProductLinkCard
 
   return (
     <Link href={`/product/${product.productId}`} className={cn('flex w-60 flex-col justify-between gap-6 bg-white p-4 shadow-lg border border-slate-200', className)}>
-      <div className='h-40 w-full'>
+      <div className='h-56 w-full'>
         <img
           className="h-full w-full object-cover"
           src={product.images[0].preview}
