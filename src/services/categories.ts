@@ -13,8 +13,10 @@ interface CategoryResponse {
   categories: Category[]
 }
 
-export async function getCategories ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<CategoryResponse> {
-  const response = await axios.get(`/categories?q=${q}&page=${page}&order=${sort}`)
+export async function getCategories (
+  { q = '', page = 1, sort = '', limit = 10 }: SearchParams = {}
+): Promise<CategoryResponse> {
+  const response = await axios.get(`/categories?q=${q}&page=${page}&order=${sort}&limit=${limit}`)
   const { data } = response
 
   return {
@@ -30,8 +32,10 @@ export async function getCategoryById (id = ''): Promise<Category> {
   return data.category
 }
 
-export async function getAdminCategories ({ q = '', page = 1 }: SearchParams = {}): Promise<CategoryDetailsResponse> {
-  const response = await axiosAuth.get(`/categories/all?q=${q}&page=${page}`)
+export async function getAdminCategories (
+  { q = '', page = 1, limit = 10 }: SearchParams = {}
+): Promise<CategoryDetailsResponse> {
+  const response = await axiosAuth.get(`/categories/all?q=${q}&page=${page}&limit=${limit}`)
   const { data } = response
 
   return {

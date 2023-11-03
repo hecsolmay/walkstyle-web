@@ -13,8 +13,10 @@ interface BrandResponse {
   brands: Brand[]
 }
 
-export async function getBrands ({ q = '', page = 1, sort = '' }: SearchParams = {}): Promise<BrandResponse> {
-  const response = await axios.get(`/brands?q=${q}&page=${page}&order=${sort}`)
+export async function getBrands (
+  { q = '', page = 1, sort = '', limit = 10 }: SearchParams = {}
+): Promise<BrandResponse> {
+  const response = await axios.get(`/brands?q=${q}&page=${page}&order=${sort}&limit=${limit}`)
   const { data } = response
 
   return {
@@ -23,8 +25,10 @@ export async function getBrands ({ q = '', page = 1, sort = '' }: SearchParams =
   }
 }
 
-export async function getAdminBrands ({ q = '', page = 1 }: SearchParams = {}): Promise<BrandDetailsResponse> {
-  const response = await axiosAuth.get(`/brands/all?q=${q}&page=${page}`)
+export async function getAdminBrands (
+  { q = '', page = 1, limit = 10 }: SearchParams = {}
+): Promise<BrandDetailsResponse> {
+  const response = await axiosAuth.get(`/brands/all?q=${q}&page=${page}&limit=${limit}`)
   const { data } = response
 
   return {
