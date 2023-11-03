@@ -135,6 +135,10 @@ export function CustomSwipper (
       freeMode={true}
       spaceBetween={25}
       slidesPerView={1}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false
+      }}
       breakpoints={breakpoints}
       modules={[FreeMode]}
       style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
