@@ -90,14 +90,16 @@ interface ChangeProfilePicture {
   formData: FormData
 }
 
-export const changeProfilePicture = async ({ formData, userId = '' }: ChangeProfilePicture) => {
+export const changeProfilePicture = async ({ formData, userId = '' }: ChangeProfilePicture): Promise<string> => {
   const response = await axiosAuth.post(`/users/${userId}/profile-image`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }
   })
 
-  return response
+  const { data } = response
+
+  return data.profileUrl
 }
 
 export const removeProfilePicture = async (userId = '') => {
