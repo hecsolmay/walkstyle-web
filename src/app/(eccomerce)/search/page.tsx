@@ -1,11 +1,11 @@
 import { ProductFilter } from '@/components/filter-select-category'
+import ListOfProducts from '@/components/list-products'
 import { Pagination } from '@/components/pagination'
-import { ProductCard } from '@/components/product-card'
 import { getProducts } from '@/services/products'
 import { type ServerProps } from '@/types'
 
 export default async function SearchPage ({ searchParams }: ServerProps) {
-  const { info, products } = await getProducts(searchParams)
+  const { info, products } = await getProducts({ ...searchParams, limit: 20 })
 
   return (
     <>
@@ -19,11 +19,7 @@ export default async function SearchPage ({ searchParams }: ServerProps) {
         </div>
 
         <span className="block w-full border-t border-gray-400"></span>
-        <div className='my-6 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] justify-items-center gap-y-5 lg:grid-cols-4'>
-          {products.map((product) => (
-            <ProductCard key={product.productId} className='h-80 w-60 gap-8 pt-5 shadow-xl' product={product} />
-          ))}
-        </div>
+        {<ListOfProducts products={products}/>}
         <div className='flex justify-center p-10 md:justify-end'>
           <Pagination info={info}/>
         </div>
