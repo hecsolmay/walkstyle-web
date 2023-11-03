@@ -22,7 +22,7 @@ export default function LoginForm () {
   const showLoader = useLoaderStore((state) => state.showLoader)
   const hideLoader = useLoaderStore((state) => state.hideLoader)
 
-  const { router } = useNextQuery()
+  const { router, searchParams } = useNextQuery()
 
   const onSubmit = async (data: LoginSchema) => {
     const { email, password } = data
@@ -42,7 +42,9 @@ export default function LoginForm () {
     }
 
     if (responseNextAuth.ok) {
-      router.push('/')
+      const callbackUrl = searchParams.get('callbackUrl')
+      const redirect = callbackUrl ?? '/'
+      router.push(redirect)
     }
   }
 

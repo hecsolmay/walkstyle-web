@@ -1,7 +1,7 @@
 'use client'
 
 import { TextButton } from '@/components/text-button'
-import { changeProfilePicture } from '@/services/users'
+import { changeProfilePicture, removeProfilePicture } from '@/services/users'
 import useLoaderStore from '@/store/useLoader'
 import { ROLE } from '@/types/enums'
 import { toastError, toastSuccess } from '@/utils/toast'
@@ -32,15 +32,14 @@ export default function UserProfileImage () {
     try {
       if (e.target.files === null) return
 
-      const preview = URL.createObjectURL(e.target.files[0])
       const formData = new FormData()
 
       formData.append('image', e.target.files[0])
       showLoader()
 
       const userId = session?.user.userId ?? ''
-      await changeProfilePicture({ userId, formData })
-      await update({ ...session, user: { ...session?.user, profileUrl: preview } })
+      const profileUrl = await changeProfilePicture({ userId, formData })
+      await update({ ...session, user: { ...session?.user, profileUrl: profileUrl ?? 'default-user.png' } })
 
       toastSuccess('Imagen Cambiada')
     } catch (error) {
@@ -54,8 +53,8 @@ export default function UserProfileImage () {
   const handleRemove = async () => {
     try {
       showLoader()
+      await removeProfilePicture(session?.user.userId ?? '')
       await update({ ...session, user: { ...session?.user, profileUrl: 'default-user.png' } })
-      // await removeProfilePicture(session?.user.userId ?? '')
       toastSuccess('Imagen Eliminada')
     } catch (error) {
       console.error(error)
