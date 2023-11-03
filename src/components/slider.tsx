@@ -197,13 +197,20 @@ export function SliderProductsSection ({ products }: { products: Product[] }) {
   return (
     <CustomSwipper breakpoints={
       {
-        ...defaultBreackPoints,
         350: {
           slidesPerView: 1,
           spaceBetween: 0
         },
-        500: {
+        540: {
           slidesPerView: 2,
+          spaceBetween: 25
+        },
+        800: {
+          slidesPerView: 3,
+          spaceBetween: 25
+        },
+        1024: {
+          slidesPerView: 4,
           spaceBetween: 25
         }
       }

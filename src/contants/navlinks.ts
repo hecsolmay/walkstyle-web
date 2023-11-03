@@ -13,27 +13,26 @@ export interface SortLinks {
 
 export const links: NavLinks[] = [
   {
+    label: 'Marcas',
+    href: '/brands'
+  },
+  {
+    label: 'Categorias',
+    href: '/categories',
+    divider: true
+  },
+  {
     label: 'Hombre',
     href: `/genders/${GENDER.MALE}`
   },
   {
     label: 'Mujer',
     href: `/genders/${GENDER.FEMALE}`
-    // divider: true
   },
   {
     label: 'Niños',
     href: `/genders/${GENDER.KID}`
-    // divider: true
   }
-  // {
-  //   label: 'Marcas',
-  //   href: '/brands'
-  // },
-  // {
-  //   label: 'Categorias',
-  //   href: '/categories'
-  // }
 ]
 
 export const noSessionLinks: NavLinks[] = [

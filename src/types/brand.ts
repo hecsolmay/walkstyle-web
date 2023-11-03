@@ -11,5 +11,5 @@ export interface Brand {
 export interface BrandWithOutImage extends Omit<Brand, 'image' | 'banner'> {}
 
 export interface BrandDetails extends Brand, Details {
-  totalProducts?: number
+  productsCount?: number
 }

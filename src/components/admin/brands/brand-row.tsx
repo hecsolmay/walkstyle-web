@@ -16,7 +16,7 @@ export default function BrandRow ({ brand }: BrandRowProps) {
         </div>
       </TD>
       <TD>{brand.name}</TD>
-      <TD className='text-center'>{brand.totalProducts ?? 0}</TD>
+      <TD className='text-center'>{brand.productsCount ?? 0}</TD>
       <TD>
         <StatusBadge status={brand.status} />
       </TD>
