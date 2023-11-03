@@ -1,6 +1,6 @@
 'use client'
 
-import EmptyState from '@/components/empty-state'
+import EmptyState from '@/components/empty-states/empty-state'
 import { TotalProducts } from '@/components/total-products'
 import { TotalToPay } from '@/components/total-to-pay'
 import useCartStore from '@/store/useCartStore'

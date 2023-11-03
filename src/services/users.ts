@@ -30,7 +30,7 @@ interface ChangeUserPassword {
   newPassword: string
 }
 
-export async function getUsers ({ q = '', page = 1 }: SearchParams = {}): Promise<UsersResponse> {
+export async function getUsers ({ q = '', page = 1, limit = 10 }: SearchParams = {}): Promise<UsersResponse> {
   const response = await axios.get(`/users?q${q}&page=${page}`)
   const { data } = response
 
@@ -47,7 +47,7 @@ export async function getById (id = ''): Promise<User> {
   return data.user
 }
 
-export async function getAdminUsers ({ q = '', page = 1 }: SearchParams = {}): Promise<AdminUserResponse> {
+export async function getAdminUsers ({ q = '', page = 1, limit = 10 }: SearchParams = {}): Promise<AdminUserResponse> {
   const respone = await axiosAuth.get(`/users/all?q=${q}&page=${page}`)
   const { data } = respone
 

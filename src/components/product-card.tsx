@@ -13,18 +13,20 @@ export function ProductCard ({ product, className }: ProductCardProps) {
   const label = GENDER_LABELS[product?.gender?.name]
 
   return (
-    <div className={cn('flex h-72  w-52 flex-col justify-between gap-4 bg-white p-4 shadow-md', className)}>
-      <Link href={`/product/${product.productId}`} className='mx-auto  h-20 w-36'>
-        <img
-          className="h-full w-full object-cover"
-          src={product.images[0].preview}
-          alt={product.name}
-        />
-      </Link>
-      <Link href={`/product/${product.productId}`} className='flex flex-col gap-1'>
-        <h3 className="truncate text-lg font-semibold uppercase">{product?.brand.name}<span className="uppercase text-gray-500"> - {label}</span></h3>
-        <p className="text-overflow-ellipsis my-2 line-clamp-2 text-sm text-gray-500">{product.name}</p>
-        <p className="text-sm font-bold text-black">{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
+    <div className={cn('flex w-52 flex-col justify-between gap-2 bg-white p-4 shadow-md', className)}>
+      <Link href={`/product/${product.productId}`} className='flex flex-col gap-6'>
+        <div className='h-40 w-full'>
+          <img
+            className="h-full w-full object-cover"
+            src={product.images[0].preview}
+            alt={product.name}
+          />
+        </div>
+        <div className='flex flex-col gap-2'>
+          <h3 className="truncate text-lg font-semibold uppercase">{product?.brand.name}<span className="uppercase text-gray-500"> - {label}</span></h3>
+          <p className="text-overflow-ellipsis line-clamp-3 min-h-[3rem] text-sm text-gray-500">{product.name}</p>
+          <p className="text-sm font-bold text-black">{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
+        </div>
       </Link>
       <div className='flex justify-end'>
         <AddProductButton product={product} />

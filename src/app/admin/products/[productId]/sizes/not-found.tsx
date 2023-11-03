@@ -1,4 +1,4 @@
-import NotFoundComponent from '@/components/admin/not-found'
+import NotFoundComponent from '@/components/empty-states/not-found-admin'
 
 export default function SizesNotFound () {
   return (
