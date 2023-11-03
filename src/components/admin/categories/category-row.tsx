@@ -16,7 +16,7 @@ export default function CategoryRow ({ category }: CategoryRowProps) {
         </div>
       </TD>
       <TD>{category.name}</TD>
-      <TD className='text-center'>{category.totalProducts ?? 0}</TD>
+      <TD className='text-center'>{category.productsCount ?? 0}</TD>
       <TD>
         <StatusBadge status={category.status} />
       </TD>

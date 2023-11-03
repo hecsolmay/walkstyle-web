@@ -9,5 +9,5 @@ export interface Category {
 }
 
 export interface CategoryDetails extends Category, Details {
-  totalProducts?: number
+  productsCount?: number
 }
