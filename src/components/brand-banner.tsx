@@ -1,36 +1,28 @@
+import { type Brand } from '@/types/brand'
 import Link from 'next/link'
 
 interface BrandBannerProps {
-  imageUrl: string
-  linkTo: string
-  logoUrl: string
+  brand: Brand
 }
 
-export function BrandBanner ({ imageUrl, linkTo, logoUrl }: BrandBannerProps) {
+export function BrandBanner ({ brand }: BrandBannerProps) {
+  const { banner, brandId, image, name } = brand
+
   return (
-    <Link href={linkTo}>
-      <div className="relative w-full sm:w-96">
-        <div className="relative w-full">
-          <img
-            src={imageUrl}
-            alt="Brand Banner"
-            className="h-auto w-full rounded-xl object-cover"
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        </div>
-        <div className="absolute right-2 top-2">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-            <img
-              src={logoUrl}
-              alt="Logo de Nike"
-              className="h-8 w-8 "
-            />
+    <Link href={`/brands/${brandId}/products`}>
+      <div className="group w-full md:w-64">
+        <div className="relative overflow-hidden rounded-xl shadow-md">
+          <div className='absolute right-2 top-2 h-10 w-10'>
+            <img src={image.thumbnail} className='h-full w-full' alt={`Logo de ${name}`} />
           </div>
-        </div>
-        <div className="absolute inset-x-2 bottom-4">
-          <button className="w-full rounded-full bg-white px-4 py-2 font-semibold text-black">
-            Ver todo Adidas
-          </button>
+          <img
+            src={banner.main}
+            alt={`Imagen banner de la categoria ${name}`}
+            className="h-74 w-full rounded-xl bg-black/5 object-cover transition-transform duration-200 group-hover:scale-110  group-hover:opacity-90"
+          />
+          <div className="absolute inset-x-0 bottom-0 z-10 bg-black/40 p-4 text-center">
+            <p className="text-2xl font-bold text-white">{name}</p>
+          </div>
         </div>
       </div>
     </Link>
