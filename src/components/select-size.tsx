@@ -7,7 +7,7 @@ import { type Product } from '@/types/product'
 import { type Size } from '@/types/size'
 import { cn } from '@/utils/cn'
 import { toastError, toastSuccess } from '@/utils/toast'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface SelectSizeProps {
   product: Product
@@ -24,6 +24,15 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
   const leftStock = isNaN(avalibleStock - quantity) ? avalibleStock : avalibleStock - quantity
   const addProduct = useCartStore((state) => state.addProduct)
   const { router } = useNextQuery()
+
+  useEffect(() => {
+    for (const size of product.sizes) {
+      if (size.stock > 0) {
+        setSelectedSize(size)
+        break
+      }
+    }
+  }, [])
 
   const handleSelect = (size: Size) => {
     setSelectedSize(size)
@@ -82,7 +91,7 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
           }
 
           return (
-            <button key={size.sizeId} disabled className={cn('border w-14 text-center border-slate-400 py-2bg-white text-black cursor-default opacity-60')} title='No hay suficiente stock para el producto' >{size.size}</button>
+            <button key={size.sizeId} disabled className={cn('border w-14 text-center border-slate-400 py-2bg-white text-black opacity-60 cursor-not-allowed')} title='No hay suficiente stock para el producto' >{size.size}</button>
           )
         })}
       </div>
