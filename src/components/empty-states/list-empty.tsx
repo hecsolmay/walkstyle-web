@@ -14,7 +14,7 @@ export default function ListEmpty (
   { title = DEFAULT_PROPS.title, description = DEFAULT_PROPS.description }: ListEmptyProps
 ) {
   return (
-    <div className="mt-6 grid h-fit place-content-center gap-8 bg-white px-4">
+    <div className="mt-6 grid h-fit place-content-center gap-8 px-4">
       <div className="flex justify-center">
         <Image
           src='/product-not-found.webp'

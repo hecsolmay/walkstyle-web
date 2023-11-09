@@ -20,8 +20,8 @@ export function MobileSideBar () {
 
   return (
     <>
-      <button onClick={handleShowSideBar}>
-        <HamburguerIcon className='md:hidden' />
+      <button className='lg:hidden' onClick={handleShowSideBar}>
+        <HamburguerIcon />
       </button>
 
       {showSideBar && (

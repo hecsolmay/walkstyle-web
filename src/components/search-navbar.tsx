@@ -1,12 +1,18 @@
 'use client'
 
 import { SearchIcon, XMarkIcon } from '@/components/icons'
+import { useDebounce } from '@/hooks/useDebounce'
 import UseInput from '@/hooks/useInput'
 import useNextQuery from '@/hooks/useNextQuey'
+import { useSearchStore } from '@/store/useSearchStore'
 import { cn } from '@/utils/cn'
+import { useEffect } from 'react'
 
 export default function SearchBarInput () {
   const { clear, onChange, value: searchWord } = UseInput('')
+  const debouncedValue = useDebounce(searchWord, 500)
+  const setSearch = useSearchStore((state) => state.setSearch)
+  const setIsSearching = useSearchStore((state) => state.setIsSearching)
   const { router } = useNextQuery()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -19,6 +25,11 @@ export default function SearchBarInput () {
     router.push(`/search?q=${searchWord}`)
     clear()
   }
+
+  useEffect(() => {
+    setSearch(debouncedValue.trim())
+    setIsSearching(searchWord.trim().length > 0)
+  }, [debouncedValue])
 
   return (
     <form onSubmit={handleSubmit} className='relative hidden w-full md:block'>
@@ -45,6 +56,10 @@ interface SearchMobileProps {
 export function SearchMobileInput ({ showSearch, closeSearch }: SearchMobileProps) {
   const { clear, onChange, value: searchWord } = UseInput('')
   const { router } = useNextQuery()
+  const debouncedValue = useDebounce(searchWord, 500)
+  const setSearch = useSearchStore((state) => state.setSearch)
+  const setIsSearching = useSearchStore((state) => state.setIsSearching)
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     handleClose()
@@ -55,6 +70,11 @@ export function SearchMobileInput ({ showSearch, closeSearch }: SearchMobileProp
     closeSearch()
     clear()
   }
+
+  useEffect(() => {
+    setSearch(debouncedValue.trim())
+    setIsSearching(searchWord.trim().length > 0)
+  }, [debouncedValue])
 
   return (
     <form onSubmit={handleSubmit} className={cn('w-full ml-4 mr-1 relative transition-all duration-200 ease-in-out ', !showSearch && 'hidden')}>
