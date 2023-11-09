@@ -9,6 +9,7 @@ export default function SearchSugestions () {
   const isLoading = useSearchStore(state => state.isLoading)
   const search = useSearchStore(state => state.search)
   const products = useSearchStore(state => state.products)
+  const resetSearch = useSearchStore(state => state.resetSearch)
 
   if (!isSearching) return null
 
@@ -39,6 +40,7 @@ export default function SearchSugestions () {
                 className='min-w-[15rem]'
                 key={product.productId}
                 product={product}
+                onClick={() => { resetSearch() }}
               />
             ))}
           </div>
