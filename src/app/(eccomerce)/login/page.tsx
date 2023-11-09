@@ -1,6 +1,14 @@
 import Image from 'next/image'
 import LoginForm from '@/components/login-form'
-export default function LoginPage () {
+import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth'
+export default async function LoginPage () {
+  const session = await getServerSession()
+
+  if (session?.user !== undefined) {
+    redirect('/')
+  }
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center py-3 md:py-6">
       {/* Agrega la imagen de fondo con el componente Image */}

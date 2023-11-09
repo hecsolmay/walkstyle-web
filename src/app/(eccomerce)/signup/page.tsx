@@ -1,6 +1,14 @@
 import SignupForm from '@/components/singup-form'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
-export default function SignupPage () {
+import { redirect } from 'next/navigation'
+export default async function SignupPage () {
+  const session = await getServerSession()
+
+  if (session?.user !== undefined) {
+    redirect('/')
+  }
+
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center py-6 pt-8">
       {/* Agrega la imagen de fondo con el componente Image */}
