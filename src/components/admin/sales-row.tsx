@@ -23,6 +23,9 @@ export default function SalesRow ({ sale }: SalesRowProps) {
         {products.length}
       </TD>
       <TD>
+        {products.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0)}
+      </TD>
+      <TD>
         {getFormatedDate(createdAt)}
       </TD>
 
