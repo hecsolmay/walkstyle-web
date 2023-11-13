@@ -1,3 +1,4 @@
+import { type SearchParams } from '@/types'
 import { type Info } from '@/types/response'
 import { type SaleDetails } from '@/types/sale'
 import { axiosAuth } from '@/utils/axios'
@@ -7,8 +8,10 @@ interface SaleResponse {
   sales: SaleDetails[]
 }
 
-export async function getAllSales (): Promise<SaleResponse> {
-  const { data } = await axiosAuth.get('/sales')
+export async function getAllSales (
+  { page = 1, sort = 'recents', limit = 10 }: SearchParams = {}
+): Promise<SaleResponse> {
+  const { data } = await axiosAuth.get(`/sales?page=${page}&limit=${limit}&order=${sort}`)
   return {
     info: data.info,
     sales: data.sales
