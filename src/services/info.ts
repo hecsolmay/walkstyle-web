@@ -1,5 +1,5 @@
 import { type SaleDetails } from '@/types/sale'
-import { type User } from '@/types/user'
+import { type UserDetails } from '@/types/user'
 import { axiosAuth } from '@/utils/axios'
 import { getDateQueryFormat } from '@/utils/dates'
 
@@ -16,15 +16,32 @@ interface CategoryRow extends SaleRow {
   categoryId: string
 }
 
-interface DashboardResponse {
+export interface DashboardResponse {
   totalSales: number
   topProducts: ProductRow[]
   lestSoldProducts: ProductRow[]
   topCategories: CategoryRow[]
 }
 
-export async function getDashboardInfo (): Promise<DashboardResponse> {
-  const response = await axiosAuth.get('/info/dashboard')
+interface DateStart {
+  dateStart?: Date
+}
+
+interface DateWithEnd extends DateStart {
+  dateEnd?: Date
+}
+
+const DEFAULT_DATES: DateWithEnd = {
+  dateStart: new Date(),
+  dateEnd: new Date()
+}
+
+export async function getDashboardInfo (
+  { dateStart = new Date(), dateEnd = new Date() }: DateWithEnd = DEFAULT_DATES
+): Promise<DashboardResponse> {
+  const dateStartQuery = getDateQueryFormat(dateStart)
+  const dateEndQuery = getDateQueryFormat(dateEnd)
+  const response = await axiosAuth.get(`/info/dashboard?dateStart=${dateStartQuery}&dateEnd=${dateEndQuery}`)
   const { data } = response
 
   return {
@@ -37,11 +54,13 @@ export async function getDashboardInfo (): Promise<DashboardResponse> {
 
 interface LatestInfoResponse {
   sales: SaleDetails[]
-  users: User[]
+  users: UserDetails[]
 }
 
-export async function getLatestInfo (): Promise<LatestInfoResponse> {
-  const response = await axiosAuth.get('/info/latest')
+export async function getLatestInfo (
+  { limit = 5 }: { limit?: number } = {}
+): Promise<LatestInfoResponse> {
+  const response = await axiosAuth.get(`/info/latest?limit=${limit}`)
   const { data } = response
 
   return {
@@ -50,14 +69,14 @@ export async function getLatestInfo (): Promise<LatestInfoResponse> {
   }
 }
 
-interface InfoCount {
+export interface InfoCount {
   totalProducts: number
   totalSalesAmount: number
   totalUsers: number
 }
 
 export async function getInfoCount (
-  { dateStart = new Date() }: { dateStart?: Date } = {}
+  { dateStart = new Date() }: DateStart = DEFAULT_DATES
 ): Promise<InfoCount> {
   const dateQuery = getDateQueryFormat(dateStart)
   const response = await axiosAuth.get(`/info/count?date=${dateQuery}`)
