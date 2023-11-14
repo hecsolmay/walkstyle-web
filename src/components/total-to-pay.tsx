@@ -2,17 +2,18 @@
 
 import { LinkButton } from '@/components/link-button'
 import { TextButton } from '@/components/text-button'
-import { createSale } from '@/services/sales'
+import useNextQuery from '@/hooks/useNextQuey'
+import { createStripeSale } from '@/services/sales'
 import useCartStore from '@/store/useCartStore'
 import useLoaderStore from '@/store/useLoader'
-import { toastError, toastSuccess } from '@/utils/toast'
+import { toastError } from '@/utils/toast'
 import { useSession } from 'next-auth/react'
 
 export function TotalToPay () {
   const { data: session } = useSession()
   const total = useCartStore((state) => state.total)
   const items = useCartStore((state) => state.items)
-  const reset = useCartStore((state) => state.removeAll)
+  const { router } = useNextQuery()
   const showLoader = useLoaderStore((state) => state.showLoader)
   const hideLoader = useLoaderStore((state) => state.hideLoader)
 
@@ -21,17 +22,18 @@ export function TotalToPay () {
 
     try {
       showLoader()
-      const itemsRequest = items.map((item) => ({
-        sizeId: item.sizeId,
-        quantity: item.quantity
-      }))
+      const result = await createStripeSale(items)
 
-      await createSale(itemsRequest, session?.user.userId ?? '')
-      toastSuccess('Venta realizada')
-      reset()
+      if (result.error !== undefined) {
+        toastError('Error al realizar la venta')
+        return
+      }
+
+      const { url } = result
+
+      router.push(url)
     } catch (error) {
       console.error(error)
-      toastError('Error al realizar la venta')
     } finally {
       hideLoader()
     }
@@ -57,7 +59,7 @@ export function TotalToPay () {
         <div className="flex flex-col justify-between gap-4 bg-slate-200 p-2">
           {session?.user === undefined
             ? <LinkButton className="h-11 bg-teal-500" text="Iniciar sesión para terminar la compra" href="/login" />
-            : <TextButton onClick={handleSale} className="h-11 bg-teal-500" text="Finalizar compra" />
+            : <TextButton onClick={handleSale} className="h-11 bg-teal-500" text="Pagar Compra" />
 
           }
           <LinkButton className="h-11 bg-black" text="Seguir Explorando" href="/search" />

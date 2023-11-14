@@ -1,7 +1,9 @@
 import { type SearchParams } from '@/types'
+import { type ItemProduct } from '@/types/product'
 import { type Info } from '@/types/response'
 import { type SaleDetails } from '@/types/sale'
 import { axiosAuth } from '@/utils/axios'
+import axios from 'axios'
 
 interface SaleResponse {
   info: Info
@@ -15,6 +17,42 @@ export async function getAllSales (
   return {
     info: data.info,
     sales: data.sales
+  }
+}
+
+export async function createStripeSale (
+  products: ItemProduct[]
+) {
+  const items = products.map((item) => {
+    const { product, quantity, sizeId } = item
+
+    const size = product.sizes.find((size) => size.sizeId === sizeId)
+
+    return {
+      price: product.price,
+      details: product.details,
+      extraPrice: size?.extraPrice ?? 0,
+      image: product.images[0].preview,
+      quantity,
+      itemId: sizeId,
+      name: `${product.name} - Talla ${size?.size ?? ''}`
+    }
+  })
+
+  try {
+    const response = await axios.post('/api/prices', {
+      items
+    })
+    const { data } = response
+
+    return {
+      url: data.url as string
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      error: 'Error al crear la venta'
+    }
   }
 }
 
