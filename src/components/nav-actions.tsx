@@ -1,14 +1,21 @@
 'use client'
 
 import { UserIcon } from '@/components/icons'
-import ModalCartButton from '@/components/modal-cart-button'
-import { protectedLinks, publicLinks, noSessionLinks } from '@/contants/navlinks'
+import ShoppingCartButton from '@/components/shopping-cart-button'
+import { noSessionLinks, protectedLinks, publicLinks } from '@/contants/navlinks'
 import { ROLE } from '@/types/enums'
 import { cn } from '@/utils/cn'
-import { useSession, signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
-
 import { useEffect, useRef, useState } from 'react'
+
+const ModalCartButton = dynamic(
+  async () => await import('@/components/modal-cart-button'), {
+    ssr: false,
+    loading: () => <ShoppingCartButton />
+  }
+)
 
 export default function NavActions () {
   const { data: session, status } = useSession()

@@ -1,8 +1,8 @@
 'use client'
 
-import { ShoppingCartIcon } from '@/components/icons'
 import { Background } from '@/components/modal-background'
 import ModalCartInfo from '@/components/modal-cart-info'
+import ShoppingCartButton from '@/components/shopping-cart-button'
 import useCartStore from '@/store/useCartStore'
 import { useState } from 'react'
 
@@ -20,13 +20,8 @@ export default function ModalCartButton () {
 
   return (
     <>
-      <div className='relative '>
-        <span className='absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-teal-500 text-xs text-white'>{items.length}</span>
-        <button onClick={handleClick} className='cursor-pointer text-slate-600'>
-          <ShoppingCartIcon />
+      <ShoppingCartButton onClick={handleClick} items={items.length}/>
 
-        </button>
-      </div>
       {show &&
       <Background className='fixed inset-0 max-h-screen max-w-[100vw] overflow-hidden' close={handleClose} show={show}>
         <ModalCartInfo CloseSideBar={handleClose}/>
