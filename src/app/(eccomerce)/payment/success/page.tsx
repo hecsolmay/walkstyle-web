@@ -38,9 +38,6 @@ export default function SuccessPage () {
   useEffect(() => {
     confetti()
     handleSale()
-      .catch((error) => {
-        console.error(error)
-      })
   }, [])
 
   // TODO: AGREGAR DISEÑO DE GRACIAS POR TU COMPRA
