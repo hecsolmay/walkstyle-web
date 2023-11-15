@@ -1,4 +1,5 @@
 import Footer from '@/components/footer'
+import Hydrations from '@/components/hidratations'
 import Navbar from '@/components/navbar'
 
 export default function EcommerceLayout ({
@@ -8,6 +9,7 @@ export default function EcommerceLayout ({
 }) {
   return (
     <div className="h-screen min-h-screen w-screen max-w-[100%]">
+      <Hydrations />
       <Navbar />
       <div className='flex h-full w-full flex-col'>
         <main className='flex-1' >

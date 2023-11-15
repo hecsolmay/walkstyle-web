@@ -1,5 +1,6 @@
 import { type ItemProduct } from '@/types/product'
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface State {
   items: ItemProduct[]
@@ -20,7 +21,7 @@ interface Actions {
   changeQuantity: (sizeId: string, quantity: number) => void
 }
 
-const useCartStore = create<State & Actions>((set, get) => ({
+const useCartStore = create(persist<State & Actions>((set, get) => ({
   ...INITIAL_STATE,
   addProduct: (itemProduct: AddProductType) => {
     const total = itemProduct.product.price * itemProduct.quantity
@@ -86,6 +87,11 @@ const useCartStore = create<State & Actions>((set, get) => ({
 
     set({ items: newItems, total: newTotal })
   }
+
+}), {
+  name: 'cart',
+  storage: createJSONStorage(() => localStorage),
+  skipHydration: true
 }))
 
 export default useCartStore
