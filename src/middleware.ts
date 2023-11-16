@@ -1,4 +1,3 @@
-// export { default } from 'next-auth/middleware'
 import { withAuth } from 'next-auth/middleware'
 import { ROLE } from '@/types/enums'
 
@@ -15,5 +14,5 @@ export default withAuth({
 })
 
 export const config = {
-  matcher: ['/admin/:path*', '/profile']
+  matcher: ['/admin/:path*', '/profile', '/payment/:path*']
 }
