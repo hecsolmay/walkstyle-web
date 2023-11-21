@@ -1,9 +1,15 @@
-import { login } from '@/services/auth'
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '@/config'
+import { googleAuth, login } from '@/services/auth'
 import NextAuth, { type AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions: AuthOptions = {
   providers: [
+    GoogleProvider({
+      clientId: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET
+    }),
     CredentialsProvider({
       name: 'credentials',
       credentials: {
@@ -31,9 +37,14 @@ export const authOptions: AuthOptions = {
     })
   ],
   callbacks: {
-    async jwt ({ token, user, trigger, session }) {
+    async jwt ({ token, user, trigger, session, account }) {
       if (trigger === 'update') {
         return { ...token, ...session.user }
+      }
+
+      if (account?.provider === 'google') {
+        const loggedUser = await googleAuth(token as any)
+        user = loggedUser as any
       }
       return { ...token, ...user }
     },

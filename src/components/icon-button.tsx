@@ -11,6 +11,7 @@ interface IconButtonProps {
   className?: string
   onClick?: () => void
   disabled?: boolean
+  type?: 'button' | 'submit'
 }
 
 export function IconButton ({
@@ -19,12 +20,14 @@ export function IconButton ({
   direction = 'left',
   className = '',
   disabled,
+  type = 'button',
   children
 }: IconButtonProps) {
   return (
     <button
       disabled={disabled}
       className={cn('pb-2 pr-2 inline-flex h-12 w-full cursor-pointer flex-row items-center justify-center gap-x-2 rounded-lg bg-red-500 px-5 py-2.5 text-center font-medium text-white transition-all duration-200 ease-in-out hover:opacity-100 hover:shadow-lg md:gap-3', className, Boolean(disabled) && 'opacity-50 cursor-default')}
+      type={type}
       onClick={onClick} >
       {direction === 'left' && children}
       {text}

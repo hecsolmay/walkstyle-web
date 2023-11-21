@@ -1,7 +1,6 @@
 'use client'
 
-import { IconButton } from '@/components/icon-button'
-import { GoogleIcon } from '@/components/icons'
+import GoogleButton from '@/components/google-button'
 import Input, { InputPassword } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 import useNextQuery from '@/hooks/useNextQuey'
@@ -59,9 +58,11 @@ export default function SignupForm () {
       <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' className='mb-2' />
       <h2 className="my-3 text-center text-2xl font-semibold text-black">Crea tu cuenta gratuita</h2>
 
-      <IconButton text="Registrate con Google" className='my-5 w-full' >
-        <GoogleIcon className="ml-2 h-5" />
-      </IconButton>
+      <GoogleButton
+        text="Registrate con Google"
+        className='my-5 w-full'
+        iconClassName="ml-2 h-5"
+      />
 
       <div className="my-5 flex w-full items-center justify-between">
         <hr className=" w-32 border-t-2 border-gray-600" />
@@ -121,7 +122,12 @@ export default function SignupForm () {
         />
       </div>
 
-      <TextButton disabled={isSubmitting} text="Registrate" className="my-3 h-11 w-full bg-cyan-500 text-white" />
+      <TextButton
+        disabled={isSubmitting}
+        text="Registrate"
+        className="my-3 h-11 w-full bg-cyan-500 text-white"
+        type='submit'
+      />
 
       <p className='mt-3 flex gap-1 text-sm text-slate-400'>
 

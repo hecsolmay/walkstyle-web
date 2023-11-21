@@ -20,3 +20,9 @@ export interface UserDetails extends User, Details {}
 export interface UserWithToken extends User {
   token: string
 }
+
+export interface GoogleUser {
+  name: string
+  email: string
+  picture?: string
+}

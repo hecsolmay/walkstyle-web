@@ -1,7 +1,6 @@
 'use client'
 
-import { IconButton } from '@/components/icon-button'
-import { GoogleIcon } from '@/components/icons'
+import GoogleButton from '@/components/google-button'
 import Input, { InputPassword } from '@/components/input'
 import { TextButton } from '@/components/text-button'
 import useNextQuery from '@/hooks/useNextQuey'
@@ -89,7 +88,12 @@ export default function LoginForm () {
         </Link>
       </div>
 
-      <TextButton disabled={isSubmitting} text="Inicia Sesion" className="h-11 w-full bg-cyan-500 text-white" />
+      <TextButton
+        disabled={isSubmitting}
+        text="Inicia Sesion"
+        className="h-11 w-full bg-cyan-500 text-white"
+        type="submit"
+      />
 
       <p className='mt-3 flex gap-1 text-sm text-slate-400'>¿No tienes una cuenta?
 
@@ -104,9 +108,11 @@ export default function LoginForm () {
         <hr className=" w-32 border-t-2 border-gray-600  " />
       </div>
 
-      <IconButton text="Inicia session con Google" className='w-full' >
-        <GoogleIcon className="ml-2 h-5" />
-      </IconButton>
+      <GoogleButton
+        text="Inicia session con Google"
+        className='w-full'
+        iconClassName='ml-2 h-5'
+      />
 
     </form>
   )
