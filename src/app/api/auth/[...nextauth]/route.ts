@@ -8,7 +8,14 @@ export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code'
+        }
+      }
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -42,10 +49,15 @@ export const authOptions: AuthOptions = {
         return { ...token, ...session.user }
       }
 
+      if (account?.provider === 'credentials') {
+        user = { ...user, provider: 'credentials' } as any
+      }
+
       if (account?.provider === 'google') {
         const loggedUser = await googleAuth(token as any)
-        user = loggedUser as any
+        user = { ...loggedUser, provider: 'google' } as any
       }
+
       return { ...token, ...user }
     },
     async session ({ session, token }) {

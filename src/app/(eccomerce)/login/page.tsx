@@ -1,9 +1,11 @@
-import Image from 'next/image'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import LoginForm from '@/components/login-form'
-import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
+import Image from 'next/image'
+import { redirect } from 'next/navigation'
+
 export default async function LoginPage () {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
 
   if (session?.user !== undefined) {
     redirect('/')

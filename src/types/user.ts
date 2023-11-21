@@ -19,6 +19,7 @@ export interface UserDetails extends User, Details {}
 
 export interface UserWithToken extends User {
   token: string
+  provider: 'google' | 'credentials'
 }
 
 export interface GoogleUser {
