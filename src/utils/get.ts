@@ -24,3 +24,15 @@ export function transformProducts (items: ItemProductArray) {
     quantity: item.quantity
   }))
 }
+
+type InputObject = Record<string, any>
+
+type FilteredObject<T> = {
+  [K in keyof T]: Exclude<T[K], undefined>;
+}
+
+export function filterUndefinedValues<T extends InputObject> (obj: T): FilteredObject<T> {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key, value]) => value !== undefined)
+  ) as FilteredObject<T>
+}

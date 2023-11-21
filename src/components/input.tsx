@@ -17,6 +17,7 @@ interface InputProps {
   min?: number | string
   register?: any
   defaultValue?: string
+  disabled?: boolean
 }
 
 export default function Input ({
@@ -29,6 +30,7 @@ export default function Input ({
   defaultValue,
   error,
   min,
+  disabled,
   register
 }: InputProps) {
   return (
@@ -43,6 +45,7 @@ export default function Input ({
         <input
           {...register}
           type={type}
+          disabled={disabled}
           min={min}
           className={cn('block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm text-gray-900 focus:outline focus:outline-blue-500', className, error !== undefined && 'border-red-500')}
           placeholder={placeholder}
@@ -86,6 +89,7 @@ export function InputPassword (
         {showChangeType && (
           <button
             type='button'
+            tabIndex={-1}
             onClick={togglePasswordVisibility}
             className='absolute inset-y-0 right-0 flex items-center px-3 text-slate-500 focus:outline-none'
           >
