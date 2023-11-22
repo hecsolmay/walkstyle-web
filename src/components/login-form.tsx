@@ -14,7 +14,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
 export default function LoginForm () {
-  const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<LoginSchema>({
+  const { register, handleSubmit, formState: { isSubmitting, errors }, setError } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema)
   })
 
@@ -38,6 +38,11 @@ export default function LoginForm () {
 
     if (responseNextAuth === undefined) {
       return
+    }
+
+    if (responseNextAuth.error !== undefined) {
+      setError('email', { type: 'custom', message: 'El email o la contraseña son incorrectos' })
+      setError('password', { type: 'custom', message: 'El email o la contraseña son incorrectos' })
     }
 
     if (responseNextAuth.ok) {
