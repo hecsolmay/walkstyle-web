@@ -27,6 +27,33 @@ const useCartStore = create(persist<State & Actions>((set, get) => ({
     const total = itemProduct.product.price * itemProduct.quantity
     const newProduct = { ...itemProduct, total }
     const prevItems = get().items
+
+    const foundItemIndex = prevItems.findIndex((item) => item.sizeId === newProduct.sizeId)
+
+    if (foundItemIndex !== -1) {
+      const foundItem = prevItems[foundItemIndex]
+      const newQuantity = foundItem.quantity + newProduct.quantity
+
+      const size = itemProduct.product.sizes.find((size) => size.sizeId === foundItem.sizeId)
+      const avalibleStock = size?.stock ?? 0
+
+      if (newQuantity > avalibleStock) {
+        throw new Error('Ocurrio un error al Procesar tu solicitud, Stock insuficiente')
+      }
+
+      foundItem.quantity = newQuantity
+      foundItem.total += total
+
+      const newItems = prevItems.map(item => {
+        if (item.sizeId === foundItem.sizeId) {
+          return foundItem
+        }
+        return item
+      })
+
+      set({ items: newItems, total: get().total + total })
+      return
+    }
     set({ items: [...prevItems, newProduct], total: get().total + total })
   },
   removeProduct: (sizeId: string) => {
