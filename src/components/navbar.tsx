@@ -9,7 +9,7 @@ import Link from 'next/link'
 export default function Navbar () {
   return (
     <>
-      <nav className="sticky top-0 z-50 flex h-20 w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md lg:h-16 lg:px-4">
+      <nav className="fixed top-0 z-50 flex h-20 w-full items-center justify-between bg-slate-100 px-4 py-2 shadow-md lg:h-16 lg:px-4">
 
         <Link href='/' className='m-0 hidden lg:block'>
           <Image src={'/icon.webp'} width={55} height={55} alt='WalkStyle Logo' />
