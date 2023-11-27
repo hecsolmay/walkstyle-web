@@ -1,5 +1,6 @@
 import SectionEccomerce from '@/components/section-ecommerce'
 import { Carrusel, SliderBrandSection, SliderCategorySection, SliderProductsSection } from '@/components/slider'
+import { homeSliderItems } from '@/contants'
 import { getBrands } from '@/services/brands'
 import { getCategories } from '@/services/categories'
 import { getProducts } from '@/services/products'
@@ -17,7 +18,7 @@ export default async function Home () {
 
   return (
     <div className='mb-14 flex flex-col gap-8'>
-      <Carrusel />
+      <Carrusel items={homeSliderItems}/>
       <SectionEccomerce title='Categorías'>
         <SliderCategorySection categories={categories}/>
       </SectionEccomerce>

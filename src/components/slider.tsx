@@ -4,6 +4,7 @@ import { BrandCard } from '@/components/brand-card'
 import { CategoryCard } from '@/components/category-card'
 import { LinkButton } from '@/components/link-button'
 import ProductLinkCard from '@/components/product-link-card'
+import { type CarruselItem } from '@/types'
 import { type Brand } from '@/types/brand'
 import { type Category } from '@/types/category'
 import { type Product } from '@/types/product'
@@ -17,7 +18,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 SwiperCore.use([Autoplay, Pagination, Navigation, FreeMode])
 
-export function Carrusel () {
+export function Carrusel (
+  { items }: { items: CarruselItem[] }
+) {
   return (
     <Swiper
       autoplay={{
@@ -29,41 +32,24 @@ export function Carrusel () {
       }}
       className='mySwiper my-5 h-[75vh] w-full border-y border-slate-400 md:h-[70vh]'
     >
-      <SwiperSlide className='px-2md:w-[calc(100%_-_4rem)] w-full  md:px-6'>
-        <SliderContent
-          title='Kids'
-          subtitle='Hasta 50% de descuento'
-          description='En productos para los mas pequenos'
-          href='/search'
-          linkText='Explorar mas'
-          direction='left'
-          src='https://tafmx.vtexassets.com/assets/vtex.file-manager-graphql/images/e4e28d41-a7f4-41ef-b02a-848495982c08___0585f82118a943b317747e509853c4ff.jpg'
-        />
-      </SwiperSlide>
-      <SwiperSlide className='w-full px-2 md:w-[calc(100%_-_4rem)]  md:px-6'>
-        <SliderContent
-          title='Deportes'
-          subtitle='Hasta 50% de descuento'
-          description='En productos para deportistas'
-          href='/search'
-          linkText='Ver Productos'
-          direction='right'
-          src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
-        />
-      </SwiperSlide>
+      {items.map((item, index) => (
+        <SwiperSlide key={index} className='px-2md:w-[calc(100%_-_4rem)] w-full  md:px-6'>
+          <SliderContent
+            title={item.title}
+            subtitle={item.subtitle}
+            description={item.description}
+            href={item.href}
+            linkText={item.linkText}
+            direction={item.direction}
+            src={item.src}
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   )
 }
 
-interface SliderContentProps {
-  title: string
-  subtitle?: string
-  description?: string
-  href?: string
-  linkText?: string
-  direction: 'left' | 'right'
-  src: string
-}
+interface SliderContentProps extends CarruselItem {}
 
 export function SliderContent ({
   direction,
