@@ -7,7 +7,7 @@ import { type Product } from '@/types/product'
 import { type Size } from '@/types/size'
 import { cn } from '@/utils/cn'
 import { toastError, toastSuccess } from '@/utils/toast'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface SelectSizeProps {
   product: Product
@@ -81,7 +81,7 @@ export function SelectSizeWithCounter ({ product, className, closeModal }: Selec
 
   return (
     <div className={cn('flex flex-col gap-6', className)}>
-      <p className='text-lg text-slate-700'>Tallas:</p>
+      <p className='text-3xl font-bold text-black md:text-xl'>Seleccione una talla:</p>
       <div className='grid max-w-[440px] grid-cols-[repeat(auto-fit,minmax(60px,.1fr))] gap-2'>
         {sizes.map(size => {
           if (size.stock > 0) {

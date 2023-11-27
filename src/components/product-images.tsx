@@ -1,9 +1,9 @@
 'use client'
 
+import { ChevronLeftIcon } from '@/components/icons'
 import { type Image } from '@/types/image'
 import { cn } from '@/utils/cn'
 import { useState } from 'react'
-import { ChevronLeftIcon } from './icons'
 
 interface ProductImagesSliderProps {
   images: Image[]
@@ -28,14 +28,14 @@ export default function ProductImagesSlider ({ images }: ProductImagesSliderProp
   return (
     <div className='flex w-2/3 flex-col gap-4'>
 
-      <div className='grid h-96 w-80 place-content-center rounded-lg bg-slate-200 shadow-lg'>
-        <img className='h-64 w-64 object-contain mix-blend-darken' src={currentImage.main} />
+      <div className='grid h-96 w-80 place-content-center rounded-lg bg-transparent shadow-lg'>
+        <img className='h-64 w-64 object-contain' src={currentImage.main} />
       </div>
 
       <div className='grid w-80 grid-cols-4'>
         {images.map((image, index) => (
-          <div key={image.imageId} onMouseOver={() => { hoverHandler(index) }} onClick={() => { changeImage(index) }} className={cn('h-16 w-16 cursor-pointer bg-slate-200', currentImage === image && 'border-2 border-amber-400')}>
-            <img className='h-16 w-16 object-contain mix-blend-darken' src={image.main} alt="" />
+          <div key={image.imageId} onMouseOver={() => { hoverHandler(index) }} onClick={() => { changeImage(index) }} className={cn('h-16 w-16 p-1 cursor-pointer', currentImage === image && 'border border-amber-500')}>
+            <img className={cn('h-full w-full object-contain')} src={image.main} alt="" />
           </div>
 
         ))}
