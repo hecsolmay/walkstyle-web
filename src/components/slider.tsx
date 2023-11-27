@@ -1,23 +1,20 @@
 'use client'
 
-import { LinkButton } from '@/components/link-button'
-import { cn } from '@/utils/cn'
-import SwiperCore from 'swiper/core'
-import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-// Import Swiper styles
 import { BrandCard } from '@/components/brand-card'
 import { CategoryCard } from '@/components/category-card'
+import { LinkButton } from '@/components/link-button'
 import ProductLinkCard from '@/components/product-link-card'
 import { type Brand } from '@/types/brand'
 import { type Category } from '@/types/category'
 import { type Product } from '@/types/product'
+import { cn } from '@/utils/cn'
+import SwiperCore from 'swiper/core'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { Autoplay, FreeMode, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-// import required modules
 SwiperCore.use([Autoplay, Pagination, Navigation, FreeMode])
 
 export function Carrusel () {
@@ -54,7 +51,6 @@ export function Carrusel () {
           src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D&w=1000&q=80'
         />
       </SwiperSlide>
-
     </Swiper>
   )
 }
@@ -95,7 +91,11 @@ export function SliderContent ({
           <LinkButton className='mt-2' text={linkText} href={href} />
         </div>
       </div>
-      <img className='w-full flex-[1] object-cover md:h-full md:w-1/2' src={src} alt={`${title} image`} />
+      <img
+        className='w-full flex-[1] object-cover md:h-full md:w-1/2'
+        src={src}
+        alt={`${title} image`}
+      />
     </div>
   )
 }
@@ -126,19 +126,20 @@ const defaultBreackPoints: Breakpoints = {
   }
 }
 
-export function CustomSwipper (
-  { breakpoints = defaultBreackPoints, className, children }:
-  { breakpoints?: Breakpoints, className?: string, children?: React.ReactNode }
-) {
+export function CustomSwipper ({
+  breakpoints = defaultBreackPoints,
+  className,
+  children
+}: {
+  breakpoints?: Breakpoints
+  className?: string
+  children?: React.ReactNode
+}) {
   return (
     <Swiper
       freeMode={true}
       spaceBetween={25}
       slidesPerView={1}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false
-      }}
       breakpoints={breakpoints}
       modules={[FreeMode]}
       style={{ paddingLeft: '2rem', paddingRight: '2rem' }}
@@ -153,12 +154,14 @@ interface SliderCategorySectionProps {
   categories: Category[]
 }
 
-export function SliderCategorySection ({ categories }: SliderCategorySectionProps) {
+export function SliderCategorySection ({
+  categories
+}: SliderCategorySectionProps) {
   return (
     <CustomSwipper>
       {categories.map(category => (
         <SwiperSlide key={category.categoryId}>
-          <CategoryCard category={category}/>
+          <CategoryCard category={category} />
         </SwiperSlide>
       ))}
     </CustomSwipper>
@@ -171,8 +174,8 @@ interface SliderBrandSectionProps {
 
 export function SliderBrandSection ({ brands }: SliderBrandSectionProps) {
   return (
-    <CustomSwipper breakpoints={
-      {
+    <CustomSwipper
+      breakpoints={{
         ...defaultBreackPoints,
         350: {
           slidesPerView: 1,
@@ -182,11 +185,11 @@ export function SliderBrandSection ({ brands }: SliderBrandSectionProps) {
           slidesPerView: 2,
           spaceBetween: 25
         }
-      }
-    } >
+      }}
+    >
       {brands.map((brand, index) => (
         <SwiperSlide key={brand.brandId}>
-          <BrandCard brand={brand} colorVariant={index % 5}/>
+          <BrandCard brand={brand} colorVariant={index % 5} />
         </SwiperSlide>
       ))}
     </CustomSwipper>
@@ -195,8 +198,8 @@ export function SliderBrandSection ({ brands }: SliderBrandSectionProps) {
 
 export function SliderProductsSection ({ products }: { products: Product[] }) {
   return (
-    <CustomSwipper breakpoints={
-      {
+    <CustomSwipper
+      breakpoints={{
         350: {
           slidesPerView: 1,
           spaceBetween: 0
@@ -213,11 +216,15 @@ export function SliderProductsSection ({ products }: { products: Product[] }) {
           slidesPerView: 4,
           spaceBetween: 25
         }
-      }
-    } className='cursor-default'>
+      }}
+      className='cursor-grab'
+    >
       {products.map(product => (
-        <SwiperSlide className='grid place-content-center sm:block' key={product.productId}>
-          <ProductLinkCard product={product}/>
+        <SwiperSlide
+          className='grid place-content-center sm:block'
+          key={product.productId}
+        >
+          <ProductLinkCard product={product} />
         </SwiperSlide>
       ))}
     </CustomSwipper>
