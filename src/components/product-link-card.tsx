@@ -25,7 +25,7 @@ export default function ProductLinkCard (
       </div>
       <div className='flex flex-col gap-3'>
         <h3 className="truncate text-base font-semibold uppercase">{product.brand.name}<span className="uppercase text-gray-500"> - {label}</span></h3>
-        <p className="text-overflow-ellipsis line-clamp-3 min-h-[3rem] text-sm leading-4 text-gray-500">{product.name}</p>
+        <p className="line-clamp-3 min-h-[3rem] text-ellipsis text-sm leading-4 text-gray-500">{product.name}</p>
         <p className="mt-3 text-sm font-bold text-black">{product.price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</p>
       </div>
 
